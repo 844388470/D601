@@ -1,0 +1,61 @@
+{
+  "pages": [
+    "pages/login/signIn/signIn",
+    "pages/equipment/around/around",
+    "pages/equipment/addAround/addAround",
+    "pages/equipment/setEqu/setEqu",
+    "pages/equipment/equUpdate/equUpdate",
+    "pages/index/index",
+    "pages/motion/motion",
+    "pages/userInfo/userInfo",
+    "pages/my/my",
+    "pages/history/history",
+    "pages/message/message",
+    "pages/map/map",
+    "pages/equipment/addEqu/addEqu",
+    "pages/login/forgetPassword/forgetPassword",   
+    "pages/login/register/register",
+    "pages/setting/setting",
+    "pages/setting/editPassword/editPassword",
+    "pages/setting/about/about",
+    "pages/equipment/manage/manage",
+    "pages/equipment/euqRules/euqRules",
+    "pages/equipment/aroundName/aroundName"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "零零智能",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "rgb(136,136,136)",
+    "selectedColor": "rgb(9,187,9)",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "位置",
+        "iconPath": "image/index.png",
+        "selectedIconPath": "image/index-select.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "image/message.png",
+        "selectedIconPath": "image/message-select.png"
+      },
+      {
+        "pagePath": "pages/history/history",
+        "text": "轨迹",
+        "iconPath": "image/history.png",
+        "selectedIconPath": "image/history-select.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "更多",
+        "iconPath": "image/my.png",
+        "selectedIconPath": "image/my-select.png"
+      }
+    ]
+  }
+}

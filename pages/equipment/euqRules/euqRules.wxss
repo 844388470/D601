@@ -1,0 +1,4 @@
+/* pages/equipment/euqRules/euqRules.wxss */
+.content view{
+  padding: 20rpx 50rpx;font-size: 30rpx;color: #444;text-indent: 30rpx;
+}

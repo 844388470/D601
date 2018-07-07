@@ -1,0 +1,20 @@
+<view class='content'>
+  <view class='login-info'>
+    
+  </view>
+  <view class='login-input-contain'>
+    <view class='input-row {{inputPhone? "active": ""}}  {{phoneActive? "active-line" : ""}}'>
+      <label>手机号码</label>  
+      <input type='number' bindfocus='inputPhoneFocus' bindblur='inputPhoneBlur' value='{{ inputPhone }}' bindinput='getInputPhone'></input>
+    </view>
+    <view class='input-row {{inputCode? "active": ""}} {{codeActive? "active-line" : ""}}'>
+      <label>密码</label>
+      <input type='password' bindfocus='inputCodeFocus' bindblur='inputCodeBlur' placeholder-class='input-default' value='{{ inputCode }}' bindinput='getInputCode'></input>
+    </view>
+    <view class='regist tr'>
+      <label bindtap='goForgetPassword'>忘记密码</label>
+    </view>
+    <view class='btn {{canLogin? "login-color": ""}}' bindtap='goLogin'>登录</view>
+    <view class='regist'><label bindtap='goRegister'>新用户注册</label></view>
+  </view>
+</view>

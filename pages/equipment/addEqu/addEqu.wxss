@@ -1,0 +1,4 @@
+@import "../../login/register/register.wxss";
+.btn{
+  background-color:rgba(155,205,155,1);
+}

@@ -1,0 +1,60 @@
+/* pages/equipment/manage/manage.wxss */
+
+.content{
+  box-sizing:border-box;
+  padding:0 20rpx;
+}
+
+.input-row {
+  position:relative;
+  height:112rpx;
+  overflow:hidden;
+  margin-bottom:50rpx;
+}
+
+.input-row text {
+  position:absolute;
+  display:inline-block;
+  padding:5rpx 0;
+  width:180rpx;
+  top:25rpx;
+  left:0;
+  color:#1a1a1a;
+  font-size:38rpx;
+  background:white;
+}
+
+.input-row input {
+  position:absolute;
+  display:inline-block;
+  right:0;
+  left:180rpx;
+  color:#999;
+  border-bottom:none;
+  padding:25rpx 0 25rpx 25rpx;
+  padding-bottom:33rpx;
+  font-size:35rpx;
+  text-align:right;
+}
+
+.title{
+  font-size: 35rpx;
+  margin-bottom: 50rpx;
+}
+
+.phone{
+  font-size:35rpx;
+  margin-bottom: 50rpx;
+}
+
+.fs30{
+  margin-left:20rpx;
+  color:#999;
+}
+
+.guize{
+  position: absolute;
+  bottom: 10rpx;
+  left: 20rpx;right: 20rpx;
+  font-size: 26rpx;color: #999;text-align: center;
+}

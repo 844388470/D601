@@ -1,0 +1,4 @@
+/* pages/setting/about/about.wxss */
+.tc{
+  position: absolute;bottom:20rpx;width: 100%;
+}

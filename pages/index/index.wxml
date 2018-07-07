@@ -1,0 +1,24 @@
+<view class='content'>
+  <map id='myMap' longitude='{{longitude}}' latitude='{{latitude}}' markers='{{markerDatas}}' scale='18' ></map>
+  <cover-view class="tip">
+      <cover-view class="flexl">
+        <cover-view>
+          <cover-image class="image_location" src='../../image/index.png'></cover-image>
+        </cover-view>
+        <cover-view class="width80 ml20">
+          <cover-view class="fs30 ">{{text.message}}</cover-view>
+          <cover-view class="fs30 ">{{text.date}}</cover-view>
+        </cover-view>
+      </cover-view>
+      <cover-view class="flexl mt width100">
+        <cover-view class="tl fs28 colorh pellipsis flex-flex width80">{{text.address}}</cover-view>
+        <cover-view class="tr fs28 nowarp flex-flex">{{text.timeFn}}</cover-view>
+      </cover-view>
+  </cover-view>
+  <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="imei">
+      <cover-view class="project flexc picker">
+        <cover-image src='../../image/filter.png'></cover-image>
+        <cover-view class="fs28 pellipsis">{{indexs}}</cover-view>
+      </cover-view>
+  </picker>
+</view>

@@ -1,0 +1,9 @@
+<!--pages/equipment/aroundName/aroundName.wxml-->
+
+<view class="content">
+  <view class='operation'>
+    <input type='text' placeholder='围栏名称' value='{{inputCode}}' cursor-spacing='110' bindinput='getInputCode'></input>
+    <view class="btn register" wx:if="{{option=='add'}}" bindtap='addEqu'>添加</view>
+    <view class="btn register" wx:if="{{option=='edit'}}" bindtap='addEqu'>修改</view>
+  </view>
+</view>

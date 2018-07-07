@@ -1,0 +1,30 @@
+/* pages/map/map.wxss */
+@import "../index/index.wxss";
+.tip{
+  padding: 15rpx 20rpx 20rpx;
+}
+.flexspace{
+  border-bottom: 1rpx solid #9c9;
+  padding:10rpx;
+}
+.circle {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #CC9999;
+  margin-right:20rpx;
+}
+.green{
+  background-color: #99CC99;
+}
+.address{
+  padding:15rpx 0;
+}
+
+.address .flexl:first-child{
+  margin-bottom:15rpx;
+}
+.mt{
+  margin-top:0;
+}

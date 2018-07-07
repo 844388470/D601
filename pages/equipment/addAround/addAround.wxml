@@ -1,0 +1,18 @@
+<!--pages/equipment/addAround/addAround.wxml-->
+<view class="content">
+  <view class='map'>
+    <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" markers="{{markers}}" circles="{{circles}}" bindregionchange="controltap"></map>
+    <cover-image src='../../../image/ding.png' class="index" wx:if="{{ding}}"></cover-image>
+  </view>
+  <view class="tip boxshadow">
+      <view class="title">滑动调整安全区域范围:{{radius}}m</view>
+      <view class="huakaui">
+        <slider step="5" bindchanging="sliderchange" min="100" max="2000" value="radius"/>
+      </view>
+      <view class="flexl address">
+        <cover-image class="image_location" src='../../../image/index.png'></cover-image>
+        <view>{{name}}</view>
+      </view>
+      <view class="btn" bindtap='goAroundName'>下一步</view>
+  </view>
+</view>

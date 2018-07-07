@@ -1,0 +1,66 @@
+/* pages/motion/motion.wxss */
+@import '../index/index';
+.container{
+   position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:space-between;
+  box-sizing:border-box; 
+}
+.top{
+  padding:30rpx 0;
+  font-size: 80rpx;
+  position: relative;
+}
+
+.top .flex-flex{
+  width: 50%;
+}
+
+.top .shu{
+  width:1rpx;
+  height:100rpx;
+  background-color: #ddd;
+  position: absolute;
+  top: 60rpx;
+}
+.echart{
+  position: relative;
+  width: 100%;
+  height: 50vh;
+}
+.fs50{
+  font-size:50rpx;
+}
+.top .xshu{
+  height:60rpx;
+  top: 60rpx;
+}
+
+.anniu{
+  position: absolute;bottom: 100rpx;width: 100%;
+}
+.anniu text{
+  display: inline-block;padding: 30rpx 80rpx;text-align: center;background-color: #9c9;font-size: 32rpx;color: #fff;
+}
+
+.anniu text.active{
+  background-color: #696;color: #fff;
+}
+
+.anniu text:first-child{
+  border-radius: 10rpx 0 0 10rpx;
+}
+
+.anniu text:last-child{
+  border-radius: 0 10rpx 10rpx 0;
+}
+
+.project{
+  bottom:10rpx;
+}

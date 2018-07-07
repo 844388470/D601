@@ -1,0 +1,13 @@
+<!--pages/equipment/equUpdate/equUpdate.wxml-->
+<view class='content'>
+  <view class='title tc'>检测到新版本，可升级</view>
+  <view class='flexspace'><text>当前版本</text><text>V1.0.21</text></view>
+  <view class='flexspace'><text>最新版本</text><text>V1.1.23</text></view>
+  <view class="message">
+    <view>更新内容</view>
+    <view>-优化计步算法</view>
+    <view>-修复已知BUG</view>
+  </view> 
+  <view class='btn'>确认升级</view>
+  <view class='tishi'>设备将直接通过网络下载程序更新,并在指定时间自动完成更新。固件升级需要耗费设备端流量（≤2MB），并且更新过程中会导致设备功能不可用。</view>
+</view>

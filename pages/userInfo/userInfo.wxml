@@ -1,0 +1,27 @@
+<!--pages/userInfo/userInfo.wxml-->
+<view class="content">
+  <view class="input-row">
+    <text>昵称</text>
+    <input type='number' placeholder='请输入' value='{{nickName}}' bindinput='getNickName' bindblur="blurData"></input>
+  </view>
+  <view class="input-row">
+    <text>真实姓名</text>
+    <input type='number' placeholder='请输入' value='{{realName}}' bindinput='getRealName'  bindblur="blurData"></input>
+  </view>
+  <view class="input-row">
+    <text>手机号码</text>
+    <input type='number' placeholder='请输入' value='{{phone}}' bindinput='getPhone'  bindblur="blurData"></input>
+  </view>
+  <view class="input-row">
+    <text>身高</text>
+    <input type='text' placeholder='请输入' value='{{height}}' bindinput='getHeight'  bindblur="blurData"></input>
+  </view>
+  <view class="input-row">
+    <text>体重</text>
+    <input type='number' placeholder='请输入' value='{{weight}}' bindinput='getWeight'  bindblur="blurData"></input>
+  </view>
+  <view class="input-row">
+    <text>运动目标</text>
+    <input type='number' placeholder='请输入' value='{{moTarget}}' bindinput='getMoTarget'  bindblur="blurData"></input>
+  </view>
+</view>

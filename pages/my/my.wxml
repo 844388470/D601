@@ -1,0 +1,66 @@
+<view class='content'>
+  <view class='flexspace geren' bindtap='goUserInfo'>
+    <view class="flexl">
+      <image class='mine-info-bg' src='../../image/login-bg.jpg' mode="scaleToFill"></image>
+      <view class="pellipsis">五彩斑斓的黑</view>
+    </view>
+    <view>
+      <view class='iconfont tako-icon-youjiantou-copy'></view>
+    </view>
+  </view>
+  <view class="flexspace list" bindtap='goMotion'>
+    <view class='flex-flex flexl'>
+      <view class='iconfont icon-tiyu-paobu'></view>
+      <view class=''>运动统计</view>
+    </view>
+    <view class=''>
+      <view class='iconfont tako-icon-youjiantou-copy fs30'></view>
+    </view>
+  </view> 
+  <view class="flexspace list" bindtap='goSetting'>
+    <view class='flex-flex flexl'>
+      <view class='iconfont icon-shezhi'></view>
+      <view class=''>设置</view>
+    </view>
+    <view class=''>
+      <view class='iconfont tako-icon-youjiantou-copy  fs30'></view>
+    </view>
+  </view> 
+  <view class="flexspace list" bindtap='goAddEqu'> 
+    <view class='flex-flex flexl'>
+      <view class='iconfont icon-shebei'></view>
+      <view class=''>我的设备</view> 
+    </view>
+    <view class=''>
+      <view class='iconfont tako-icon-add fs30'></view>
+    </view>
+  </view>
+  <view class="flexspace shebei boxshadow"  bindtap='goSetEqu'>
+      <view class="flex-flex">
+        <view>设备一</view>
+        <view>90%</view>
+      </view>
+      <view class=''>
+        <view class='iconfont  tako-icon-youjiantou-copy fs28'></view>
+      </view>
+  </view> 
+   <view class="flexspace shebei boxshadow"  bindtap='goSetEqu'>
+      <view class="flex-flex">
+        <view>设备二</view>
+        <view>70%</view>
+      </view>
+      <view class=''>
+        <view class='iconfont  tako-icon-youjiantou-copy fs28'></view>
+      </view>
+  </view> 
+   <view class="flexspace shebei boxshadow"  bindtap='goSetEqu'>
+      <view class="flex-flex">
+        <view>设备三</view>
+        <view>50%</view>
+      </view>
+      <view class=''>
+        <view class='iconfont  tako-icon-youjiantou-copy fs28'></view>
+      </view>
+  </view> 
+  <view class='btn' bindtap='logOut'>退出登录</view>
+</view>

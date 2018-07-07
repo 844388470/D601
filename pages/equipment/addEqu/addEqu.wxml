@@ -1,0 +1,7 @@
+
+<view class="content">
+  <view class='operation'>
+    <input type='number' placeholder='设备码' value='{{inputCode}}' cursor-spacing='110' bindinput='getInputCode'></input>
+    <view class="btn register">添加</view>
+  </view>
+</view>

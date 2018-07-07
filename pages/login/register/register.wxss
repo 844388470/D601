@@ -1,0 +1,45 @@
+.operation {
+  margin: 0 30rpx;
+  padding-bottom: 1rpx;
+}
+
+.operation input {
+  padding-top: 36rpx;
+  padding-bottom: 33rpx;
+  font-size: 0.9rem;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.input-row {
+  position: relative;
+  height: 110rpx;
+  overflow: hidden;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.input-row input {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  right: 200rpx;
+  color: #1a1a1a;
+  border-bottom: none;
+}
+
+.input-row button {
+  position: absolute;
+  display: inline-block;
+  padding: 5rpx 0;
+  width: 180rpx;
+  top: 25rpx;
+  right: 0;
+  color: #1a1a1a;
+  font-size: 0.7rem;
+  background: white;
+}
+.register{
+  width:90%;
+  margin: 30rpx auto;
+  background-color:rgba(155,205,155,0.8);
+  color:#fff;
+}

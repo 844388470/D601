@@ -1,0 +1,23 @@
+/* pages/equipment/setEqu/setEqu.wxss */
+@import '../../userInfo/userInfo';
+
+.content>.flexspace{
+  position:relative;
+  height:112rpx;
+  overflow:hidden;
+  margin-bottom:10rpx;
+  font-size:35rpx;
+}
+
+.iconfont{
+  padding-right: 25rpx;
+}
+
+.btn{
+  position: absolute;
+  bottom: 100rpx;
+  width: 90%;
+  background-color: red;
+  left: 5%;
+  color: #fff;
+}

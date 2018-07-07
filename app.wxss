@@ -1,0 +1,101 @@
+/**app.wxss**/
+@import "./font/iconfont2.wxss";
+@import "./font/iconfont.wxss";
+.content{
+  width: 100%;
+  height: 100vh;
+  overflow:auto;
+}
+
+.width100{
+  width:100%;  
+}
+
+.tl{
+  text-align: left!important;
+}
+
+.tc{
+  text-align: center!important;
+}
+
+.tr{
+  text-align: right!important;
+}
+
+
+.flexl{
+  display: flex!important;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.flexc{
+  display: flex!important;
+  align-items: center;
+  justify-content: center;
+}
+
+.flexr{
+  display: flex!important;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.flexspace{
+  display: flex!important;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-flex{
+  flex:auto;
+}
+
+.fs25{
+  font-size:25rpx;
+}
+
+.fs26{
+  font-size:26rpx;
+}
+
+.fs28{
+  font-size:28rpx;
+}
+
+.fs30{
+  font-size:30rpx;
+}
+
+.btn{
+  width: 550rpx;
+  line-height: 96rpx;
+  font-size: 30rpx;
+  color: #9CA9B6;
+  letter-spacing: 2rpx;
+  text-align: center;
+  background: #F5F6FA;
+  border-radius: 18rpx;
+}
+
+.colorh{
+  color:#999;
+}
+
+.nowarp{
+  white-space:nowrap;
+}
+
+.pellipsis{
+  text-overflow:ellipsis;overflow:hidden;white-space:nowrap;
+}
+
+.overhidden{
+  overflow: hidden;
+}
+
+.boxshadow{
+  border-radius:5rpx;
+  box-shadow:0rpx 0rpx 10rpx #9c9;
+}

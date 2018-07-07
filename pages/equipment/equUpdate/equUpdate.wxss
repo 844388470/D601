@@ -1,0 +1,17 @@
+/* pages/equipment/equUpdate/equUpdate.wxss */
+.title{
+  padding: 120rpx 0 150rpx;font-size: 40rpx;
+}
+.flexspace{
+  padding: 30rpx;
+}
+
+.message{
+  padding: 30rpx;
+}
+.btn{
+  position: absolute;bottom: 150rpx;color: #fff;background-color: #696;width: 90%;left: 5%;
+}
+.tishi{
+  padding: 30rpx;font-size: 25rpx;color:#999;text-indent: 50rpx;position: absolute;left: 0;right: 0;bottom: 0;
+}

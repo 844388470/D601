@@ -1,0 +1,35 @@
+.geren{
+  padding:60rpx 30rpx 60rpx;
+  font-size:40rpx;
+}
+.geren image{
+  border-radius:50%;
+  border:1rpx solid #ddd;
+  width:120rpx;
+  min-width:120rpx;
+  height:120rpx;
+  margin-right:30rpx
+}
+.geren .flexl{
+  max-width:90%;
+}
+.geren .pellipsis,.geren .iconfont{
+  font-size: 38rpx;
+}
+.list{
+  padding:25rpx 30rpx 25rpx;font-size: 32rpx;
+}
+.btn{
+  width:90%;margin:30rpx 5%;
+}
+
+.list>view:first-child .iconfont{
+  font-size:50rpx;margin-right:20rpx;
+}
+.shebei{
+  margin:20rpx 30rpx 20rpx;font-size: 30rpx;background-color: rgba(153,204,153,0.1);
+  padding: 20rpx;
+}
+.shebei>view>view:first-child{
+  margin-bottom:10rpx;
+}

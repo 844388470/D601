@@ -1,0 +1,42 @@
+<view class="content">
+  <view>
+    <view>
+      <view class="fs30">2018-06-04 周一</view>
+      <view class="list">
+        <view class="width30 ">08:11<text class="circle"></text></view>
+        <view class="width70 boxshadow flexspace" bindtap='goMap' data-type="1"><text  data-type="1">离开电子围栏</text><text class="arrow"></text><text class='iconfont tako-icon-youjiantou-copy colorh fs25'  data-type="1"></text></view>
+      </view>
+    </view>
+    <view>
+      <view class="fs30">2018-06-03 周日</view>
+      <view class="list">
+        <view class="width30 mult">20:37<text class="circle"></text></view>
+        <view class="width70 boxshadow flexspace"><text>电量低,请及时充电</text><text class="arrow"></text></view>
+      </view>
+      <view class="list">
+        <view class="width30 mult">19:24<text class="circle"></text></view>
+        <view class="width70 boxshadow flexspace"><text>已达成今天运动目标</text><text class="arrow"></text></view>
+      </view>
+      <view class="list">
+        <view class="width30 mult">16:12<text class="circle"></text></view>
+        <view class="width70 boxshadow flexspace"  bindtap='goMap' data-type="2"><text   data-type="2">进入电子围栏</text><text class="arrow"></text><text class='iconfont tako-icon-youjiantou-copy colorh fs25'   data-type="2"></text></view>
+      </view>
+      <view class="list">
+        <view class="width30 mult">15:51<text class="circle"></text></view>
+        <view class="width70 boxshadow flexspace"  bindtap='goMap' data-type="3"><text   data-type="3">离开电子围栏</text><text class="arrow"></text><text class='iconfont tako-icon-youjiantou-copy colorh fs25'   data-type="3"></text></view>
+      </view>
+      <view class="list">
+        <view class="width30 mult">15:40<text class="circle"></text></view>
+        <view class="width70 boxshadow flexspace"><text>固件升级成功</text><text class="arrow"></text></view>
+      </view>
+      <view class="list">
+        <view class="width30 mult">15:30<text class="circle"></text></view>
+        <view class="width70 boxshadow flexspace"><text>130000000 请求绑定设备</text><text class="arrow"></text><text class='colorh fs25'>已接受</text></view>
+      </view>
+      <view class="list">
+        <view class="width30 mult">15:11<text class="circle"></text></view>
+        <view class="width70 boxshadow flexspace"><text>130000000 请求绑定设备</text><text class="arrow"></text><view class="colorh fs25"><text class="iconfont icon-cuohao"></text><text class="iconfont icon-duihao fs30"></text></view></view>
+      </view>
+    </view>
+  </view>
+</view>

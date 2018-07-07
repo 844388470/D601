@@ -1,0 +1,29 @@
+/* pages/equipment/around/around.wxss */
+.content>view{
+  padding: 20rpx;
+}
+
+.p{
+  font-size: 30rpx;color: #999;text-indent: 30rpx;
+}
+
+.list{
+  margin: 0 20rpx;
+  border: 1rpx solid #9c9;
+  margin-bottom: 40rpx;
+}
+.list map{
+  height: 200rpx;width: 100%;
+}
+.list .map{
+  position: relative;
+}
+.list .zhezhao{
+  position: absolute;
+  top: 0;
+  height: 200rpx;left: 0;
+  right: 0;
+}
+.name view{
+  margin-top: 20rpx;
+}

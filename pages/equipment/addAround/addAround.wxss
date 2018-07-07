@@ -1,0 +1,36 @@
+/* pages/equipment/addAround/addAround.wxss */
+.content .map{
+  width: 100%;position: absolute;top: 0;bottom:350rpx;
+}
+
+.content map{
+  width: 100%;height: 100%;
+}
+
+.tip{
+  position: absolute;
+  bottom: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+  padding: 20rpx;
+  background-color: #fff;
+}
+.image_location{
+  width: 50rpx;
+  height: 50rpx;
+}
+.title{
+  font-size: 35rpx;color: #000;
+}
+.address{
+  font-size: 30rpx;margin: 30rpx 0;
+}
+.btn{
+  width: 100%;color: #fff;background-color: #696;
+}
+.index{
+  position: absolute;
+  width: 8%;
+  height: 8%;
+  top: 42%;left:46%;
+}

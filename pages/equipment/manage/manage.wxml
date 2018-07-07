@@ -1,0 +1,21 @@
+<!--pages/equipment/manage/manage.wxml-->
+<view class="content">
+  <view class="input-row">
+    <text>绑定设置</text>
+    <picker mode="selector" bindchange="bindPickerChange" range="{{settingArray}}" range-key="name">
+        <input type='text' value="{{ settingName }}" disabled='true'></input>
+    </picker>
+  </view>
+  <view class="flexspace title">
+    <text>已绑定用户</text>
+    <text>{{list.length}}/10</text>
+  </view>
+  <view class="flexspace phone" wx:for="{{list}}" wx:key="userId">
+    <view class="flexspace">
+      <view>+86 {{item.phone}}</view>
+      <view class="fs30">{{item.userName}}</view>
+    </view>
+    <view class='iconfont icon-shanchu fs30' wx-if="{{item.isDelete}}"  bindtap='deletePhone' data-index="{{index}}"></view>
+  </view>
+  <view class="guize" bindtap='goRules'>绑定规则</view>
+</view>

@@ -1,0 +1,18 @@
+<!--pages/equipment/around/around.wxml-->
+<view class='content'>
+  <view class="p">最多可设置4个电子围栏，当设备进入或离开电子围栏范围，App端将收到推送消息。</view>
+  <view class="flexspace fs30">
+    <text>电子围栏({{list.length}}/4)</text>
+    <text bindtap='goAddAround'>新增</text>
+  </view>
+  <view class='list boxshadow' wx:for="{{list}}" wx:key="index">
+    <!-- <view class="map">
+      <map id="map" longitude="{{item.markers[0].longitude}}" latitude="{{item.markers[0].latitude}}" scale="18" markers="{{item.markers}}" circles="{{item.circles}}"></map>
+      <cover-view class="zhezhao"></cover-view>
+    </view> -->
+    <view class='name fs30'>
+      <view>{{item.name}}  方圆{{item.distance}}m</view>
+      <view>{{item.adressName}}</view>
+    </view>
+  </view>
+</view>

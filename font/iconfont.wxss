@@ -1,0 +1,96 @@
+@font-face {
+  font-family: 'Tako_Font';  /* project id 645776 */
+  src: url('//at.alicdn.com/t/font_645776_l4gj1ejy72lw61or.eot');
+  src: url('//at.alicdn.com/t/font_645776_l4gj1ejy72lw61or.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_645776_l4gj1ejy72lw61or.woff') format('woff'),
+  url('//at.alicdn.com/t/font_645776_l4gj1ejy72lw61or.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_645776_l4gj1ejy72lw61or.svg#Tako_Font') format('svg');
+}
+
+.Tako_Font {
+  font-family:"Tako_Font" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tako-icon-reduce:before { content: "\ee55"; }
+
+.tako-icon-dizhi:before { content: "\e6c7"; }
+
+.tako-icon-zuojiantou:before { content: "\e6c8"; }
+
+.tako-icon-gouwuche:before { content: "\e6ca"; }
+
+.tako-icon-gengduo:before { content: "\e6cb"; }
+
+.tako-icon-kefu:before { content: "\e6cc"; }
+
+.tako-icon-up:before { content: "\e6cf"; }
+
+.tako-icon-down:before { content: "\e6d0"; }
+
+.tako-icon-paihang:before { content: "\e6d1"; }
+
+.tako-icon-daifukuan:before { content: "\e6e5"; }
+
+.tako-icon-add:before { content: "\e6e6"; }
+
+.tako-icon-daiqianyue:before { content: "\e6e7"; }
+
+.tako-icon-yifukuan:before { content: "\e6e8"; }
+
+.tako-icon-all:before { content: "\e6e9"; }
+
+.tako-icon-choice:before { content: "\e6ea"; }
+
+.tako-icon-delete:before { content: "\e6eb"; }
+
+.tako-icon-company:before { content: "\e6ec"; }
+
+.tako-icon-youjiantou-copy:before { content: "\e6ed"; }
+
+.tako-icon-shejifuwu:before { content: "\e6ee"; }
+
+.tako-icon-weixin:before { content: "\e6ef"; }
+
+.tako-icon-xianxia:before { content: "\e6f0"; }
+
+
+  /* <view class="iconfont tako-icon-reduce"></view>
+  <view class="iconfont tako-icon-dizhi"></view>
+  <view class="iconfont tako-icon-zuojiantou"></view>
+  <view class="iconfont tako-icon-gouwuche"></view>
+  <view class="iconfont tako-icon-gengduo"></view>
+  <view class="iconfont tako-icon-kefu"></view>
+  <view class="iconfont tako-icon-up"></view>
+  <view class="iconfont tako-icon-down"></view>
+  <view class="iconfont tako-icon-paihang"></view>
+  <view class="iconfont tako-icon-daifukuan"></view>
+  <view class="iconfont tako-icon-add"></view>
+  <view class="iconfont tako-icon-yifukuan"></view>
+  <view class="iconfont tako-icon-all"></view>
+  <view class="iconfont tako-icon-choice"></view>
+  <view class="iconfont tako-icon-delete"></view>
+  <view class="iconfont tako-icon-company"></view>
+  <view class="iconfont tako-icon-youjiantou-copy"></view>
+  <view class="iconfont tako-icon-shejifuwu"></view>
+  <view class="iconfont tako-icon-weixin"></view>
+  <view class="iconfont tako-icon-xianxia"></view> */
+
+
+[class^="tako-icon-"], [class*=" tako-icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'Tako_Font' !important;
+    /* speak: none; */
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

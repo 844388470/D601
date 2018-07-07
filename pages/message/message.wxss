@@ -1,0 +1,77 @@
+.content>view>view{
+  padding:20rpx;
+}
+.list{
+  font-size:29rpx;
+  display: flex;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+
+
+.fs30+.list{
+  margin-top:20rpx;
+}
+
+
+.width30{
+  width:20%;
+  box-sizing: border-box;
+  position: relative;
+  border-right:1rpx solid #fff;
+  padding-bottom:20rpx;
+}
+
+.width30.mult{
+  border-right:1rpx solid #9C9;
+  padding-bottom:100rpx;
+}
+
+.list:last-child .width30.mult{
+  padding-bottom:20rpx;
+  border-right:1rpx solid #fff;
+}
+
+.width30 .circle{
+  position: absolute;
+  right: -11rpx;
+  top:0;
+  background-color: #fff;
+}
+
+.width70{
+  width:70%;
+  box-sizing: border-box;
+  padding:25rpx;
+  position: relative;
+  line-height: 40rpx;
+  max-height:90rpx;
+}
+
+
+.width70 .arrow{
+  position: absolute;
+  left:-34rpx;
+  top:0;
+  display: inline-block;
+  width:0;
+  height:0;
+  border: 17rpx solid transparent;
+  border-right-color: #eee;
+}
+
+.circle {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border: 1rpx solid #9C9;
+  border-radius: 50%;
+}
+
+.icon-cuohao{
+  font-size:30rpx;color:#C99;font-weight: bold;margin-right:10rpx;vertical-align: middle;
+}
+
+.icon-duihao{
+  font-size:35rpx;color:#9C9;font-weight: bold;margin-right:10rpx;vertical-align: middle;
+}

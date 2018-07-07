@@ -1,0 +1,43 @@
+<view class='content'>
+  <map id='myMap' longitude='{{longitude}}' latitude='{{latitude}}' markers='{{markerDatas}}' scale='18' circles='{{circles}}' polyline='{{polyline}}'></map>
+  <cover-view class="tip" wx-if="{{optionType==1}}">
+      <cover-view class="flexl">
+        <cover-view>
+          <cover-image class="image_location" src='../../image/index.png'></cover-image>
+        </cover-view>
+        <cover-view class="width80 ml20">
+          <cover-view class="fs30 ">最后定位</cover-view>
+          <cover-view class="fs30 ">{{time}}</cover-view>
+        </cover-view>
+      </cover-view>
+      <cover-view class="flexl mt width100">
+        <cover-view class="tl fs28 colorh pellipsis flex-flex width80">上海市闵行区吴中路554号</cover-view>
+        <cover-view class="tr fs28 nowarp flex-flex">{{timeFn}}</cover-view>
+      </cover-view>
+  </cover-view>
+  <cover-view class="tip" wx-if="{{optionType==2}}">
+      <cover-view class="flexspace fs30">
+        <cover-view>
+          {{time}}
+        </cover-view>
+        <cover-view class="fs28">
+          {{timeFnNumber}}
+        </cover-view>
+      </cover-view>
+      <cover-view class="fs28 address">
+        <cover-view class="flexl"><cover-view class="circle"></cover-view><cover-view>{{startName}}</cover-view></cover-view>
+        <cover-view class="flexl"><cover-view class="circle green"></cover-view><cover-view>{{endName}}</cover-view></cover-view>
+      </cover-view>
+      <cover-view class="flexl mt">
+        <cover-view class="flex-flex flexl">
+          <cover-view class="iconfont icon-chizi fs28"></cover-view><cover-view class="fs28">13.5km</cover-view>
+        </cover-view>
+        <cover-view class="flex-flex flexl">
+          <cover-view class="iconfont icon-tiyu-paobu fs28"></cover-view><cover-view class="fs28">12312</cover-view>
+        </cover-view>
+        <cover-view class="flex-flex flexl">
+          <cover-view class="iconfont icon-huo fs28"></cover-view><cover-view class="fs28">85212</cover-view>
+        </cover-view>
+      </cover-view> 
+  </cover-view>
+</view>
