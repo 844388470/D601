@@ -85,7 +85,7 @@ Page({
         url: app.api.getIndex,
         method: 'GET',
         data: {
-          'deviceIdStr': '5da73384-e835-445a-a7a4-85ede4de1e9c',
+          'deviceIdStr': 'e8597428-b723-4d93-af1b-bf0aa5fc5f74,ac601dce-d023-4f31-b33b-2040880a0494,5da73384-e835-445a-a7a4-85ede4de1e9c,5562fc76-fec6-44d0-b6c9-9fab16e5393f',
         },
         header: {
           'content-type': 'application/x-www-form-urlencoded'

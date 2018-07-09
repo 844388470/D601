@@ -9,4 +9,5 @@ export default {
   // 获取坐标
   getCoor: api + '/device/getDevices',
   getIndex: api + '/livedata/getData',
+  getHistory: api + '/device/getDeviceDataForCruiseIot'
 }

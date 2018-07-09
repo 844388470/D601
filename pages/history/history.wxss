@@ -1,4 +1,4 @@
-.content>view>view{
+/* .content>view>view{
   padding:20rpx;
 }
 .list{
@@ -34,4 +34,25 @@
 }
 .green{
   background-color: #99CC99;
+} */
+
+.flexc{
+  margin: 30rpx;
+ 
+}
+.flexc>view:first-child{
+  margin: 30rpx;
+  font-size: 32rpx;
+  line-height: 32rpx;
+}
+.selector{
+  margin-left: 30rpx;
+  font-size: 32rpx;
+  padding: 20rpx 20rpx 20rpx 50rpx;
+}
+.btn{
+  margin: 0 auto;width:90%;color: #fff;background-color: #696
+}
+.mr{
+  margin-right: 20rpx;
 }

@@ -1,4 +1,4 @@
-<view class="content">
+<!-- <view class="content">
   <view>
     <view>
       <view class="fs30">2018-06-04 周一</view>
@@ -37,4 +37,37 @@
       </view>
     </view>
   </view>
+</view> -->
+
+
+<view class="content">
+    <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="imei">
+        <view class="flexc">
+          <view class="">设备:</view>
+          <view class="flex-flex selector tc boxshadow">{{indexs || '无'}}</view>
+        </view>
+    </picker>
+    <view class="flexc">
+      <view class="">开始时间:</view>
+      <view class="flex-flex selector tr boxshadow flexr">
+        <picker mode="date" bindchange="bindStartDate">
+          <view class="mr">{{startDate}}</view>
+        </picker>
+        <picker mode="time" bindchange="bindStartTime">
+          <view>{{startTime}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="flexc">
+      <view class="">结束时间:</view>
+      <view class="flex-flex selector tr boxshadow flexr">
+        <picker mode="date" bindchange="bindEndDate">
+          <view class="mr">{{endDate}}</view>
+        </picker>
+        <picker mode="time" bindchange="bindEndTime">
+          <view>{{endTime}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="btn" bindtap='goChaXun'>查询</view>
 </view>

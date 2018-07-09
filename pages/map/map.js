@@ -30,7 +30,7 @@ Page({
         this.setData({
           optionType: 1,
           time: '2018-06-04 16:55',
-          timeFn: util.timeFn('2018-06-24 16:55', new Date),
+          timeFn: app.util.timeFn('2018-06-24 16:55', new Date),
           longitude: '121.4106',
           latitude: '31.190658',
           circles: [{ longitude: '121.4116', latitude: '31.191658', radius: 100, fillColor: '#99cc9955' }],
@@ -40,7 +40,7 @@ Page({
         this.setData({
           optionType: 1,
           time: '2018-06-04 16:55',
-          timeFn: util.timeFn('2018-06-23 16:55', new Date),
+          timeFn: app.util.timeFn('2018-06-23 16:55', new Date),
           longitude: '121.4106',
           latitude: '31.190658',
           circles: [{ longitude: '121.4116', latitude: '31.191658', radius: 100, fillColor: '#99cc9955' }],
@@ -50,7 +50,7 @@ Page({
         this.setData({
           optionType: 1,
           time: '2018-06-04 16:55',
-          timeFn: util.timeFn('2018-06-22 16:55', new Date),
+          timeFn: app.util.timeFn('2018-06-22 16:55', new Date),
           longitude: '121.4106',
           latitude: '31.190658',
           circles: [{ longitude: '121.4116', latitude: '31.191658', radius: 100, fillColor: '#99cc9955' }],
@@ -129,6 +129,59 @@ Page({
           })
         })
       }
+    }
+    if (options.type == 3){
+      app.request({
+        url: app.api.getHistory,
+        method: 'GET',
+        data: {
+          imei: options.id,
+          start: options.start,
+          end: options.end
+        }
+      }).then(res => {
+        let list = res.responseData.rsList || []
+        let start, end;
+        if (!res.responseData.rsList || res.responseData.rsList.length==0){
+          wx.hideLoading()
+          wx.showToast({
+            title: '无路径,请重试',
+            icon: 'none',
+            duration: 2000
+          })
+          return 
+        }
+        app.mapApi([list[0], list[list.length - 1]]).then(ress => {
+          this.setData({
+            optionType: 2,
+            time: `${options.start.substring(5)}---${options.end.substring(5)}`,
+            longitude: list[0].longitude,
+            latitude: list[0].latitude,
+            timeFnNumber: '',
+            polyline: [{
+              points: list,
+              color: '#0091ff',
+              width: 6,
+              arrowLine: true
+            }],
+            startName: ress[0],
+            endName: ress[1],
+            circles: [
+              { longitude: '121.363090', latitude: '31.124060', radius: 5, fillColor: '#cc9999ff' },
+              { longitude: '121.370977', latitude: '31.121564', radius: 5, fillColor: '#99cc99ff' }
+            ]
+          })
+        })
+        wx.hideLoading()
+      }).catch(err => {
+        console.log(err)
+        wx.hideLoading()
+        wx.showToast({
+          title: '获取失败,请重试',
+          icon: 'none',
+          duration: 2000
+        })
+      })
     }
   },
 
