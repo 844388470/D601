@@ -167,8 +167,8 @@ Page({
             startName: ress[0],
             endName: ress[1],
             circles: [
-              { longitude: '121.363090', latitude: '31.124060', radius: 5, fillColor: '#cc9999ff' },
-              { longitude: '121.370977', latitude: '31.121564', radius: 5, fillColor: '#99cc99ff' }
+              { longitude: list[0].longitude, latitude: list[0].latitude, radius: 5, fillColor: '#cc9999ff' },
+              { longitude: list[list.length - 1].longitude, latitude: list[list.length - 1].latitude, radius: 5, fillColor: '#99cc99ff' }
             ]
           })
         })
