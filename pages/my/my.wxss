@@ -33,3 +33,6 @@
 .shebei>view>view:first-child{
   margin-bottom:10rpx;
 }
+.btn{
+  color:#fff;background-color: #f00;
+}

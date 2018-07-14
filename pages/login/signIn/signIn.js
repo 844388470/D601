@@ -85,7 +85,7 @@ Page({
         url: app.api.getIndex,
         method: 'GET',
         data: {
-          'deviceIdStr': 'e8597428-b723-4d93-af1b-bf0aa5fc5f74,ac601dce-d023-4f31-b33b-2040880a0494,5da73384-e835-445a-a7a4-85ede4de1e9c,5562fc76-fec6-44d0-b6c9-9fab16e5393f',
+          'deviceIdStr': '28a54109-6437-4064-b462-8d5cad8a2d5b',
         },
         header: {
           'content-type': 'application/x-www-form-urlencoded'
@@ -93,7 +93,7 @@ Page({
       }).then(res => {
         let list = res.responseData.rsList || []
         app.nowCodeList = list
-        app.nowCodeId = list.length !== 0 ? res.responseData.rsList[0].imei:''
+        app.nowCodeId = list.length !== 0 ? res.responseData.rsList[0].deviceId:''
         wx.switchTab({
           url: '../../index/index'
         })

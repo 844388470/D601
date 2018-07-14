@@ -29,7 +29,7 @@ const timeFn = (min, max) => {
   } else if (value >= 60000){
     return Math.floor(value / 60000) + '分钟前'
   } else if (value < 60000){
-    return Math.floor(value / 1000) + '秒前'
+    return '刚刚'
   }
 }
 

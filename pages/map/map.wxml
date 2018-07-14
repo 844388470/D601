@@ -40,4 +40,29 @@
         </cover-view>
       </cover-view> 
   </cover-view>
+  <cover-view class="tip jilu" wx-if="{{optionType==3}}">
+      <cover-view class="flexspace fs30">
+        <cover-view>
+          {{time}}
+        </cover-view>
+        <cover-view class="fs28">
+          {{timeFnNumber}}
+        </cover-view>
+      </cover-view>
+      <cover-view class="fs28 address">
+        <cover-view class="flexl"><cover-view class="circle"></cover-view><cover-view>{{startName}}</cover-view></cover-view>
+        <cover-view class="flexl"><cover-view class="circle green"></cover-view><cover-view>{{endName}}</cover-view></cover-view>
+      </cover-view>
+      <cover-view class="flexl mt">
+        <cover-view class="flex-flex flexl">
+          <cover-view class="iconfont icon-chizi fs28"></cover-view><cover-view class="fs28">13.5km</cover-view>
+        </cover-view>
+        <cover-view class="flex-flex flexl">
+          <cover-view class="iconfont icon-tiyu-paobu fs28"></cover-view><cover-view class="fs28">12312</cover-view>
+        </cover-view>
+        <cover-view class="flex-flex flexl">
+          <cover-view class="iconfont icon-huo fs28"></cover-view><cover-view class="fs28">85212</cover-view>
+        </cover-view>
+      </cover-view> 
+  </cover-view>
 </view>

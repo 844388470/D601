@@ -26,11 +26,12 @@ map {
   top:2vh;
   left:2vh;
   height:6vh;
-  width: 25%;
-  background-color: #fff;
+  width: 40%;
+  background-color:rgba(0,0,0,0.2);
   border-radius:5rpx;
   box-shadow:0rpx 0rpx 10rpx #9c9;
   z-index:999;
+  color:#fff;
 }
 
 .project text{

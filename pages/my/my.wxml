@@ -17,15 +17,6 @@
       <view class='iconfont tako-icon-youjiantou-copy fs30'></view>
     </view>
   </view> 
-  <view class="flexspace list" bindtap='goSetting'>
-    <view class='flex-flex flexl'>
-      <view class='iconfont icon-shezhi'></view>
-      <view class=''>设置</view>
-    </view>
-    <view class=''>
-      <view class='iconfont tako-icon-youjiantou-copy  fs30'></view>
-    </view>
-  </view> 
   <view class="flexspace list" bindtap='goAddEqu'> 
     <view class='flex-flex flexl'>
       <view class='iconfont icon-shebei'></view>
@@ -61,6 +52,15 @@
       <view class=''>
         <view class='iconfont  tako-icon-youjiantou-copy fs28'></view>
       </view>
+  </view> 
+  <view class="flexspace list" bindtap='goSetting'>
+    <view class='flex-flex flexl'>
+      <view class='iconfont icon-shezhi'></view>
+      <view class=''>设置</view>
+    </view>
+    <view class=''>
+      <view class='iconfont tako-icon-youjiantou-copy  fs30'></view>
+    </view>
   </view> 
   <view class='btn' bindtap='logOut'>退出登录</view>
 </view>

@@ -26,7 +26,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "零零智能",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "navigationStyle":"default"
   },
   "tabBar": {
     "color": "rgb(136,136,136)",

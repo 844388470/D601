@@ -1,13 +1,13 @@
 /* pages/map/map.wxss */
 @import "../index/index.wxss";
-.tip{
+  .jilu{
   padding: 15rpx 20rpx 20rpx;
-}
-.flexspace{
+} 
+.jilu .flexspace{
   border-bottom: 1rpx solid #9c9;
   padding:10rpx;
 }
-.circle {
+.jilu .circle {
   display: inline-block;
   width: 12px;
   height: 12px;
@@ -15,16 +15,16 @@
   background-color: #CC9999;
   margin-right:20rpx;
 }
-.green{
+.jilu .green{
   background-color: #99CC99;
 }
-.address{
+.jilu .address{
   padding:15rpx 0;
 }
 
-.address .flexl:first-child{
+.jilu .address .flexl:first-child{
   margin-bottom:15rpx;
 }
-.mt{
+.jilu .mt{
   margin-top:0;
-}
+} 

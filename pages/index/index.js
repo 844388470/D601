@@ -25,12 +25,12 @@ Page({
       url: app.api.getIndex,
       method: 'GET',
       data: {
-        'deviceIdStr': 'e8597428-b723-4d93-af1b-bf0aa5fc5f74,ac601dce-d023-4f31-b33b-2040880a0494,5da73384-e835-445a-a7a4-85ede4de1e9c,5562fc76-fec6-44d0-b6c9-9fab16e5393f',
+        'deviceIdStr': '28a54109-6437-4064-b462-8d5cad8a2d5b',
       }
     }).then(res => {
       app.nowCodeList = res.responseData.rsList || []
       this.setArray()
-      let list = app.nowCodeList.filter(res => res.imei===app.nowCodeId)
+      let list = app.nowCodeList.filter(res => res.deviceId===app.nowCodeId)
       if(list.length){
         app.mapApi([{ longitude:list[0].lng, latitude:list[0].lat}]).then(res => {
           this.setData({
@@ -70,7 +70,7 @@ Page({
     if (!app.nowCodeList.length){
       return
     }
-    app.nowCodeId = app.nowCodeList[e.detail.value].imei
+    app.nowCodeId = app.nowCodeList[e.detail.value].deviceId
     this.deleteTimeout()
     this.getIndex()
     this.addTimeout()
@@ -82,7 +82,7 @@ Page({
   },
   setSelectName(){                                                  //设置当前设备的名称
     this.setData({
-      indexs: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'imei','imei')
+      indexs: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'deviceId','imei')
     })
   },
   addTimeout(log){

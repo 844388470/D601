@@ -48,22 +48,32 @@ const app=getApp();
 Page({
   data:{
     array:[],
-    indexs:'',
+    indexs: '',
+    indexId:'',
     startDate: app.util.formatTime(new Date()).substring(0, 10),
-    startTime: app.util.formatTime(new Date()).substring(11),
+    startTime: '00:00:00',
     endDate: app.util.formatTime(new Date()).substring(0, 10),
-    endTime: app.util.formatTime(new Date()).substring(11)
+    endTime: '23:59:59'
   },
   onLoad() {
     this.setArray()
-    this.setSelectName()
+    // this.setSelectName()
+    this.setData({
+      indexs: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'deviceId', 'imei'),
+      indexId: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'deviceId', 'deviceId')
+    })
   },
   bindPickerChange(e) {                                          //切换设备
     if (!app.nowCodeList.length) {
       return
     }
-    app.nowCodeId = app.nowCodeList[e.detail.value].imei
-    this.setSelectName()
+    // app.nowCodeId = app.nowCodeList[e.detail.value].deviceId
+    // app.nowCodeId = app.nowCodeList[e.detail.value].imei
+    this.setData({
+      indexs: app.nowCodeList[e.detail.value].imei,
+      indexId:app.nowCodeList[e.detail.value].deviceId
+    })
+    // this.setSelectName()
   },
   bindStartDate(e){
     this.setData({
@@ -91,13 +101,13 @@ Page({
     })
   },
   setSelectName() {                                                  //设置当前设备的名称
-    this.setData({
-      indexs: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'imei', 'imei')
-    })
+    // this.setData({
+    //   indexs: app.util.filterIdName(app.nowCodeList, this.data.indexId, 'deviceId', 'imei')
+    // })
   },
   goChaXun(){
     wx.navigateTo({
-      url: `../map/map?type=3&start=${this.data.startDate} ${this.data.startTime}&end=${this.data.endDate} ${this.data.endTime}&id=${this.data.indexs}`
+      url: `../map/map?type=3&start=${this.data.startDate}T${this.data.startTime}&end=${this.data.endDate}T${this.data.endTime}&id=${this.data.indexId}`
     })
   }
 })

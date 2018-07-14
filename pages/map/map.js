@@ -72,7 +72,7 @@ Page({
             polyline: [{
               points: list,
               color: '#0091ff',
-              width: 6,
+              width: 2,
               arrowLine: true
             }],
             startName: res[0],
@@ -95,7 +95,7 @@ Page({
             polyline: [{
               points: list,
               color: '#0091ff',
-              width: 6,
+              width: 2,
               arrowLine: true
             }],
             startName: res[0],
@@ -118,7 +118,7 @@ Page({
             polyline: [{
               points: list,
               color: '#0091ff',
-              width: 6,
+              width: 2,
               arrowLine: true
             }],
             startName: res[0],
@@ -135,9 +135,9 @@ Page({
         url: app.api.getHistory,
         method: 'GET',
         data: {
-          imei: options.id,
-          start: options.start,
-          end: options.end
+          deviceIdStr: options.id,
+          startTime: options.start,
+          endTime: options.end
         }
       }).then(res => {
         let list = res.responseData.rsList || []
@@ -153,7 +153,7 @@ Page({
         }
         app.mapApi([list[0], list[list.length - 1]]).then(ress => {
           this.setData({
-            optionType: 2,
+            optionType: 3,
             time: `${options.start.substring(5)}---${options.end.substring(5)}`,
             longitude: list[0].longitude,
             latitude: list[0].latitude,

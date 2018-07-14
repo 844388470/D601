@@ -56,3 +56,6 @@
 .mr{
   margin-right: 20rpx;
 }
+.ll{
+  color:transparent;
+}
