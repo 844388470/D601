@@ -135,7 +135,8 @@ Page({
         url: app.api.getHistory,
         method: 'GET',
         data: {
-          deviceIdStr: options.id,
+          // deviceIdStr: options.id,
+          deviceIdStr: app.nowCodeId,
           startTime: options.start,
           endTime: options.end
         }

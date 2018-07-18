@@ -21,56 +21,68 @@ Page({
     
   },
   getIndex(){                                                   //获取位置
+    if (!app.nowCodeList.length || !app.nowCodeId){
+      this.deleteTimeout()
+      this.setData({
+        text: {
+          message: '无设备',
+          date: '',
+          address: '',
+          timeFn: ''
+        }
+      })
+      return 
+    }
     app.request({
       url: app.api.getIndex,
       method: 'GET',
       data: {
-        'deviceIdStr': '28a54109-6437-4064-b462-8d5cad8a2d5b',
+        'deviceIdStr': app.nowCodeId,
       }
-    }).then(res => {
-      app.nowCodeList = res.responseData.rsList || []
-      this.setArray()
-      let list = app.nowCodeList.filter(res => res.deviceId===app.nowCodeId)
+    }).then(data => {
+      let list = data.responseData.rsList
       if(list.length){
-        app.mapApi([{ longitude:list[0].lng, latitude:list[0].lat}]).then(res => {
+        app.mapApi([{ longitude: list[0].longitude, latitude: list[0].latitude}]).then(res => {
+          console.log(res)
           this.setData({
-            markerDatas: [{ latitude: list[0].lat, longitude: list[0].lng }],
-            latitude: list[0].lat,
-            longitude: list[0].lng,
+            markerDatas: [{ latitude: list[0].latitude, longitude: list[0].longitude }],
+            latitude: list[0].latitude,
+            longitude: list[0].longitude,
             text: {
               message: '最后定位',
-              date: app.util.formatTime(list[0].posTime),
-              address: res[0],
-              timeFn: app.util.timeFn(list[0].posTime, new Date())
+              date: app.util.formatTime(list[0].eventTime),
+              address: list[0].latitude == '0' && list[0].longitude=='0'?'无法解析地址' : res[0],
+              timeFn: app.util.timeFn(list[0].eventTime, new Date())
             }
           })
         })
       }else{
         this.setData({
-          markerDatas: [],
-          latitude: 39.939944,
-          longitude: 116.389321,
           text: {
-            message: app.nowCodeId?'设备已移除,请重新选择':'未选择设备',
+            message: '获取地址失败',
             date: '',
             address: '',
             timeFn: ''
           }
         })
-        this.deleteTimeout()
-        app.nowCodeId = ''
       }
-      this.setSelectName()
-
     }).catch(err => {
-      console.log(err)
+      this.setData({
+        text: {
+          message: '获取地址失败',
+          date: '',
+          address: '',
+          timeFn: ''
+        }
+      })
     })
   },
   bindPickerChange(e){                                          //切换设备
     if (!app.nowCodeList.length){
       return
     }
-    app.nowCodeId = app.nowCodeList[e.detail.value].deviceId
+    app.nowCodeId = app.nowCodeList[e.detail.value].device_id
+    this.setSelectName()
     this.deleteTimeout()
     this.getIndex()
     this.addTimeout()
@@ -82,7 +94,7 @@ Page({
   },
   setSelectName(){                                                  //设置当前设备的名称
     this.setData({
-      indexs: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'deviceId','imei')
+      indexs: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'device_id','imei')
     })
   },
   addTimeout(log){
@@ -107,6 +119,8 @@ Page({
 
   },
   onShow(){
+    this.setSelectName()
+    this.setArray()
     this.getIndex()
     this.addTimeout()
   },

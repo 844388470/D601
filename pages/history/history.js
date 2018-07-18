@@ -59,19 +59,19 @@ Page({
     this.setArray()
     // this.setSelectName()
     this.setData({
-      indexs: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'deviceId', 'imei'),
-      indexId: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'deviceId', 'deviceId')
+      indexs: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'device_id', 'imei'),
+      indexId: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'device_id', 'device_id')
     })
   },
   bindPickerChange(e) {                                          //切换设备
     if (!app.nowCodeList.length) {
       return
     }
-    // app.nowCodeId = app.nowCodeList[e.detail.value].deviceId
+    app.nowCodeId = app.nowCodeList[e.detail.value].device_id
     // app.nowCodeId = app.nowCodeList[e.detail.value].imei
     this.setData({
       indexs: app.nowCodeList[e.detail.value].imei,
-      indexId:app.nowCodeList[e.detail.value].deviceId
+      indexId: app.nowCodeList[e.detail.value].device_id
     })
     // this.setSelectName()
   },
@@ -107,7 +107,7 @@ Page({
   },
   goChaXun(){
     wx.navigateTo({
-      url: `../map/map?type=3&start=${this.data.startDate}T${this.data.startTime}&end=${this.data.endDate}T${this.data.endTime}&id=${this.data.indexId}`
+      url: `../map/map?type=3&start=${this.data.startDate}T${this.data.startTime}&end=${this.data.startDate}T${this.data.endTime}&id=${this.data.indexId}`
     })
   }
 })

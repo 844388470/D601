@@ -51,7 +51,7 @@
         </view>
     </picker>
     <view class="flexc">
-      <view class="">开始日期:</view>
+      <view class="">选择日期:</view>
       <view class="flex-flex selector tr flexr">
         <picker mode="date" bindchange="bindStartDate" class="width100">
           <view class="mr  tr width100">{{startDate}}</view>
@@ -65,19 +65,19 @@
         <view class='iconfont tako-icon-youjiantou-copy fs30'></view>
       </view>
     </view>
-    <view class="flexc">
+    <!-- <view class="flexc">
       <view class="">结束日期:</view>
       <view class="flex-flex selector tr flexr">
         <picker mode="date" bindchange="bindEndDate" class="width100">
           <view class="mr  tr width100">{{endDate}}</view>
         </picker>
-         <!-- <picker mode="time" bindchange="bindEndTime">
+          <picker mode="time" bindchange="bindEndTime">
           <view>{{endTime}}</view>
-        </picker>  -->
+        </picker>  
       </view>
       <view class=''>
         <view class='iconfont tako-icon-youjiantou-copy fs30'></view>
       </view>
-    </view>
+    </view> -->
     <view class="btn" bindtap='goChaXun'>查询</view>
 </view> 

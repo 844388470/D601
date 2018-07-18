@@ -82,18 +82,18 @@ Page({
     setTimeout(()=>{
       wx.setStorageSync('token','6666')
       app.request({
-        url: app.api.getIndex,
+        url: app.api.getCoor,
         method: 'GET',
         data: {
-          'deviceIdStr': '28a54109-6437-4064-b462-8d5cad8a2d5b',
-        },
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
+          
         }
       }).then(res => {
-        let list = res.responseData.rsList || []
+        let list =  []
+        if (res instanceof Array){
+          list=res
+        }
         app.nowCodeList = list
-        app.nowCodeId = list.length !== 0 ? res.responseData.rsList[0].deviceId:''
+        app.nowCodeId = list.length !== 0 ? list[0].device_id:''
         wx.switchTab({
           url: '../../index/index'
         })
