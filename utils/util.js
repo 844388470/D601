@@ -18,8 +18,8 @@ const formatNumber = n => {
 
 const timeFn = (min, max) => {
   let value = new Date(max).getTime() - new Date(min).getTime();
-  if (value >= 3214080000){
-    return Math.floor(value / 3214080000) + '年前'
+  if (value >= 31104000000){
+    return Math.floor(value / 31104000000) + '年前'
   } else if (value >= 2592000000){
     return Math.floor(value / 2592000000) + '个月前'
   } else if (value >= 86400000){

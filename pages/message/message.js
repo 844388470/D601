@@ -13,7 +13,7 @@ Page({
   },
   goMap(e){
     wx.navigateTo({
-      url: '../map/map?type=1&&n=' + e.target.dataset.type
+      url: '../map/mapAround/mapAround?type=1&&n=' + e.target.dataset.type
     })
     // wx.navigateTo({
     //   url: '../map/map'

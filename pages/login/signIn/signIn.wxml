@@ -1,5 +1,5 @@
 <view class='content'>
-  <view class='login-info'>
+  <!-- <view class='login-info'>
     
   </view>
   <view class='login-input-contain'>
@@ -16,5 +16,7 @@
     </view>
     <view class='btn {{canLogin? "login-color": ""}}' bindtap='goLogin'>登录</view>
     <view class='regist'><label bindtap='goRegister'>新用户注册</label></view>
-  </view>
+  </view> -->
+  <open-data type="userAvatarUrl" class="image"></open-data>
+  <button class='btn shouquan' bindgetuserinfo='getUserInfo' open-type="getUserInfo">登录</button>
 </view>

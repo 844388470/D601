@@ -51,7 +51,12 @@
   padding: 20rpx 20rpx 20rpx 50rpx;
 }
 .btn{
-  margin: 0 auto;width:90%;color: #fff;background-color: #696
+  background-color:#02ad00;
+  color:#fff;
+  margin-left:27rpx;
+  width:696rpx;
+  margin-top:30rpx;
+
 }
 .mr{
   margin-right: 20rpx;

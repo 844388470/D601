@@ -1,21 +1,20 @@
 <!--pages/setting/setting.wxml-->
 <view class='content'>
-  <view class="flexspace list" bindtap='goEditPassword'>
-    <view class='flex-flex flexl'>
-      <view class='iconfont icon-xiugaimima'></view>
-      <view class=''>修改密码</view>
+  <view class="userInfo list" bindtap='goEditPassword'>
+    <view class="userInfo_left">
+      <text class="userInfo_left_text">修改密码</text>
     </view>
-    <view class=''>
-      <view class='iconfont tako-icon-youjiantou-copy'></view>
+    <view class="userInfo_right">
+      <image class='userInfo_right_direction' src="../../image/right.png"></image>
     </view>
-  </view> 
-  <view class="flexspace list" bindtap='goAbout'>
-    <view class='flex-flex flexl'>
-      <view class='iconfont icon-guanyu'></view>
-      <view class=''>关于</view>
+  </view>
+  <view class="userInfo list" bindtap='goAbout'>
+    <view class="userInfo_left">
+      <text class="userInfo_left_text">关于</text>
     </view>
-    <view class=''>
-      <view class='iconfont tako-icon-youjiantou-copy'></view>
+    <view class="userInfo_right">
+      <image class='userInfo_right_direction' src="../../image/right.png"></image>
     </view>
-  </view> 
+  </view>
+  <view class='btn' bindtap='logOut'>退出登录</view>
 </view>

@@ -1,24 +1,27 @@
 <view class='content'>
   <map id='myMap' longitude='{{longitude}}' latitude='{{latitude}}' markers='{{markerDatas}}' scale='18' ></map>
   <cover-view class="tip">
-      <cover-view class="flexl">
-        <cover-view>
-          <cover-image class="image_location" src='../../image/index.png'></cover-image>
+      <cover-view class="top">
+        <cover-view class="image_location">
+          <cover-image class="" src='../../image/index-title.png'></cover-image>
         </cover-view>
-        <cover-view class="width80 ml20">
-          <cover-view class="fs30 ">{{text.message}}</cover-view>
-          <cover-view class="fs30 ">{{text.date}}</cover-view>
+        <cover-view class="title_time">
+          <cover-view class="title">{{text.message}}</cover-view>
+          <cover-view class="time">{{text.date }}</cover-view>
         </cover-view>
       </cover-view>
-      <cover-view class="flexl mt width100">
-        <cover-view class="tl fs28 colorh pellipsis flex-flex width80">{{text.address}}</cover-view>
-        <cover-view class="tr fs28 nowarp flex-flex">{{text.timeFn}}</cover-view>
+      <cover-view class="bottom">
+        <cover-view class="address">{{text.address }}</cover-view>
+        <cover-view class="timeFn" bindtap='bindPickerChange'>{{text.timeFn }}</cover-view>
       </cover-view>
   </cover-view>
   <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="imei">
-      <cover-view class="project flexc picker">
+      <cover-view class="project flexc picker selector">
         <cover-view class="fs28 pellipsis">{{indexs}}</cover-view>
-         <cover-view class="iconfont tako-icon-down fs28"></cover-view> 
+        <cover-image class="iconfont" src='../../image/bottom.png'></cover-image>
       </cover-view>
   </picker>
+  <cover-view class="refresh" bindtap='getIndex'>
+    <cover-image class="refresh_image" src='../../image/refresh.png'></cover-image>
+  </cover-view>
 </view>

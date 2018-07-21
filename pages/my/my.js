@@ -23,12 +23,6 @@ Page({
     })
   },
 
-  logOut(){
-    wx.redirectTo({
-      url: '../login/signIn/signIn'
-    })
-  },
-
   goUserInfo(){
     wx.navigateTo({
       url: '../userInfo/userInfo'

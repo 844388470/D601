@@ -107,7 +107,7 @@ Page({
   },
   goChaXun(){
     wx.navigateTo({
-      url: `../map/map?type=3&start=${this.data.startDate}T${this.data.startTime}&end=${this.data.startDate}T${this.data.endTime}&id=${this.data.indexId}`
+      url: `../map/mapHistory/mapHistory?type=3&start=${this.data.startDate}T${this.data.startTime}&end=${this.data.startDate}T${this.data.endTime}&id=${this.data.indexId}`
     })
   }
 })

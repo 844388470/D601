@@ -1,0 +1,33 @@
+/* pages/equipment/positionMode/positionMode.wxss */
+.content{
+  width: 100%;
+  height: 100vh;
+  background-color: #f1f1f1;
+}
+
+.positionMode{
+  padding:40rpx 27rpx;
+  border-bottom: 1rpx solid #eaeaea;
+  position: relative;
+  background-color: #fff;
+}
+
+.positionMode .positionMode_title{
+  color:#000;
+  font-size: 31rpx;
+  line-height: 60rpx;
+}
+
+.positionMode .positionMode_content{
+  color:#a4a4a4;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+
+.positionMode .positionMode_image{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 40rpx;
+  top: 70rpx;
+}

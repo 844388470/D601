@@ -5,7 +5,7 @@ const request = function (option) {
     if (needLogin) {
       if (!token) {
         wx.navigateTo({
-          url: "../login/signIn/signIn"
+          url: "../pages/login/signIn/signIn"
         });
         return;
       }
@@ -16,16 +16,22 @@ const request = function (option) {
       data: option.data,
       method: option.method,
       header: {
-        "authorization": token,
+        "jwt": token,
         ...option.header
       },
       success: function (res) {
         wx.hideNavigationBarLoading()
-        resolve(res.data);
+        if (res.statusCode === 200) {
+          resolve(res.data);
+        } else if (res.data.message) {
+          wx.showToast({ title: res.data.message, icon: 'none', duration: 2000 })
+        } else {
+          wx.showToast({ title: '请求服务器错误' + res.data, icon: 'none', duration: 2000 })
+        }
       },
       fail: function (err) {
+        wx.showToast({ title: '请求服务器错误' + err, icon: 'none', duration: 2000 })
         wx.hideNavigationBarLoading()
-        console.log("失败信息:", err);
         reject(err)
       }
     })

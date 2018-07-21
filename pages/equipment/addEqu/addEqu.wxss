@@ -1,4 +1,9 @@
-@import "../../login/register/register.wxss";
+@import '../../login/register/register';
 .btn{
-  background-color:rgba(155,205,155,1);
+  background-color: #02ad00;
+  font-size: 31rpx;
+  color: #fff;
+  margin-left: 27rpx;
+  width: 696rpx;
+  margin-top: 30rpx;
 }

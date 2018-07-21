@@ -1,39 +1,101 @@
-/* pages/userInfo/userInfo.wxss */
+
 .content{
   box-sizing:border-box;
-  padding:0 20rpx;
+  background-color: #f1f1f1;
 }
-.input-row {
-  position:relative;
-  height:112rpx;
-  overflow:hidden;
-  margin-bottom: 10rpx;
-  /* border-bottom:1rpx solid #f0f0f0; */
+
+.userInfo{
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 27rpx;
+  border-bottom: 1rpx solid #e4e4e4;
+  margin-bottom:20rpx;
 }
-.input-row text{
-  position:absolute;
-  display:inline-block;
-  padding:5rpx 0;
-  width:180rpx;
-  top:25rpx;
-  left:0;
-  color:#1a1a1a;
-  font-size:35rpx;
-  background:white;
+
+.userInfo.list{
+  border-top: 1rpx solid #e4e4e4;
+  border-bottom: 0;
+  margin-bottom:0;
 }
-.input-row input{
-  position:absolute;
-  display:inline-block;
-  right:0;
-  left:180rpx;
-  color:#1a1a1a;
-  border-bottom:none;
-  padding:25rpx;
-  padding-bottom:33rpx;
-  font-size:35rpx;
-  text-align: right;
-  /* border:1rpx solid #f0f0f0; */
+
+.userInfo .userInfo_left{
+  font-size: 32rpx;
+  color: #000;
+  font-weight: 500;
+  line-height: 48rpx;
+   display: table-cell; 
 }
-.input-row input:focus{
-  border:1rpx solid #f00;
+
+.userInfo .userInfo_left_tu{
+  width: 40rpx;
+  height: 40rpx;
+   vertical-align: middle; 
+  margin-right:20rpx;
+}
+
+.userInfo .userInfo_left_text{
+  vertical-align: middle;
+  font-size: 31rpx;
+}
+
+.userInfo .userInfo_right{
+  display: table-cell;
+}
+
+.userInfo .userInfo_right_head{
+  width: 123rpx;
+  height: 123rpx;
+  border: 4rpx solid #5dcb5c;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.userInfo .userInfo_right_title{
+  font-size: 31rpx;
+  color: #a1a1a1;
+}
+
+.userInfo .userInfo_right_direction{
+  width: 20rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-left:20rpx;
+}
+
+
+
+.userInfo_left_tu.head{
+  width: 40rpx;
+  height:40rpx;
+  margin-right:20rpx;
+}
+.userInfo_left_tu.idcard{
+  width: 40rpx;
+  height:33rpx;
+  margin-right:20rpx;
+}
+.userInfo_left_tu.phone{
+  width: 30rpx;
+  height:40rpx;
+  margin-left:5rpx;
+  margin-right:25rpx;
+}
+.userInfo_left_tu.height{
+  width: 30rpx;
+  height:40rpx;
+  margin-left:5rpx;
+  margin-right:25rpx;
+}
+.userInfo_left_tu.balance{
+  width: 32rpx;
+  height:40rpx;
+  margin-left:4rpx;
+  margin-right:24rpx;
+}
+.userInfo_left_tu.motion{
+  width: 40rpx;
+  height:30rpx;
+  margin-right:20rpx;
 }

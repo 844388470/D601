@@ -1,41 +1,93 @@
 <view class="content">
-  <view>
-    <view>
-      <view class="fs30">2018-06-04 周一</view>
-      <view class="list">
-        <view class="width30 ">08:11<text class="circle"></text></view>
-        <view class="width70 boxshadow flexspace" bindtap='goMap' data-type="1"><text  data-type="1">离开电子围栏</text><text class="arrow"></text><text class='iconfont tako-icon-youjiantou-copy colorh fs25'  data-type="1"></text></view>
+  <view class="message">
+    <view class="message_time">2018-06-04 周一</view>
+    <view class="message_main">
+      <view class="message_list">
+        <text class="message_list_circle" wx:if="{{false}}"></text>
+        <text class="message_list_line" wx:if="{{false}}"></text>
+        <view class="message_list_time ">08:11</view>
+        <view class="message_list_content" >
+          <text class="message_list_content_text">电量低,请及时充电</text>
+          <view class="message_list_content_select" wx:if="{{false}}">
+            <text wx:if="{{false}}">已接受</text>
+            <image src='../../image/no.png' class="message_list_content_select_no"></image>
+            <image src='../../image/yes.png' class="message_list_content_select_yes"></image>
+          </view>
+        </view>
+        <image wx:if="{{true}}" class="message_list_image " src='../../image/right.png'></image>
       </view>
     </view>
-    <view>
-      <view class="fs30">2018-06-03 周日</view>
-      <view class="list">
-        <view class="width30 mult">20:37<text class="circle"></text></view>
-        <view class="width70 boxshadow flexspace"><text>电量低,请及时充电</text><text class="arrow"></text></view>
+  </view>
+  <view class="message">
+    <view class="message_time">2018-06-03 周日</view>
+    <view class="message_main">
+      <view class="message_list">
+        <text class="message_list_circle"></text>
+        <text class="message_list_line"></text>
+        <view class="message_list_time ">08:11</view>
+        <view class="message_list_content">
+          <text class="message_list_content_text">电量低,请及时充电</text>
+        </view>
+        <image class="message_list_image " src='../../image/right.png'></image>
       </view>
-      <view class="list">
-        <view class="width30 mult">19:24<text class="circle"></text></view>
-        <view class="width70 boxshadow flexspace"><text>已达成今天运动目标</text><text class="arrow"></text></view>
+      <view class="message_list">
+        <text class="message_list_circle"></text>
+        <text class="message_list_line"></text>
+        <view class="message_list_time ">08:11</view>
+        <view class="message_list_content "></view>
+        <view class="message_list_content">
+          <text class="message_list_content_text">已达成今天运动目标</text>
+        </view>
+        <image class="message_list_image " src='../../image/right.png'></image>
       </view>
-      <view class="list">
-        <view class="width30 mult">16:12<text class="circle"></text></view>
-        <view class="width70 boxshadow flexspace"  bindtap='goMap' data-type="2"><text   data-type="2">进入电子围栏</text><text class="arrow"></text><text class='iconfont tako-icon-youjiantou-copy colorh fs25'   data-type="2"></text></view>
+      <view class="message_list" bindtap='goMap' data-type='2'>
+        <text class="message_list_circle" data-type='2'></text>
+        <text class="message_list_line" data-type='2'></text>
+        <view class="message_list_time" data-type='2'>08:11</view>
+        <view class="message_list_content" data-type='2'>
+          <text class="message_list_content_text" data-type='2'>进入电子围栏</text>
+        </view>
+        <image class="message_list_image " src='../../image/right.png' data-type='2'></image>
       </view>
-      <view class="list">
-        <view class="width30 mult">15:51<text class="circle"></text></view>
-        <view class="width70 boxshadow flexspace"  bindtap='goMap' data-type="3"><text   data-type="3">离开电子围栏</text><text class="arrow"></text><text class='iconfont tako-icon-youjiantou-copy colorh fs25'   data-type="3"></text></view>
+      <view class="message_list" bindtap='goMap' data-type='1'>
+        <text class="message_list_circle" data-type='1'></text>
+        <text class="message_list_line" data-type='1'></text>
+        <view class="message_list_time" data-type='1'>08:11</view>
+        <view class="message_list_content" data-type='1'>离开电子围栏</view>
+        <image class="message_list_image" src='../../image/right.png' data-type='1'></image>
       </view>
-      <view class="list">
-        <view class="width30 mult">15:40<text class="circle"></text></view>
-        <view class="width70 boxshadow flexspace"><text>固件升级成功</text><text class="arrow"></text></view>
+      <view class="message_list">
+        <text class="message_list_circle"></text>
+        <text class="message_list_line"></text>
+        <view class="message_list_time ">08:11</view>
+        <view class="message_list_content ">固件升级成功</view>
+        <image class="message_list_image " src='../../image/right.png'></image>
       </view>
-      <view class="list">
-        <view class="width30 mult">15:30<text class="circle"></text></view>
-        <view class="width70 boxshadow flexspace"><text>130000000 请求绑定设备</text><text class="arrow"></text><text class='colorh fs25'>已接受</text></view>
+      <view class="message_list">
+        <text class="message_list_circle"></text>
+        <text class="message_list_line"></text>
+        <view class="message_list_time ">08:11</view>
+        <view class="message_list_content" >
+          <text class="message_list_content_text">130000000 请求绑定设备</text>
+          <view class="message_list_content_select">
+            <text>已接受</text>
+          </view>
+        </view>
+        <image wx:if="{{false}}" class="message_list_image " src='../../image/right.png'></image>
       </view>
-      <view class="list">
-        <view class="width30 mult">15:11<text class="circle"></text></view>
-        <view class="width70 boxshadow flexspace"><text>130000000 请求绑定设备</text><text class="arrow"></text><view class="colorh fs25"><text class="iconfont icon-cuohao"></text><text class="iconfont icon-duihao fs30"></text></view></view>
+      <view class="message_list">
+        <text class="message_list_circle"></text>
+        <text class="message_list_line"></text>
+        <view class="message_list_time ">08:11</view>
+        <view class="message_list_content">
+          <text class="message_list_content_text">130000000 请求绑定设备</text>
+          <view class="message_list_content_select">
+            <text wx:if="{{false}}">已接受</text>
+            <image src='../../image/no.png' class="message_list_content_select_no"></image>
+            <image src='../../image/yes.png' class="message_list_content_select_yes"></image>
+          </view>
+        </view>
+        <image class="message_list_image " src='../../image/right.png'></image>
       </view>
     </view>
   </view>

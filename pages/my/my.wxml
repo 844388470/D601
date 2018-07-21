@@ -1,66 +1,71 @@
 <view class='content'>
-  <view class='flexspace geren' bindtap='goUserInfo'>
-    <view class="flexl">
-      <image class='mine-info-bg' src='../../image/login-bg.jpg' mode="scaleToFill"></image>
-      <view class="pellipsis">五彩斑斓的黑</view>
+  <view class="head">
+    <image class="head_background" src="../../image/headbackground.png"></image>
+    <view class="head_content"  bindtap='goUserInfo'>
+      <view class="head_content_img">
+        <view class="head_content_imgage">
+          <image class="head_portrait"  src="../../image/login-bg.jpg"></image>      
+        </view>
+      </view>
     </view>
-    <view>
-      <view class='iconfont tako-icon-youjiantou-copy'></view>
+    <image class="head_setting" src="../../image/setting.png"  bindtap='goSetting'></image>
+    <view class="head_name">五彩斑斓的黑</view>
+  </view>
+  <view class="count"  bindtap='goMotion'>
+    <view class="count_left">
+      <image class="count_left_iamge" src='../../image/motion.png'></image>
+      <text class="count_left_text">运动统计</text>
+    </view>
+    <view class="count_right">
+      <image class="count_right_image" src='../../image/right.png'></image>
     </view>
   </view>
-  <view class="flexspace list" bindtap='goMotion'>
-    <view class='flex-flex flexl'>
-      <view class='iconfont icon-tiyu-paobu'></view>
-      <view class=''>运动统计</view>
+
+  <view class="count equcount">
+    <view class='equ'>
+      <view class="count_left">
+        <image class="count_left_iamge" src='../../image/equ.png'></image>
+        <text class="count_left_text">我的设备</text>
+      </view>
+      <view class="count_right" bindtap='goAddEqu'>
+        <image class="count_right_image" src='../../image/add.png'></image>
+      </view>
     </view>
-    <view class=''>
-      <view class='iconfont tako-icon-youjiantou-copy fs30'></view>
+    <view class='count_list' bindtap='goSetEqu'>
+      <view class="count_list_left">设备一</view>
+      <view class="count_list_right">
+        <image class='count_list_right_electricMax' src='../../image/electricMax.png'></image>
+        <text class='count_list_right_text'>100%</text>
+        <image class='count_list_right_image' src='../../image/hui_right.png'></image>
+      </view>
+      <view class="count_list_tu"></view>
     </view>
-  </view> 
-  <view class="flexspace list" bindtap='goAddEqu'> 
-    <view class='flex-flex flexl'>
-      <view class='iconfont icon-shebei'></view>
-      <view class=''>我的设备</view> 
+    <view class='count_list' bindtap='goSetEqu'>
+      <view class="count_list_left">设备二</view>
+      <view class="count_list_right">
+        <image class='count_list_right_electricMax' src='../../image/electricMax.png'></image>
+        <text class='count_list_right_text'>100%</text>
+        <image class='count_list_right_image' src='../../image/hui_right.png'></image>
+      </view>
+      <view class="count_list_tu"></view>
     </view>
-    <view class=''>
-      <view class='iconfont tako-icon-add fs30'></view>
+    <view class='count_list' bindtap='goSetEqu'>
+      <view class="count_list_left">设备三</view>
+      <view class="count_list_right">
+        <image class='count_list_right_electricMax' src='../../image/electricMax.png'></image>
+        <text class='count_list_right_text'>100%</text>
+        <image class='count_list_right_image' src='../../image/hui_right.png'></image>
+      </view>
+      <view class="count_list_tu"></view>
+    </view>
+    <view class='count_list' bindtap='goSetEqu'>
+      <view class="count_list_left">设备四</view>
+      <view class="count_list_right">
+        <image class='count_list_right_electricMax' src='../../image/electricMax.png'></image>
+        <text class='count_list_right_text'>100%</text>
+        <image class='count_list_right_image' src='../../image/hui_right.png'></image>
+      </view>
+      <view class="count_list_tu"></view>
     </view>
   </view>
-  <view class="flexspace shebei boxshadow"  bindtap='goSetEqu'>
-      <view class="flex-flex">
-        <view>设备一</view>
-        <view>90%</view>
-      </view>
-      <view class=''>
-        <view class='iconfont  tako-icon-youjiantou-copy fs28'></view>
-      </view>
-  </view> 
-   <view class="flexspace shebei boxshadow"  bindtap='goSetEqu'>
-      <view class="flex-flex">
-        <view>设备二</view>
-        <view>70%</view>
-      </view>
-      <view class=''>
-        <view class='iconfont  tako-icon-youjiantou-copy fs28'></view>
-      </view>
-  </view> 
-   <view class="flexspace shebei boxshadow"  bindtap='goSetEqu'>
-      <view class="flex-flex">
-        <view>设备三</view>
-        <view>50%</view>
-      </view>
-      <view class=''>
-        <view class='iconfont  tako-icon-youjiantou-copy fs28'></view>
-      </view>
-  </view> 
-  <view class="flexspace list" bindtap='goSetting'>
-    <view class='flex-flex flexl'>
-      <view class='iconfont icon-shezhi'></view>
-      <view class=''>设置</view>
-    </view>
-    <view class=''>
-      <view class='iconfont tako-icon-youjiantou-copy  fs30'></view>
-    </view>
-  </view> 
-  <view class='btn' bindtap='logOut'>退出登录</view>
 </view>

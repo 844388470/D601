@@ -1,7 +1,12 @@
 
 <view class="content">
-  <view class='operation'>
-    <input type='number' placeholder='设备码' value='{{inputCode}}' cursor-spacing='110' bindinput='getInputCode'></input>
-    <view class="btn register">添加</view>
+  <view class="register">
+    <view class="register_left">
+      <text class="register_left_text">设备码</text>
+    </view>
+    <view class="register_right">
+      <input class='register_right_title' type='number' placeholder='请输入设备码' value='{{inputCode}}' cursor-spacing='110' bindinput='getInputCode'></input>
+    </view>
   </view>
+  <view class="btn">添加</view>
 </view>

@@ -1,49 +1,49 @@
 {
   "pages": [
+    "pages/equipment/equUpdate/equUpdate",
     "pages/login/signIn/signIn",
+    "pages/equipment/manage/manage",
+    "pages/message/message",
+    "pages/map/mapHistory/mapHistory",
+    "pages/login/register/register",
+    "pages/my/my",
+    "pages/index/index",
     "pages/equipment/around/around",
+    "pages/setting/about/about",
     "pages/equipment/addAround/addAround",
     "pages/equipment/setEqu/setEqu",
-    "pages/equipment/equUpdate/equUpdate",
-    "pages/index/index",
     "pages/motion/motion",
     "pages/userInfo/userInfo",
-    "pages/my/my",
-    "pages/message/message",
     "pages/history/history",
     "pages/map/map",
     "pages/equipment/addEqu/addEqu",
-    "pages/login/forgetPassword/forgetPassword",   
-    "pages/login/register/register",
+    "pages/login/forgetPassword/forgetPassword",
     "pages/setting/setting",
     "pages/setting/editPassword/editPassword",
-    "pages/setting/about/about",
-    "pages/equipment/manage/manage",
     "pages/equipment/euqRules/euqRules",
-    "pages/equipment/aroundName/aroundName"
+    "pages/equipment/aroundName/aroundName",
+    "pages/map/mapAround/mapAround",
+    "pages/equipment/positionMode/positionMode",
+    "pages/equipment/bindSetting/bindSetting"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "零零智能",
     "navigationBarTextStyle": "black",
-    "navigationStyle":"default"
+    "navigationStyle": "default"
   },
   "tabBar": {
-    "color": "rgb(136,136,136)",
-    "selectedColor": "rgb(9,187,9)",
+    "borderStyle": "white",
+    "color": "#99d498",
+    "selectedColor": "#fff",
+    "backgroundColor": "#02ad00",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "位置",
         "iconPath": "image/index.png",
         "selectedIconPath": "image/index-select.png"
-      },
-      {
-        "pagePath": "pages/message/message",
-        "text": "消息",
-        "iconPath": "image/message.png",
-        "selectedIconPath": "image/message-select.png"
       },
       {
         "pagePath": "pages/history/history",

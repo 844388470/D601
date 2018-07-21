@@ -1,45 +1,91 @@
-.operation {
-  margin: 0 30rpx;
-  padding-bottom: 1rpx;
-}
-
-.operation input {
-  padding-top: 36rpx;
-  padding-bottom: 33rpx;
-  font-size: 0.9rem;
-  border-bottom: 1rpx solid #f0f0f0;
-}
-
-.input-row {
-  position: relative;
-  height: 110rpx;
-  overflow: hidden;
-  border-bottom: 1rpx solid #f0f0f0;
-}
-
-.input-row input {
-  position: absolute;
-  display: inline-block;
-  left: 0;
-  right: 200rpx;
-  color: #1a1a1a;
-  border-bottom: none;
-}
-
-.input-row button {
-  position: absolute;
-  display: inline-block;
-  padding: 5rpx 0;
-  width: 180rpx;
-  top: 25rpx;
-  right: 0;
-  color: #1a1a1a;
-  font-size: 0.7rem;
-  background: white;
-}
 .register{
-  width:90%;
-  margin: 30rpx auto;
-  background-color:rgba(155,205,155,0.8);
-  color:#fff;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:35rpx 27rpx;
+  border-bottom: 1rpx solid #e4e4e4;
+}
+
+.register.list{
+  border-top: 1rpx solid #e4e4e4;
+  border-bottom: 0;
+  margin-bottom:0;
+}
+
+.register .register_left{
+  font-size: 32rpx;
+  color: #9397aa;
+  font-weight: 500;
+  line-height: 48rpx;
+  display: table-cell; 
+  width: 180rpx;
+  border-right: 1rpx solid #e4e4e4;
+  margin-right: 20rpx;
+}
+
+.register .register_left_tu{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle; 
+  margin-right:20rpx;
+}
+
+.register .register_left_text{
+  vertical-align: middle;
+  font-size: 31rpx;
+}
+
+.register .register_right{
+  display: table-cell;
+  width: 540rpx;
+  position: relative;
+}
+
+.register .register_right_title{
+  font-size: 31rpx;
+  color: #000;
+}
+
+.register_right.code .register_right_title{
+  width: 250rpx;
+}
+
+.register .register_right_getcode{
+  position: absolute;
+  top: 4rpx;
+  right: 0;
+  font-size: 31rpx;
+  color: #01c000;
+  border-bottom: 1rpx solid #01c000;
+}
+.register .register_right_getcode.active{
+  color: #999;
+  border-bottom: 1rpx solid #999;  
+}
+
+.register_left_tu.phone{
+  width: 35rpx;
+  height:50rpx;
+  margin-left:5rpx;
+   margin-right:20rpx; 
+}
+.register_left_tu.yanz{
+  width: 40rpx;
+  height:28rpx;
+  margin-right:20rpx;
+}
+.register_left_tu.pass{
+  width: 36rpx;
+  height:40rpx;
+  margin-left:2rpx;
+  margin-right:22rpx;
+}
+
+.btn{
+  background-color: #02ad00;
+  color: #fff;
+  margin-left: 27rpx;
+  width: 696rpx;
+  margin-top: 30rpx;
 }

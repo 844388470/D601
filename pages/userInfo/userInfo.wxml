@@ -1,27 +1,76 @@
 <!--pages/userInfo/userInfo.wxml-->
 <view class="content">
-  <view class="input-row">
-    <text>昵称</text>
-    <input type='number' placeholder='请输入' value='{{nickName}}' bindinput='getNickName' bindblur="blurData"></input>
+  <view class="userInfo">
+    <view class="userInfo_left">头像</view>
+    <view class="userInfo_right">
+      <image class='userInfo_right_head' src="../../image/login-bg.jpg"></image>
+      <image class='userInfo_right_direction' src="../../image/right.png"></image>
+    </view>
   </view>
-  <view class="input-row">
-    <text>真实姓名</text>
-    <input type='number' placeholder='请输入' value='{{realName}}' bindinput='getRealName'  bindblur="blurData"></input>
+
+  <view class="userInfo list">
+    <view class="userInfo_left">
+      <image class="userInfo_left_tu head" src='../../image/userInfo/head.png'></image>
+      <text class="userInfo_left_text">昵称</text>
+    </view>
+    <view class="userInfo_right">
+      <text class='userInfo_right_title'>五彩斑斓的黑</text>
+      <image class='userInfo_right_direction' src="../../image/right.png"></image>
+    </view>
   </view>
-  <view class="input-row">
-    <text>手机号码</text>
-    <input type='number' placeholder='请输入' value='{{phone}}' bindinput='getPhone'  bindblur="blurData"></input>
+
+  <view class="userInfo list">
+    <view class="userInfo_left">
+      <image class="userInfo_left_tu idcard" src='../../image/userInfo/idcard.png'></image>
+      <text class="userInfo_left_text">真实姓名</text>
+    </view>
+    <view class="userInfo_right">
+      <text class='userInfo_right_title'>李林</text>
+      <image class='userInfo_right_direction' src="../../image/right.png"></image>
+    </view>
   </view>
-  <view class="input-row">
-    <text>身高</text>
-    <input type='text' placeholder='请输入' value='{{height}}' bindinput='getHeight'  bindblur="blurData"></input>
+
+  <view class="userInfo list">
+    <view class="userInfo_left">
+      <image class="userInfo_left_tu phone" src='../../image/userInfo/phone.png'></image>
+      <text class="userInfo_left_text">手机号码</text>
+    </view>
+    <view class="userInfo_right">
+      <text class='userInfo_right_title'>13164485742</text>
+      <image class='userInfo_right_direction' src="../../image/right.png"></image>
+    </view>
   </view>
-  <view class="input-row">
-    <text>体重</text>
-    <input type='number' placeholder='请输入' value='{{weight}}' bindinput='getWeight'  bindblur="blurData"></input>
+
+  <view class="userInfo list">
+    <view class="userInfo_left">
+      <image class="userInfo_left_tu height" src='../../image/userInfo/height.png'></image>
+      <text class="userInfo_left_text">身高</text>
+    </view>
+    <view class="userInfo_right">
+      <text class='userInfo_right_title'>1.78m</text>
+      <image class='userInfo_right_direction' src="../../image/right.png"></image>
+    </view>
   </view>
-  <view class="input-row">
-    <text>运动目标</text>
-    <input type='number' placeholder='请输入' value='{{moTarget}}' bindinput='getMoTarget'  bindblur="blurData"></input>
+
+  <view class="userInfo list">
+    <view class="userInfo_left">
+      <image class="userInfo_left_tu balance" src='../../image/userInfo/balance.png'></image>
+      <text class="userInfo_left_text">体重</text>
+    </view>
+    <view class="userInfo_right">
+      <text class='userInfo_right_title'>75.5kg</text>
+      <image class='userInfo_right_direction' src="../../image/right.png"></image>
+    </view>
+  </view>
+
+  <view class="userInfo list">
+    <view class="userInfo_left">
+      <image class="userInfo_left_tu motion" src='../../image/userInfo/motion.png'></image>
+      <text class="userInfo_left_text">运动目标</text>
+    </view>
+    <view class="userInfo_right">
+      <text class='userInfo_right_title'>8000步</text>
+      <image class='userInfo_right_direction' src="../../image/right.png"></image>
+    </view>
   </view>
 </view>

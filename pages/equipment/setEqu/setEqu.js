@@ -20,18 +20,15 @@ Page({
 
   },
 
-  bindPickerChange(e){
-    if (e.detail.value !== '0' || this.data.modeArray.length!==0){
-      this.setData({
-        positionId: this.data.modeArray[e.detail.value].id
-      })
-      this.setPositionName()
-    }
-  },
-
   setPositionName(){
     this.setData({
-      positionName: app.util.filterIdName(this.data.modeArray, this.data.positionId)
+      positionName: app.util.filterIdName(this.data.modeArray, app.positionModeId)
+    })
+  },
+
+  goPositionMode(){
+    wx.navigateTo({
+      url: '../positionMode/positionMode'
     })
   },
 
@@ -71,7 +68,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setPositionName()
   },
 
   /**

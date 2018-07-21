@@ -1,5 +1,10 @@
 <!--pages/setting/about/about.wxml-->
 <view class="content">
-    <view></view>
+    <view>
+      <image src='../../../image/ai.png'></image>
+    </view>
+    <view class='text'>
+      <text>V1.0.8</text>
+    </view>
     <view class='colorh fs28 tc'>©上海零零智能科技有限公司</view>
 </view>

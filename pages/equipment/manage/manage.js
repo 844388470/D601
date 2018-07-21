@@ -11,21 +11,12 @@ Page({
     ],
     settingName: '',
     settingId:'1',
-    list: [{ phone: 17717374320, userName: '管理员', userId: '1', isDelete: true }, { phone: 13131313131, userName: '普通用户', userId: '2', isDelete: true }]
-  },
-
-  bindPickerChange(e) {
-    if (e.detail.value !== '0' || this.data.settingArray.length !== 0) {
-      this.setData({
-        settingId: this.data.settingArray[e.detail.value].id
-      })
-      this.setSettingName()
-    }
+    list: [{ phone: 17717374320, rules: 'admin', userId: '1', isDelete: true }, { phone: 13131313131, rules: 'user', userId: '2', isDelete: true }]
   },
 
   setSettingName() {
     this.setData({
-      settingName: app.util.filterIdName(this.data.settingArray, this.data.settingId)
+      settingName: app.util.filterIdName(this.data.settingArray, app.bindSettingId)
     })
   },
 
@@ -51,6 +42,12 @@ Page({
     })
   },
 
+  goSetting(){
+    wx.navigateTo({
+      url: '../bindSetting/bindSetting'
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -69,7 +66,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setSettingName()
   },
 
   /**

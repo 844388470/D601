@@ -1,77 +1,116 @@
-.content>view>view{
-  padding:20rpx;
-}
-.list{
-  font-size:29rpx;
-  display: flex;
-  justify-content: space-between;
-  align-content: flex-start;
+.content{
+  width: 100%;
+  background-color: #f1f1f1;
 }
 
-
-.fs30+.list{
-  margin-top:20rpx;
+.content .message{
+  padding: 0 27rpx;
 }
 
-
-.width30{
-  width:20%;
-  box-sizing: border-box;
-  position: relative;
-  border-right:1rpx solid #fff;
-  padding-bottom:20rpx;
+.message .message_time{
+  color:#a9a9a9;
+  font-size: 27rpx;
+  line-height: 58rpx;
+  letter-spacing:1rpx;
 }
 
-.width30.mult{
-  border-right:1rpx solid #9C9;
-  padding-bottom:100rpx;
-}
-
-.list:last-child .width30.mult{
-  padding-bottom:20rpx;
-  border-right:1rpx solid #fff;
-}
-
-.width30 .circle{
-  position: absolute;
-  right: -11rpx;
-  top:0;
+.message .message_main{
   background-color: #fff;
+  border-radius: 10rpx;
+  padding: 0 30rpx 0 45rpx;
+  margin-bottom: 20rpx;
 }
 
-.width70{
-  width:70%;
+.message_main .message_list{
   box-sizing: border-box;
-  padding:25rpx;
   position: relative;
-  line-height: 40rpx;
-  max-height:90rpx;
+  border-bottom: 1rpx solid #eaeaea;
+  height: 139rpx;
+  padding: 20rpx 0;
 }
 
+.message_main .message_list:last-child{
+  border-bottom: 0rpx;
+}
 
-.width70 .arrow{
+.message_list .message_list_time{
+  color:#a9a9a9;
+  font-size: 27rpx;
+  line-height: 47rpx;
+  letter-spacing:2rpx;
+}
+
+.message_list .message_list_content{
+  color:#000;
+  font-size: 29rpx;
+  font-weight: bold;
+  line-height: 50rpx;
+  display: flex!important;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.message_list .message_list_image{
+  width: 15rpx;
+  height: 30rpx;
   position: absolute;
-  left:-34rpx;
-  top:0;
-  display: inline-block;
-  width:0;
-  height:0;
-  border: 17rpx solid transparent;
-  border-right-color: #eee;
+  right: 0;
+  top: 55rpx;
 }
 
-.circle {
+.message_list .message_list_circle{
   display: inline-block;
-  width: 9px;
-  height: 9px;
-  border: 1rpx solid #9C9;
+  width: 18rpx;
+  height: 18rpx;
+  border: 1rpx solid #02ad00;
+  background-color: #fff;
+  z-index: 999;
   border-radius: 50%;
+  position: absolute;
+  left: -30rpx;
+  top: 33rpx;
 }
 
-.icon-cuohao{
-  font-size:30rpx;color:#C99;font-weight: bold;margin-right:10rpx;vertical-align: middle;
+.message_list .message_list_line{
+  display: inline-block;
+  width: 1rpx;
+  height: 139rpx;
+  position: absolute;
+  background-color: #02ad00;
+  left: -20rpx;
+  top: 0;
 }
 
-.icon-duihao{
-  font-size:35rpx;color:#9C9;font-weight: bold;margin-right:10rpx;vertical-align: middle;
+.message_list:first-child .message_list_line{
+  height: 109rpx;
+  top: 33rpx;
+}
+
+.message_list:last-child .message_list_line{
+  height: 33rpx;
+  top: 0rpx;
+}
+
+.message_list_content .message_list_content_text{
+  width: 450rpx;
+  text-overflow:ellipsis;overflow:hidden;white-space:nowrap;
+}
+
+.message_list_content .message_list_content_select{
+  font-weight: 100;
+  color: #a9a9a9;
+}
+
+.message_list_content .message_list_content_select{
+  font-weight: 100;
+  color: #a9a9a9;
+}
+
+.message_list_content .message_list_content_select_yes{
+  width: 41rpx;height: 30rpx;
+  margin-left: 30rpx;
+}
+
+.message_list_content .message_list_content_select_no{
+  width: 30rpx;height: 30rpx;
 }

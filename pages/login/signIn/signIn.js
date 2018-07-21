@@ -17,11 +17,71 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // if (wx.getStorageSync("token")){
-    //   wx.switchTab({
-    //     url: '../../index/index'
-    //   })
-    // }
+
+  },
+
+  getUserInfo: function (res) {
+    if (res.detail.userInfo){
+      let userInfo = res.detail.userInfo;
+      wx.showLoading({
+        title: '登录中...',
+        mask: true
+      })
+      app.request({
+        url: app.api.getUserInfo,
+        method: 'put',
+        data: {
+          nickname: userInfo.nickName,
+          country: userInfo.country,
+          city: userInfo.city,
+          province: userInfo.province,
+          headimgurl: userInfo.avatarUrl,
+        }
+      }).then(data => {
+        wx.hideLoading()
+        app.globalData.userInfo = userInfo;
+        this.getCoor()
+      }).catch(err => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '登录失败',
+          icon: 'none',
+          duration: 2000
+        })
+      })
+    }else{
+      wx.showToast({
+        title: '请授权',
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
+
+  getCoor(){
+    app.request({
+      url: app.api.getCoor,
+      method: 'GET'
+    }).then(res => {
+      let list = []
+      if (res instanceof Array) {
+        list = res
+      }
+      app.nowCodeList = list
+      app.nowCodeId = list.length !== 0 ? list[0].device_id : ''
+      wx.switchTab({
+        url: '../../index/index'
+      })
+      wx.hideLoading()
+    }).catch(err => {
+      console.log(err)
+      wx.hideLoading()
+      wx.showToast({
+        title: '登录失败',
+        icon: 'none',
+        duration: 2000
+      })
+    })
   },
 
   inputPhoneBlur: function (options) {
@@ -80,7 +140,6 @@ Page({
       mask:true
     })
     setTimeout(()=>{
-      wx.setStorageSync('token','6666')
       app.request({
         url: app.api.getCoor,
         method: 'GET',

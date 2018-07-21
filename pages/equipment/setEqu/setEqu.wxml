@@ -1,34 +1,66 @@
 <!--pages/equipment/setEqu/setEqu.wxml-->
 <view class="content">
-  <view class="input-row">
-    <text>设备名称</text>
-    <input type='number' placeholder='请输入' value='{{name}}' bindinput='getNickName' bindblur="blurData"></input>
+  <view class="userInfo list">
+    <view class="userInfo_left">
+      <text class="userInfo_left_text">设备名称</text>
+    </view>
+    <view class="userInfo_right">
+      <input class="userInfo_right_title" type='number' placeholder='请输入' value='{{name}}' bindinput='getNickName' bindblur="blurData"></input>
+    </view>
   </view>
-  <view class="input-row">
-    <text>型号</text>
-    <input type='text'value='{{model}}'  disabled='true'></input>
+
+  <view class="userInfo list">
+    <view class="userInfo_left">
+      <text class="userInfo_left_text">型号</text>
+    </view>
+    <view class="userInfo_right">
+      <input class="userInfo_right_title" type='text'value='{{model}}'  disabled='true'></input>
+    </view>
   </view>
-  <view class="input-row">
-    <text>iemi</text>
-    <input type='text'value='{{imei}}'  disabled='true'></input>
+
+  <view class="userInfo list">
+    <view class="userInfo_left">
+      <text class="userInfo_left_text">iemi</text>
+    </view>
+    <view class="userInfo_right">
+      <input class="userInfo_right_title" type='text'value='{{imei}}'  disabled='true'></input>
+    </view>
   </view>
-  <view class="input-row">
-    <text>定位模式</text>
-    <picker mode="selector" bindchange="bindPickerChange" range="{{modeArray}}" range-key="name">
-        <input type='number' value='{{positionName}}' disabled='true'></input>
-    </picker>
+
+  <view class="userInfo list"  bindtap='goPositionMode'>
+    <view class="userInfo_left">
+      <text class="userInfo_left_text">定位模式</text>
+    </view>
+    <view class="userInfo_right">
+        <input class="userInfo_right_title" type='number' value='{{positionName}}' disabled='true'></input>
+    </view>
   </view>
-  <view class="flexspace" bindtap='goEquUpdate'>
-    <text>固件升级</text>
-    <view class='iconfont  tako-icon-youjiantou-copy fs28'></view>
-  </view>
-  <view class="flexspace" bindtap='goManage'>
-    <text>绑定管理</text>
-    <view class='iconfont  tako-icon-youjiantou-copy fs28'></view>
-  </view>
-  <view class="flexspace" bindtap='goAround'>
-    <text>电子围栏</text>
-    <view class='iconfont  tako-icon-youjiantou-copy fs28'></view>
-  </view>
+
+   <view class="userInfo list" bindtap='goEquUpdate'>
+    <view class="userInfo_left">
+      <text class="userInfo_left_text">固件升级</text>
+    </view>
+    <view class="userInfo_right">
+      <image class='userInfo_right_direction' src="../../../image/right.png"></image>
+    </view>
+  </view> 
+
+   <view class="userInfo list" bindtap='goManage'>
+    <view class="userInfo_left">
+      <text class="userInfo_left_text">绑定管理</text>
+    </view>
+    <view class="userInfo_right">
+      <image class='userInfo_right_direction' src="../../../image/right.png"></image>
+    </view>
+  </view> 
+
+   <view class="userInfo list" bindtap='goAround'>
+    <view class="userInfo_left">
+      <text class="userInfo_left_text">电子围栏</text>
+    </view>
+    <view class="userInfo_right">
+      <image class='userInfo_right_direction' src="../../../image/right.png"></image>
+    </view>
+  </view> 
   <view class='btn'>解除绑定</view> 
 </view>

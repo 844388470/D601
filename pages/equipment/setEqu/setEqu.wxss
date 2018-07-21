@@ -1,7 +1,7 @@
 /* pages/equipment/setEqu/setEqu.wxss */
 @import '../../userInfo/userInfo';
 
-.content>.flexspace{
+ /* .content>.flexspace{
   position:relative;
   height:112rpx;
   overflow:hidden;
@@ -11,7 +11,7 @@
 
 .iconfont{
   padding-right: 25rpx;
-}
+} */
 
 .btn{
   position: absolute;
@@ -20,4 +20,12 @@
   background-color: red;
   left: 5%;
   color: #fff;
+} 
+.userInfo_right{
+  width: 540rpx;
+  text-align: right;
+}
+.userInfo.list{
+  border-top: 0;
+  border-bottom: 1rpx solid #e4e4e4;
 }

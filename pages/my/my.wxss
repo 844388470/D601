@@ -1,3 +1,172 @@
+.content{
+  width: 100%;
+  background-color: #f1f1f1;
+}
+
+.head{
+  position: relative;
+  width: 100%;
+}
+
+.head .head_background{
+  width: 100%;
+  height: 225rpx;
+}
+
+.head .head_content{
+  text-align: center;
+  position: absolute;
+  top: 50rpx;
+  border-radius: 50%; 
+  width: 224rpx;
+  height: 224rpx;
+  padding: 18rpx;
+  background-color: rgba(255,255,255,0.3);
+  left: 245rpx;
+}
+
+.head_content .head_content_img{
+  padding: 10rpx;
+  background-color: rgba(255,255,255,0.7);
+  border-radius: 50%; 
+  width: 204rpx;
+}
+
+.head_content .head_content_imgage{
+  padding: 4rpx;
+  width: 196rpx;
+  background-color: #5bca5b;
+  border-radius: 50%; 
+}
+.head_content .head_portrait{
+  width: 180rpx;
+  height: 180rpx;
+  display: block;
+  border-radius: 50%; 
+  border: 8rpx solid #fff;
+}
+
+.head .head_setting{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 20rpx;
+  right: 30rpx;
+}
+
+.head .head_name{
+  font-size: 32rpx;
+  color: #000;
+  text-align: center;
+  margin-top: 75rpx;
+  padding-bottom: 50rpx;
+  font-weight: bold;
+  letter-spacing: 1rpx;
+}
+
+.count{
+  margin:0 27rpx 30rpx;
+  padding: 0 21rpx;
+  background-color: #fff;
+  display: flex!important;
+  align-items: center;
+  justify-content: space-between;
+  padding-top:37rpx; 
+  padding-bottom:40rpx;
+  border-radius: 10rpx;
+}
+.equcount.count{
+  display: block!important;
+}
+
+.count .count_left{
+  display: table-cell;
+}
+
+.count .count_left .count_left_iamge{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}
+
+.count .count_left .count_left_text{
+  margin-left: 20rpx;
+  vertical-align: middle;
+  font-size: 32rpx;
+  color: #000;
+}
+
+.count .count_right .count_right_image{
+  vertical-align: middle;
+  width:15rpx;
+  height:30rpx;
+}
+
+.count .equ{
+  width: 100%;
+  display: flex!important;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #e5e5e5;
+  padding:0 0 30rpx;
+}
+
+.count .equ .count_right_image{
+  width:50rpx;
+  height:50rpx;
+}
+
+.count .count_list{
+  display: flex!important;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding:25rpx 20rpx 30rpx;
+  background-color: #f6f6f6;
+  margin-top: 20rpx;
+  border-radius: 10rpx;
+}
+
+.count_list .count_list_left{
+  font-size: 32rpx;
+  color: #000;
+  margin-left: 20rpx;
+}
+
+.count_list .count_list_right{
+  display: table-cell;
+}
+
+.count_list_right .count_list_right_electricMax{
+  width: 44rpx;
+  height: 30rpx;
+  vertical-align: middle;
+  margin-right: 15rpx;
+}
+
+.count_list_right .count_list_right_text{
+  font-size: 27rpx;
+  line-height: 28rpx;
+  color:#02ad00;
+  margin-right: 15rpx;
+  vertical-align: middle;
+}
+
+.count_list_right .count_list_right_image{
+  width:13rpx;
+  vertical-align: middle;
+  height:26rpx;
+}
+
+.count_list .count_list_tu{
+  position: absolute;
+  top: 29rpx;
+  left: 0;
+  width: 10rpx;
+  height: 50rpx;
+  background-color: #bfbfbf;
+}
+
 .geren{
   padding:60rpx 30rpx 60rpx;
   font-size:40rpx;
@@ -16,9 +185,11 @@
 .geren .pellipsis,.geren .iconfont{
   font-size: 38rpx;
 }
+
 .list{
   padding:25rpx 30rpx 25rpx;font-size: 32rpx;
 }
+
 .btn{
   width:90%;margin:30rpx 5%;
 }

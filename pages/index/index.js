@@ -18,7 +18,7 @@ Page({
     }
   },
   onLoad(){
-    
+    this.getIndex()
   },
   getIndex(){                                                   //获取位置
     if (!app.nowCodeList.length || !app.nowCodeId){
@@ -43,14 +43,13 @@ Page({
       let list = data.responseData.rsList
       if(list.length){
         app.mapApi([{ longitude: list[0].longitude, latitude: list[0].latitude}]).then(res => {
-          console.log(res)
           this.setData({
-            markerDatas: [{ latitude: list[0].latitude, longitude: list[0].longitude }],
+            markerDatas: [{ latitude: list[0].latitude, longitude: list[0].longitude, iconPath: '../../image/map_index.png', width: 40, height: 50, anchor: { x: 0.5, y: 0.7 } }],
             latitude: list[0].latitude,
             longitude: list[0].longitude,
             text: {
               message: '最后定位',
-              date: app.util.formatTime(list[0].eventTime),
+              date: list[0].eventTime,
               address: list[0].latitude == '0' && list[0].longitude=='0'?'无法解析地址' : res[0],
               timeFn: app.util.timeFn(list[0].eventTime, new Date())
             }
@@ -83,9 +82,7 @@ Page({
     }
     app.nowCodeId = app.nowCodeList[e.detail.value].device_id
     this.setSelectName()
-    this.deleteTimeout()
     this.getIndex()
-    this.addTimeout()
   },
   setArray(){                                                   //设置设备
     this.setData({
@@ -121,8 +118,6 @@ Page({
   onShow(){
     this.setSelectName()
     this.setArray()
-    this.getIndex()
-    this.addTimeout()
   },
   onHide(){
     this.deleteTimeout()
