@@ -6,13 +6,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    name:'设备一',
+    name:'',
     model:'D601',
-    imei:'xxxxxxxxxxxxxx',
-    positionName: '标准模式',
-    positionId:'1',
+    imei:'',
+    positionName: '',
+    positionId:'0',
     modeArray:[
-      { name: '标准模式', id: '1' }, { name: '性能模式', id: '2' }
+      { name: '标准模式', id: '0' }, { name: '性能模式', id: '1' }
     ]
   },
 
@@ -23,6 +23,44 @@ Page({
   setPositionName(){
     this.setData({
       positionName: app.util.filterIdName(this.data.modeArray, app.positionModeId)
+    })
+  },
+
+  setName(){
+    this.setData({
+      name: app.nowCodeList[app.equIndex].name,
+      imei: app.nowCodeList[app.equIndex].imei,
+      positionName: app.util.filterIdName(this.data.modeArray, app.nowCodeList[app.equIndex].locate_mode)
+    })
+  },
+
+  setEquName(e){
+    this.setData({
+      name: e.detail.value
+    })
+  },
+
+  blurinput(){
+    wx.showLoading({
+      title: '修改中...',
+      mask: true
+    })
+    app.request({
+      url: `${app.api.getIndex}${app.nowCodeList[app.equIndex].id}`,
+      method:'put',
+      data:{
+        name: this.data.name
+      }
+    }).then(res=>{
+      wx.hideLoading()
+      app.nowCodeList[app.equIndex].name = this.data.name
+    }).catch(err=>{
+      wx.hideLoading()
+      wx.showToast({
+        title: '修改失败',
+        icon: 'none',
+        duration: 2000
+      })
     })
   },
 
@@ -68,7 +106,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setPositionName()
+    this.setName()
   },
 
   /**

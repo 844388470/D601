@@ -7,3 +7,18 @@
   width: 696rpx;
   margin-top: 30rpx;
 }
+
+.register_right_title{
+  width:440rpx;
+  display:inline-block;
+}
+.register_saoma{
+   position: relative; 
+  width: 63rpx;
+  height: 63rpx;
+   top:4rpx; 
+}
+
+.register .register_right{
+  /* width: 500rpx; */
+}

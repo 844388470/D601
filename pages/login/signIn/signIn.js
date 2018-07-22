@@ -28,7 +28,7 @@ Page({
         mask: true
       })
       app.request({
-        url: app.api.getUserInfo,
+        url: `${app.api.getUserInfo}${wx.getStorageSync('id')}`,
         method: 'put',
         data: {
           nickname: userInfo.nickName,
@@ -60,21 +60,33 @@ Page({
 
   getCoor(){
     app.request({
-      url: app.api.getCoor,
+      url: `${app.api.getUserInfo}${wx.getStorageSync('id')}/devices`,
       method: 'GET'
     }).then(res => {
       let list = []
       if (res instanceof Array) {
         list = res
+        if (list.length) {
+          app.nowCodeList = list
+          app.nowCodeId = list[0].id
+          wx.reLaunch({
+            url: '../../index/index'
+          })
+        } else {
+          wx.reLaunch({
+            url: '../../equipment/addEqu/addEqu'
+          })
+        }
+      }else{
+        wx.hideLoading()
+        wx.showToast({
+          title: '登录失败',
+          icon: 'none',
+          duration: 2000
+        })
       }
-      app.nowCodeList = list
-      app.nowCodeId = list.length !== 0 ? list[0].device_id : ''
-      wx.switchTab({
-        url: '../../index/index'
-      })
       wx.hideLoading()
     }).catch(err => {
-      console.log(err)
       wx.hideLoading()
       wx.showToast({
         title: '登录失败',
@@ -152,7 +164,7 @@ Page({
           list=res
         }
         app.nowCodeList = list
-        app.nowCodeId = list.length !== 0 ? list[0].device_id:''
+        app.nowCodeId = list.length !== 0 ? list[0].id:''
         wx.switchTab({
           url: '../../index/index'
         })

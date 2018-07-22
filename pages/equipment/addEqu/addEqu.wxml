@@ -6,7 +6,8 @@
     </view>
     <view class="register_right">
       <input class='register_right_title' type='number' placeholder='请输入设备码' value='{{inputCode}}' cursor-spacing='110' bindinput='getInputCode'></input>
+      <image class='register_saoma' src="../../../image/saoma.png" bindtap='saoma'></image>
     </view>
   </view>
-  <view class="btn">添加</view>
+  <view class="btn" bindtap='addEqu'>添加</view>
 </view>

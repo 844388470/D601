@@ -2,7 +2,7 @@
 const app = getApp();
 Page({
   data: {
-
+    equArray:[]
   },
 
   /**
@@ -35,12 +35,18 @@ Page({
     })
   },
 
-  goSetEqu() {
+  goSetEqu(e) {
+    app.equIndex = e.target.dataset.index
     wx.navigateTo({
       url: '../equipment/setEqu/setEqu'
     })
   },
 
+  setArray(){
+    this.setData({
+      equArray: app.nowCodeList
+    })
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -50,6 +56,10 @@ Page({
   },
   bindregionchange() {
     
+  },
+
+  onShow(){
+    this.setArray()
   },
   /**
    * 页面上拉触底事件的处理函数

@@ -54,7 +54,7 @@ const timeWeek = (time) => {
 }
 
 const filterIdName = (arr, id, idname = 'id',name='name') => {
-  let n = arr.filter(obj => obj[idname]===id)
+  let n = arr.filter(obj => obj[idname]==id)
   return n.length !== 0 ? n[0][name]:''
 }
 

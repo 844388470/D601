@@ -41,7 +41,7 @@
 
 
  <view class="content">
-    <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="imei">
+    <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name">
         <view class="flexc">
           <view class="">选择设备:</view>
           <view class="flex-flex selector tr">{{indexs || '无'}}</view>
@@ -60,6 +60,28 @@
          <!-- <picker mode="time" bindchange="bindStartTime">
           <view>{{startTime}}</view>
         </picker>  -->
+      </view>
+      <view class=''>
+        <view class='iconfont tako-icon-youjiantou-copy fs30'></view>
+      </view>
+    </view>
+    <view class="flexc">
+      <view class="">开始时间:</view>
+      <view class="flex-flex selector tr flexr">
+        <picker mode="time" bindchange="bindStartTime" class="width100">
+          <view class="mr  tr width100">{{startTime}}</view>
+        </picker>  
+      </view>
+      <view class=''>
+        <view class='iconfont tako-icon-youjiantou-copy fs30'></view>
+      </view>
+    </view>
+    <view class="flexc">
+      <view class="">结束时间:</view>
+      <view class="flex-flex selector tr flexr">
+        <picker mode="time" bindchange="bindEndTime" class="width100">
+          <view class="mr  tr width100">{{endTime}}</view>
+        </picker>  
       </view>
       <view class=''>
         <view class='iconfont tako-icon-youjiantou-copy fs30'></view>

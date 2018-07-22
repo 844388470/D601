@@ -24,28 +24,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
       app.request({
-        url: app.api.getHistory,
+        url: `${app.api.getHistory}${options.id}/positions`,
         method: 'GET',
         data: {
-          // deviceIdStr: options.id,
-          deviceIdStr: app.nowCodeId,
-          startTime: options.start,
-          endTime: options.end
+          startTime: `${options.date}T${options.start}:00`,
+          endTime: `${options.date}T${options.end}:59`
         }
       }).then(res => {
-        // let res={
-        //   responseData:{
-        //     rsList: [{ longitude: 121.363090, latitude: 31.124060 }, { longitude: 121.363268, latitude: 31.124365 }, { longitude: 121.363204, latitude: 31.124549 }, { longitude: 121.363590, latitude: 31.124691 }, { longitude: 121.364615, latitude: 31.122583 }, { longitude: 121.365591, latitude: 31.122840 }, { longitude: 121.366401, latitude: 31.123433 }, { longitude: 121.367002, latitude: 31.124209 }, { longitude: 121.368510, latitude: 31.125201 }, { longitude: 121.370977, latitude: 31.121564 }]
-        //   }
-        // }
-        let list = res.responseData.rsList || []
+        let list = res || []
         let start, end;
-        if (!res.responseData.rsList || res.responseData.rsList.length == 0) {
+        if (!list.length) {
           wx.hideLoading()
           wx.showToast({
-            title: '无路径,请重试',
+            title: '无路径,请重新选择时间',
             icon: 'none',
             duration: 2000
           })
@@ -54,10 +46,10 @@ Page({
         app.mapApi([list[0], list[list.length - 1]]).then(ress => {
           this.setData({
             optionType: 3,
-            time: `${options.start.substring(5)}---${options.end.substring(5)}`,
+            time: `${options.date}`,
             longitude: list[0].longitude,
             latitude: list[0].latitude,
-            timeFnNumber: '',
+            timeFnNumber: `${options.start}-${options.end}`,
             polyline: [{
               points: list,
               color: '#02ad00',
@@ -71,7 +63,6 @@ Page({
         })
         wx.hideLoading()
       }).catch(err => {
-        console.log(err)
         wx.hideLoading()
         wx.showToast({
           title: '获取失败,请重试',

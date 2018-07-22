@@ -18,22 +18,58 @@ Page({
 
   setActive(){
     this.setData({
-      active: app.positionModeId
+      active: app.nowCodeList[app.equIndex].locate_mode
     })
   },
 
   setOneMode(){
-    app.positionModeId='1'
-    this.setData({
-      active: '1'
+    wx.showLoading({
+      title: '修改中...',
+      mask: true
+    })
+    app.request({
+      url: `${app.api.getIndex}${app.nowCodeList[app.equIndex].id}`,
+      method: 'put',
+      data: {
+        locate_mode: '0'
+      }
+    }).then(res => {
+      wx.hideLoading()
+      app.nowCodeList[app.equIndex].locate_mode = '0'
+      this.setActive()
+    }).catch(err => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '修改失败',
+        icon: 'none',
+        duration: 2000
+      })
     })
   },
 
 
   setTwoMode() {
-    app.positionModeId = '2'
-    this.setData({
-      active: '2'
+    wx.showLoading({
+      title: '修改中...',
+      mask: true
+    })
+    app.request({
+      url: `${app.api.getIndex}${app.nowCodeList[app.equIndex].id}`,
+      method: 'put',
+      data: {
+        locate_mode: '1'
+      }
+    }).then(res => {
+      wx.hideLoading()
+      app.nowCodeList[app.equIndex].locate_mode = '1'
+      this.setActive()
+    }).catch(err => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '修改失败',
+        icon: 'none',
+        duration: 2000
+      })
     })
   },
   /**

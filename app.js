@@ -25,7 +25,7 @@ App({
     wx.login({
       success: res => {
         request({ 
-          url: api.getLoginCode,
+          url: `${api.getLoginCode}`,
           data: { code: res.code },
           method:'post'  
         }).then(data=>{
@@ -60,6 +60,7 @@ App({
   nowCodeList: [],                //设备列表
   positionModeId: '1',            //当前定位模式
   bindSettingId:'1',              //当前绑定设置
+  equIndex:'',                    //进入设置设备的顺序号
   aroundList: [],                 
   aroundAddObj:{                  
     state:'add',

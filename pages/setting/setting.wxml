@@ -1,13 +1,13 @@
 <!--pages/setting/setting.wxml-->
 <view class='content'>
-  <view class="userInfo list" bindtap='goEditPassword'>
+  <!-- <view class="userInfo list" bindtap='goEditPassword'>
     <view class="userInfo_left">
       <text class="userInfo_left_text">修改密码</text>
     </view>
     <view class="userInfo_right">
       <image class='userInfo_right_direction' src="../../image/right.png"></image>
     </view>
-  </view>
+  </view> -->
   <view class="userInfo list" bindtap='goAbout'>
     <view class="userInfo_left">
       <text class="userInfo_left_text">关于</text>
@@ -16,5 +16,5 @@
       <image class='userInfo_right_direction' src="../../image/right.png"></image>
     </view>
   </view>
-  <view class='btn' bindtap='logOut'>退出登录</view>
+  <!-- <view class='btn' bindtap='logOut'>退出登录</view> -->
 </view>

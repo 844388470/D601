@@ -5,18 +5,18 @@
       <text class="userInfo_left_text">设备名称</text>
     </view>
     <view class="userInfo_right">
-      <input class="userInfo_right_title" type='number' placeholder='请输入' value='{{name}}' bindinput='getNickName' bindblur="blurData"></input>
+      <input class="userInfo_right_title" type='number' placeholder='请输入' value='{{name}}' bindinput='setEquName' bindblur="blurData" bindblur="blurinput"></input>
     </view>
   </view>
 
-  <view class="userInfo list">
+   <view class="userInfo list">
     <view class="userInfo_left">
       <text class="userInfo_left_text">型号</text>
     </view>
     <view class="userInfo_right">
       <input class="userInfo_right_title" type='text'value='{{model}}'  disabled='true'></input>
     </view>
-  </view>
+  </view> 
 
   <view class="userInfo list">
     <view class="userInfo_left">
@@ -36,7 +36,7 @@
     </view>
   </view>
 
-   <view class="userInfo list" bindtap='goEquUpdate'>
+   <!-- <view class="userInfo list" bindtap='goEquUpdate'>
     <view class="userInfo_left">
       <text class="userInfo_left_text">固件升级</text>
     </view>
@@ -61,6 +61,6 @@
     <view class="userInfo_right">
       <image class='userInfo_right_direction' src="../../../image/right.png"></image>
     </view>
-  </view> 
-  <view class='btn'>解除绑定</view> 
+  </view>  -->
+  <!-- <view class='btn'>解除绑定</view>  -->
 </view>
