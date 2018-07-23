@@ -74,7 +74,7 @@ Page({
     // app.nowCodeId = app.nowCodeList[e.detail.value].id
     // app.nowCodeId = app.nowCodeList[e.detail.value].imei
     this.setData({
-      indexs: app.nowCodeList[e.detail.value].imei,
+      indexs: app.nowCodeList[e.detail.value].name,
       indexId: app.nowCodeList[e.detail.value].id
     })
     // this.setSelectName()

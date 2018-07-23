@@ -11,7 +11,9 @@
       </view>
     </view>
     <image class="head_setting" src="../../image/setting.png"  bindtap='goSetting'></image>
-    <view class="head_name">五彩斑斓的黑</view>
+    <view class="head_name">
+      <open-data class="head_name" type="userNickName"></open-data>
+    </view>
   </view>
   <!-- <view class="count"  bindtap='goMotion'>
     <view class="count_left">

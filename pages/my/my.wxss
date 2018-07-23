@@ -129,7 +129,7 @@
 }
 
 .count_list .count_list_left{
-  font-size: 32rpx;
+  font-size: 30rpx;
   color: #000;
   margin-left: 20rpx;
 }

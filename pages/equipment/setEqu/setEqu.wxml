@@ -5,7 +5,8 @@
       <text class="userInfo_left_text">设备名称</text>
     </view>
     <view class="userInfo_right">
-      <input class="userInfo_right_title" type='number' placeholder='请输入' value='{{name}}' bindinput='setEquName' bindblur="blurData" bindblur="blurinput"></input>
+      <input class="userInfo_right_title  change" type='text' placeholder='请输入' value='{{name}}' bindinput='setEquName' bindblur="blurData" bindblur="blurinput"></input>
+      <image class='userInfo_right_direction' src="../../../image/right.png"></image>
     </view>
   </view>
 
@@ -32,11 +33,12 @@
       <text class="userInfo_left_text">定位模式</text>
     </view>
     <view class="userInfo_right">
-        <input class="userInfo_right_title" type='number' value='{{positionName}}' disabled='true'></input>
+        <input class="userInfo_right_title change" type='number' value='{{positionName}}' disabled='true'></input>
+        <image class='userInfo_right_direction' src="../../../image/right.png"></image>
     </view>
   </view>
 
-   <!-- <view class="userInfo list" bindtap='goEquUpdate'>
+    <!-- <view class="userInfo list" bindtap='goEquUpdate'>
     <view class="userInfo_left">
       <text class="userInfo_left_text">固件升级</text>
     </view>
@@ -61,6 +63,6 @@
     <view class="userInfo_right">
       <image class='userInfo_right_direction' src="../../../image/right.png"></image>
     </view>
-  </view>  -->
+  </view>   -->
   <!-- <view class='btn'>解除绑定</view>  -->
 </view>

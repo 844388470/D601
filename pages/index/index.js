@@ -54,6 +54,7 @@ Page({
           })
         })
       }else{
+        wx.showToast({ title: '电信返回为空', icon: 'none', duration: 2000 })
         this.setData({
           text: {
             message: '获取地址失败',

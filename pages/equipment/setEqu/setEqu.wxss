@@ -29,3 +29,8 @@
   border-top: 0;
   border-bottom: 1rpx solid #e4e4e4;
 }
+
+.userInfo .userInfo_right_title.change{
+  width: 500rpx;display: inline-block;
+  vertical-align: middle;
+}
