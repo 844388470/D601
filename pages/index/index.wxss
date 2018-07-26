@@ -85,6 +85,10 @@ map {
   width:28rpx;
   height:16rpx;
 }
+.selector.project .pellipsis{
+  width: 160rpx;
+  text-align: center;
+}
 
 .refresh{
   position: absolute;

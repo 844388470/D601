@@ -88,6 +88,36 @@ Page({
     })
   },
 
+
+  deleteEvent(){
+    wx.showLoading({
+      title: '解除绑定中...',
+      mask: true
+    })
+    app.request({
+      url: `${app.api.getIndex}${app.nowCodeList[app.equIndex].id}`,
+      method: 'DELETE'
+    }).then(res => {
+      wx.hideLoading()
+      app.nowCodeList.splice(app.equIndex,1)
+      if (app.nowCodeList.length) {
+        wx.navigateBack({
+          delta: 1
+        })
+      }else{
+        wx.reLaunch({
+          url: '../addEqu/addEqu'
+        })
+      }
+    }).catch(err => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '解除失败',
+        icon: 'none',
+        duration: 2000
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

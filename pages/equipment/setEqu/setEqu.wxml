@@ -64,5 +64,5 @@
       <image class='userInfo_right_direction' src="../../../image/right.png"></image>
     </view>
   </view>   -->
-  <!-- <view class='btn'>解除绑定</view>  -->
+   <view class='btn' bindtap='deleteEvent'>解除绑定</view>  
 </view>

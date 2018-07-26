@@ -28,6 +28,14 @@ Page({
     })
   },
   addEqu(){
+    if (!this.data.inputCode){
+      wx.showToast({
+        title: '设备码不得为空',
+        icon: 'none',
+        duration: 2000
+      })
+      return 
+    }
     wx.showLoading({
       title: '添加中...',
       mask: true
