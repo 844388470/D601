@@ -1,16 +1,19 @@
 {
 	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.1.1",
-	"appid": "wx7df1eccc6b4dbb56",
-	"projectname": "map",
+	"libVersion": "2.2.1",
+	"appid": "wx45866c521b416a61",
+	"projectname": "D601",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -18,10 +21,6 @@
 			"list": []
 		},
 		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
 			"current": -1,
 			"list": []
 		},

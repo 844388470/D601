@@ -95,7 +95,7 @@ Page({
       mask: true
     })
     app.request({
-      url: `${app.api.getIndex}${app.nowCodeList[app.equIndex].id}`,
+      url: `${app.api.getUserInfo}${wx.getStorageSync('id')}/devices/${app.nowCodeList[app.equIndex].id}`,
       method: 'DELETE'
     }).then(res => {
       wx.hideLoading()
