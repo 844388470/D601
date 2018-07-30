@@ -117,16 +117,20 @@ Page({
   },
   isDeltel(){                       //当前设备被删除后
     if (app.nowCodeId=='-1'){
-      this.setData({
-        indexs: '',
-        markerDatas:[],
-        text: {
-          message: '设备已删除',
-          date: '',
-          address: '',
-          timeFn: ''
-        }
-      })
+      app.nowCodeId=app.nowCodeList[0].id
+      this.setSelectName()
+      this.getIndex()
+      // this.setData({
+      //   indexs: '',
+      //   markerDatas:[],
+      //   text: {
+      //     message: '设备已删除',
+      //     date: '',
+      //     address: '',
+      //     timeFn: ''
+      //   }
+      // })
+
     }
   },
   onPullDownRefresh: function () {

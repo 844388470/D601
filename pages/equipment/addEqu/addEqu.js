@@ -35,6 +35,13 @@ Page({
         duration: 2000
       })
       return 
+    } else if (app.nowCodeList.filter(res => res.imei == this.data.inputCode).length){
+      wx.showToast({
+        title: '当前账号已绑定该设备码',
+        icon: 'none',
+        duration: 2000
+      })
+      return
     }
     wx.showLoading({
       title: '添加中...',
@@ -63,7 +70,7 @@ Page({
         list = res
         if (list.length && list.filter(res => res.imei == this.data.inputCode).length) {
           app.nowCodeList = list
-          app.nowCodeId = list[0].id
+          app.nowCodeId = list.filter(res => res.imei == this.data.inputCode)[0].id
           wx.reLaunch({
             url: '../../index/index'
           })

@@ -58,14 +58,16 @@ map {
   font-size: 24rpx;
   color: #616161;
   line-height: 54rpx;
-  width: 550rpx;
+  width: 500rpx;
   text-overflow:ellipsis;overflow:hidden;white-space:nowrap;
 }
 
 .bottom .timeFn{
   font-size: 24rpx;
   color: #616161;
+  width: 200rpx;
   line-height: 54rpx;
+  text-align: right;
 }
 
 .selector.project{

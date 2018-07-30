@@ -101,6 +101,7 @@ Page({
       wx.hideLoading()
       app.nowCodeList.splice(app.equIndex,1)
       if (app.nowCodeList.length) {
+        app.nowCodeId='-1'
         wx.navigateBack({
           delta: 1
         })
