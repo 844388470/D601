@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/equipment/equUpdate/equUpdate",
+    "pages/login/isLogin/isLogin",
     "pages/login/signIn/signIn",
     "pages/equipment/manage/manage",
     "pages/message/message",
@@ -24,7 +24,8 @@
     "pages/equipment/aroundName/aroundName",
     "pages/map/mapAround/mapAround",
     "pages/equipment/positionMode/positionMode",
-    "pages/equipment/bindSetting/bindSetting"
+    "pages/equipment/bindSetting/bindSetting",
+    "pages/login/bindRecord/bindRecord"
   ],
   "window": {
     "backgroundTextStyle": "light",

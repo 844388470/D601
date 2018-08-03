@@ -1,22 +1,30 @@
 <view class='content'>
-  <!-- <view class='login-info'>
+  <view wx:if="{{loginMode=='phone'}}">
+    <view class='login-info'>
     
-  </view>
-  <view class='login-input-contain'>
-    <view class='input-row {{inputPhone? "active": ""}}  {{phoneActive? "active-line" : ""}}'>
-      <label>手机号码</label>  
-      <input type='number' bindfocus='inputPhoneFocus' bindblur='inputPhoneBlur' value='{{ inputPhone }}' bindinput='getInputPhone'></input>
     </view>
-    <view class='input-row {{inputCode? "active": ""}} {{codeActive? "active-line" : ""}}'>
-      <label>密码</label>
-      <input type='password' bindfocus='inputCodeFocus' bindblur='inputCodeBlur' placeholder-class='input-default' value='{{ inputCode }}' bindinput='getInputCode'></input>
-    </view>
-    <view class='regist tr'>
-      <label bindtap='goForgetPassword'>忘记密码</label>
-    </view>
+    <view class='login-input-contain'>
+      <view class='input-row {{inputPhone? "active": ""}}  {{phoneActive? "active-line" : ""}}'>
+        <label>手机号码</label>  
+        <input type='number' bindfocus='inputPhoneFocus' bindblur='inputPhoneBlur' value='{{ inputPhone }}' bindinput='getInputPhone'></input>
+      </view>
+      <view class='input-row {{inputCode? "active": ""}} {{codeActive? "active-line" : ""}}'>
+        <label>密码</label>
+        <input type='password' bindfocus='inputCodeFocus' bindblur='inputCodeBlur' placeholder-class='input-default' value='{{ inputCode }}' bindinput='getInputCode'></input>
+      </view>
+      <view class='regist tl'>
+        <label bindtap='changeWeixin'>微信登录</label>
+        <label bindtap='goForgetPassword' class='fr'>忘记密码</label>
+      </view>
+    </view> 
     <view class='btn {{canLogin? "login-color": ""}}' bindtap='goLogin'>登录</view>
     <view class='regist'><label bindtap='goRegister'>新用户注册</label></view>
-  </view> -->
-  <open-data type="userAvatarUrl" class="image"></open-data>
-  <button class='btn shouquan' bindgetuserinfo='getUserInfo' open-type="getUserInfo">登录</button>
+  </view>
+  
+  <view wx:if="{{loginMode=='weixin'}}">
+    <open-data type="userAvatarUrl" class="image"></open-data>
+    <button class='btn shouquan' bindgetuserinfo='weixinLogin' open-type="getUserInfo">登录</button> 
+    <label bindtap='changPhone' class='changePhone'>账号登录</label>
+  </view>
+
 </view>

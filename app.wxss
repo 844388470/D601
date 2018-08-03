@@ -24,6 +24,13 @@
   text-align: right!important;
 }
 
+.fl{
+  float: left;
+}
+
+.fr{
+  float: right;
+}
 
 .flexl{
   display: flex!important;

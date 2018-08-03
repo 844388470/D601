@@ -9,5 +9,8 @@
       <image class='register_saoma' src="../../../image/saoma.png" bindtap='saoma'></image>
     </view>
   </view>
+  <view class="record">
+    <text class='record_text' bindtap='goBindRecord'>绑定记录</text>
+  </view>
   <view class="btn" bindtap='addEqu'>添加</view>
 </view>

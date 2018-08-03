@@ -1,0 +1,22 @@
+<!--pages/login/bindRecord/bindRecord.wxml-->
+<view class='content'>
+  <view class='title'>请在1小时以内完成绑定，否则绑定请求将过期。需再次尝试提交绑定请求。部分设备会需要管理员确认通过才能被绑定。可以及时与设备管理员联系</view>
+  <view class='main'>
+    <view class='main_list'>
+      <text class='main_list_left'>D601 04</text>
+      <text class='main_list_right'>等待管理员确认,剩余59min</text>
+    </view>
+    <view class='main_list'>
+      <text class='main_list_left'>D601 03</text>
+      <text class='main_list_right'>管理员拒绝</text>
+    </view>
+    <view class='main_list'>
+      <text class='main_list_left'>D601 02</text>
+      <text class='main_list_right'>请求超时</text>
+    </view>
+    <view class='main_list'>
+      <text class='main_list_left'>D601 01</text>
+      <text class='main_list_right'>已绑定</text>
+    </view>
+  </view>
+</view>

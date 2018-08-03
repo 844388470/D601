@@ -1,5 +1,5 @@
 // pages/equipment/setEqu/setEqu.js
-let app=getApp();
+const app=getApp();
 Page({
 
   /**
@@ -7,7 +7,8 @@ Page({
    */
   data: {
     name:'',
-    model:'D601',
+    orgName:'',
+    models:'',
     imei:'',
     positionName: '',
     positionId:'0',
@@ -29,6 +30,8 @@ Page({
   setName(){
     this.setData({
       name: app.nowCodeList[app.equIndex].name,
+      orgName: app.nowCodeList[app.equIndex].name,
+      models: app.nowCodeList[app.equIndex].model || '',
       imei: app.nowCodeList[app.equIndex].imei,
       positionName: app.util.filterIdName(this.data.modeArray, app.nowCodeList[app.equIndex].locate_mode)
     })
@@ -41,12 +44,12 @@ Page({
   },
 
   blurinput(){
-    wx.showLoading({
-      title: '修改中...',
-      mask: true
-    })
+    if (this.data.orgName == this.data.name){
+      return false
+    }
+    app.showLoading('修改中')
     app.request({
-      url: `${app.api.getIndex}${app.nowCodeList[app.equIndex].id}`,
+      url: `${app.api.setEqu}${app.nowCodeList[app.equIndex].id}`,
       method:'put',
       data:{
         name: this.data.name
@@ -54,25 +57,18 @@ Page({
     }).then(res=>{
       wx.hideLoading()
       app.nowCodeList[app.equIndex].name = this.data.name
+      this.setData({
+        orgName: this.data.name
+      })
     }).catch(err=>{
       wx.hideLoading()
-      wx.showToast({
-        title: '修改失败',
-        icon: 'none',
-        duration: 2000
-      })
+      app.show('修改失败')
     })
   },
 
   goPositionMode(){
     wx.navigateTo({
       url: '../positionMode/positionMode'
-    })
-  },
-
-  goEquUpdate() {
-    wx.navigateTo({
-      url: '../equUpdate/equUpdate'
     })
   },
 
@@ -90,18 +86,17 @@ Page({
 
 
   deleteEvent(){
-    wx.showLoading({
-      title: '解除绑定中...',
-      mask: true
-    })
+    app.showLoading('解除绑定中')
     app.request({
-      url: `${app.api.getUserInfo}${wx.getStorageSync('id')}/devices/${app.nowCodeList[app.equIndex].id}`,
+      url: `${app.api.setUserDevices}${app.nowCodeList[app.equIndex].id}`,
       method: 'DELETE'
     }).then(res => {
       wx.hideLoading()
+      // if (app.nowCodeId == app.nowCodeList[app.equIndex].id) {
+      //   app.nowCodeId = '-1'
+      // }
       app.nowCodeList.splice(app.equIndex,1)
       if (app.nowCodeList.length) {
-        app.nowCodeId='-1'
         wx.navigateBack({
           delta: 1
         })
@@ -112,11 +107,7 @@ Page({
       }
     }).catch(err => {
       wx.hideLoading()
-      wx.showToast({
-        title: '解除失败',
-        icon: 'none',
-        duration: 2000
-      })
+      app.show('解除失败')
     })
   },
   /**

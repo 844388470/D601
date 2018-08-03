@@ -110,4 +110,19 @@ map {
   display: inline-block;
 }
 
+.trackMode{
+  bottom:320rpx;
+  font-size: 28rpx;
+  line-height: 80rpx;
+}
 
+.trackMode_SOS{
+  font-size: 28rpx;
+  line-height: 80rpx;
+}
+.countdown{
+  right:110rpx;
+  border-radius: 0;
+  width: 100rpx;
+  background-color: rgba(0,0,0,0)
+}

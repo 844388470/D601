@@ -5,39 +5,39 @@ import request from './utils/request.js'
 import filterCooName from './utils/mapApi.js'
 App({
   onLaunch: function (options) {
-    wx.checkSession({
-      success: () => {
-        const openid = wx.getStorageSync('openid');
-        if (openid) {
-          wx.reLaunch({
-            url: `../../login/signIn/signIn`
-          })
-        } else {
-          this.getLoginCode();
-        }
-      },
-      fail: () => {
-        this.getLoginCode(); //重新登录
-      }
-    })
+    // wx.checkSession({
+    //   success: () => {
+    //     const openid = wx.getStorageSync('openid');
+    //     if (openid) {
+    //       wx.reLaunch({
+    //         url: `../../login/signIn/signIn`
+    //       })
+    //     } else {
+    //       this.getLoginCode();
+    //     }
+    //   },
+    //   fail: () => {
+    //     this.getLoginCode(); //重新登录
+    //   }
+    // })
   },
   getLoginCode: function () {
-    wx.login({
-      success: res => {
-        request({ 
-          url: `${api.getLoginCode}`,
-          data: { code: res.code },
-          method:'post'  
-        }).then(data=>{
-          wx.setStorageSync('id', data.id);
-          wx.setStorageSync('openid', data.openid);
-          wx.setStorageSync('token', data.token);
-          wx.reLaunch({
-            url: `../../login/signIn/signIn`
-          })
-        })
-      }
-    })
+    // wx.login({
+    //   success: res => {
+    //     request({ 
+    //       url: `${api.getLoginCode}`,
+    //       data: { code: res.code },
+    //       method:'post'  
+    //     }).then(data=>{
+    //       wx.setStorageSync('id', data.id);
+    //       wx.setStorageSync('openid', data.openid);
+    //       wx.setStorageSync('token', data.token);
+    //       wx.reLaunch({
+    //         url: `../../login/signIn/signIn`
+    //       })
+    //     })
+    //   }
+    // })
   },
 
 
@@ -52,7 +52,30 @@ App({
   onError: function (msg) {
     console.log(msg)
   },
-  api:api,
+
+  show(msg){
+    wx.showToast({
+      title: msg,
+      icon: 'none',
+      duration: 2000
+    })
+  },
+
+  showLoading(msg){
+    wx.showLoading({
+      title: `${msg}...`,
+      mask: true
+    })
+  },
+
+  hideLoading() {
+    wx.hideLoading()
+  },
+
+  refapi:function(){
+    this.api=api()
+  },
+  api:api(),
   mapApi: filterCooName,
   util:util,
   request: request,

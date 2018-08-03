@@ -21,8 +21,9 @@ Page({
   },
 
   logOut() {
+    wx.clearStorageSync()
     wx.reLaunch({
-      url: '../login/signIn/signIn'
+      url: '../login/isLogin/isLogin'
     })
   },
 

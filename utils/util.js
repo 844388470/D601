@@ -17,6 +17,9 @@ const formatNumber = n => {
 }
 
 const timeFn = (min, max) => {
+  if(!min || !max){
+    return ''
+  }
   let value = new Date(max).getTime() - new Date(min.replace(/-/g, "/")).getTime();
   if (value >= 31104000000){
     return Math.floor(value / 31104000000) + '年前'

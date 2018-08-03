@@ -1,0 +1,14 @@
+/* pages/login/isLogin/isLogin.wxss */
+.btn {
+  margin: 20rpx auto 20rpx auto;
+}
+.shouquan{
+  position: absolute;
+  left: 27rpx;
+  right: 27rpx;
+  top: 700rpx;
+  margin: 0;
+  width: auto;
+  background-color: #02ad00;
+  color: #fff;
+}

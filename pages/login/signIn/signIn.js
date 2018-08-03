@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    loginMode:'phone',
     inputPhone: '',
     inputCode: '',
     canLogin: false,
@@ -20,79 +21,76 @@ Page({
 
   },
 
-  getUserInfo: function (res) {
+  weixinLogin(res){
     if (res.detail.userInfo){
-      let userInfo = res.detail.userInfo;
-      wx.showLoading({
-        title: '登录中...',
-        mask: true
-      })
-      app.request({
-        url: `${app.api.getUserInfo}${wx.getStorageSync('id')}`,
-        method: 'put',
-        data: {
-          nickname: userInfo.nickName,
-          country: userInfo.country,
-          city: userInfo.city,
-          province: userInfo.province,
-          headimgurl: userInfo.avatarUrl,
-        }
-      }).then(data => {
-        wx.hideLoading()
-        app.globalData.userInfo = userInfo;
-        this.getCoor()
-      }).catch(err => {
-        wx.hideLoading()
-        wx.showToast({
-          title: '登录失败',
-          icon: 'none',
-          duration: 2000
-        })
-      })
+      const userInfo = res.detail.userInfo;
+      this.getToken(userInfo)
     }else{
-      wx.showToast({
-        title: '请授权',
-        icon: 'none',
-        duration: 2000
-      })
+      app.show('请授权')
     }
   },
 
-  getCoor(){
-    app.request({
-      url: `${app.api.getUserInfo}${wx.getStorageSync('id')}/devices`,
-      method: 'GET'
-    }).then(res => {
-      let list = []
-      if (res instanceof Array) {
-        list = res
-        if (list.length) {
-          app.nowCodeList = list
-          app.nowCodeId = list[0].id
-          wx.reLaunch({
-            url: '../../index/index'
-          })
-        } else {
-          wx.reLaunch({
-            url: '../../equipment/addEqu/addEqu'
-          })
-        }
-      }else{
-        wx.hideLoading()
-        wx.showToast({
-          title: '登录失败',
-          icon: 'none',
-          duration: 2000
+  getToken(user){
+    app.showLoading('登陆中')
+    wx.login({
+      success: res => {
+        app.request({ 
+          url: app.api.getLoginCode,
+          data: { code: res.code },
+          method:'post'  
+        }).then(data=>{
+          wx.setStorageSync('id', data.id);
+          wx.setStorageSync('openid', data.openid);
+          wx.setStorageSync('token', data.token);
+          app.refapi()
+          this.setUserInfo(user)
+        }).catch((err)=>{
+          app.hideLoading()
+          app.show('登陆失败')
         })
       }
-      wx.hideLoading()
+    })
+  },
+
+  getList() {                            //获取设备列表
+    app.request({
+      url: app.api.getEquList,
+      method: 'GET'
+    }).then((arr)=>{
+      if (arr.length) {
+        app.nowCodeList = arr
+        app.nowCodeId = arr[0].id
+        wx.reLaunch({
+          url: '../../index/index'
+        })
+      } else {
+        wx.reLaunch({
+          url: '../../equipment/addEqu/addEqu'
+        })
+      }
+    }).catch((err)=>{
+      app.hideLoading()
+      app.show('登陆失败')
+    })
+  },
+
+  setUserInfo(data){                         //微信登录更新用户数据
+    app.request({
+      url: app.api.getUserDetails,
+      method: 'put',
+      data: {
+        nickname: data.nickName,
+        country: data.country,
+        city: data.city,
+        province: data.province,
+        headimgurl: data.avatarUrl,
+      }
+    }).then(res => {
+      app.globalData.userInfo = data;
+      this.getList()
     }).catch(err => {
-      wx.hideLoading()
-      wx.showToast({
-        title: '登录失败',
-        icon: 'none',
-        duration: 2000
-      })
+      app.hideLoading()
+      app.show('登陆失败')
     })
   },
 
@@ -142,8 +140,20 @@ Page({
     }
   },
 
+  changeWeixin(){
+    this.setData({
+      loginMode:'weixin'
+    })
+  },
+
+  changPhone(){
+    this.setData({
+      loginMode: 'phone'
+    })
+  },
   
   goLogin(){
+    return
     if (!this.data.inputPhone && !this.data.inputCode){
       return
     }

@@ -1,4 +1,4 @@
-// pages/equipment/equUpdate/equUpdate.js
+// pages/login/bindRecord/bindRecord.js
 Page({
 
   /**

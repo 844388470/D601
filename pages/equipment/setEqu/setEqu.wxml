@@ -15,7 +15,7 @@
       <text class="userInfo_left_text">型号</text>
     </view>
     <view class="userInfo_right">
-      <input class="userInfo_right_title" type='text'value='{{model}}'  disabled='true'></input>
+      <input class="userInfo_right_title" type='text' value='{{models}}'  disabled='true'></input>
     </view>
   </view> 
 
@@ -24,7 +24,7 @@
       <text class="userInfo_left_text">iemi</text>
     </view>
     <view class="userInfo_right">
-      <input class="userInfo_right_title" type='text'value='{{imei}}'  disabled='true'></input>
+      <input class="userInfo_right_title" type='text' value='{{imei}}'  disabled='true'></input>
     </view>
   </view>
 
@@ -38,16 +38,7 @@
     </view>
   </view>
 
-    <!-- <view class="userInfo list" bindtap='goEquUpdate'>
-    <view class="userInfo_left">
-      <text class="userInfo_left_text">固件升级</text>
-    </view>
-    <view class="userInfo_right">
-      <image class='userInfo_right_direction' src="../../../image/right.png"></image>
-    </view>
-  </view> 
-
-   <view class="userInfo list" bindtap='goManage'>
+  <!-- <view class="userInfo list" bindtap='goManage'>
     <view class="userInfo_left">
       <text class="userInfo_left_text">绑定管理</text>
     </view>
@@ -63,6 +54,6 @@
     <view class="userInfo_right">
       <image class='userInfo_right_direction' src="../../../image/right.png"></image>
     </view>
-  </view>   -->
+  </view> -->
    <view class='btn' bindtap='deleteEvent'>解除绑定</view>  
 </view>

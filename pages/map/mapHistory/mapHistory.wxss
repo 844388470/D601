@@ -30,6 +30,15 @@ map{
   justify-content: space-between;
 }
 
+.tip_head .tip_head_date{
+  width: 300rpx;
+}
+
+.tip_head .tip_head_time{
+  width: 300rpx;
+  text-align: right;
+}
+
 .tip .tip_address{
   padding:0;
   font-size: 31rpx;

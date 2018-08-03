@@ -1,5 +1,5 @@
 // pages/equipment/addEqu/addEqu.js
-let app=getApp();
+const app=getApp();
 Page({
 
   /**
@@ -14,6 +14,7 @@ Page({
       inputCode:e.detail.value
     })
   },
+
   saoma(){
     let that=this
     wx.scanCode({
@@ -23,81 +24,63 @@ Page({
             inputCode: res.result
           })
         }
-        
       }
     })
   },
+
   addEqu(){
     if (!this.data.inputCode){
-      wx.showToast({
-        title: '设备码不得为空',
-        icon: 'none',
-        duration: 2000
-      })
+      app.show('设备码不得为空')
       return 
     } else if (app.nowCodeList.filter(res => res.imei == this.data.inputCode).length){
-      wx.showToast({
-        title: '当前账号已绑定该设备码',
-        icon: 'none',
-        duration: 2000
-      })
+      app.show('当前账号已绑定该设备码')
       return
     }
-    wx.showLoading({
-      title: '添加中...',
-      mask: true
-    })
+    app.showLoading('添加中')
     app.request({
-      url: `${app.api.addCoor}`,
+      url: app.api.addCoor,
       method: 'post',
       data:{
         imei: this.data.inputCode
       }
     }).then(res => {
-      this.getCoor()
+      this.getList()
     }).catch(err => {
-      
+      app.hideLoading()
+      app.show('添加失败')
     })
   },
 
-  getCoor() {
+  getList() {                            //获取设备列表
     app.request({
-      url: `${app.api.getUserInfo}${wx.getStorageSync('id')}/devices`,
+      url: app.api.getEquList,
       method: 'GET'
-    }).then(res => {
-      let list = []
-      if (res instanceof Array) {
-        list = res
-        if (list.length && list.filter(res => res.imei == this.data.inputCode).length) {
-          app.nowCodeList = list
-          app.nowCodeId = list.filter(res => res.imei == this.data.inputCode)[0].id
-          wx.reLaunch({
-            url: '../../index/index'
-          })
-        } else {
-          wx.showToast({
-            title: '添加失败',
-            icon: 'none',
-            duration: 2000
-          })
-        }
-      } else {
-        wx.showToast({
-          title: '添加失败',
-          icon: 'none',
-          duration: 2000
+    }).then((arr)=>{
+      app.hideLoading()
+      const list = arr.filter(res => res.imei == this.data.inputCode)
+      if (arr.length && list.length) {
+        app.nowCodeList = arr
+        app.nowCodeId = list[0].id
+        wx.reLaunch({
+          url: '../../index/index'
         })
+      } else if (!list.length){
+        // app.show('正在审核,请等候')
+      } else {
+        return Promise.reject()
       }
-      wx.hideLoading()
-    }).catch(err => {
-      wx.hideLoading()
-      wx.showToast({
-        title: '添加失败',
-        icon: 'none',
-        duration: 2000
-      })
+    }).catch((err)=>{
+      app.hideLoading()
+      app.show('添加失败')
     })
   },
+
+  goBindRecord(){
+    wx.navigateTo({
+      url: '../../login/bindRecord/bindRecord'
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

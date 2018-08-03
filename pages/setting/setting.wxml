@@ -16,5 +16,5 @@
       <image class='userInfo_right_direction' src="../../image/right.png"></image>
     </view>
   </view>
-  <!-- <view class='btn' bindtap='logOut'>退出登录</view> -->
+   <view class='btn' bindtap='logOut'>退出登录</view> 
 </view>

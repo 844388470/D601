@@ -7,7 +7,7 @@
 }
 
 .login-input-contain{
-  padding: 50rpx 100rpx 80rpx 100rpx;
+  padding: 50rpx 50rpx 0rpx 50rpx;
   background-color: rgba(255,255,255,0.2)
 }
 
@@ -46,12 +46,14 @@
   line-height: 116rpx;
 }
 
-.btn {
-  margin: 20rpx auto 20rpx auto;
+.btn{
+  width: 650rpx;
+  margin-left: 50rpx;
+  margin-right: 50rpx;
 }
 
 .login-color{
-  background: #696;
+  background: #02ad00;
   color: #FFFFFF;
 }
 .regist {
@@ -64,21 +66,12 @@
 .active-line{
     border-bottom:2rpx solid #2F2F3D!important;
 }
+
 .image{
   width: 100%;
   height:100%
 }
 
-.shouquan{
-  position: absolute;
-  left: 27rpx;
-  right: 27rpx;
-  top: 700rpx;
-  margin: 0;
-  width: auto;
-  background-color: #02ad00;
-  color: #fff;
-}
 .image{
   display: inline-block;
   overflow: hidden;
@@ -88,4 +81,26 @@
   width: 250rpx;
   height: 250rpx;
   border-radius: 50%;
+}
+
+.shouquan{
+  position: absolute;
+  left: 50rpx;
+  right: 50rpx;
+  top: 700rpx;
+  margin: 0;
+  width: auto;
+  background-color: #02ad00;
+  color: #fff;
+}
+
+.changePhone{
+  position: absolute;
+  left: 50rpx;
+  right: 50rpx;
+  text-align: center;
+  font-size:30rpx;
+  color:#02ad00;
+  top: 820rpx;
+  margin: 0;
 }
