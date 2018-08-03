@@ -55,6 +55,7 @@ Page({
         // ]
         // let list = [{ longitude: 121.363090, latitude: 31.124060 }, { longitude: 121.363268, latitude: 31.124365 }, { longitude: 121.363204, latitude: 31.124549 }, { longitude: 121.363590, latitude: 31.124691 }, { longitude: 121.364615, latitude: 31.122583 }, { longitude: 121.365591, latitude: 31.122840 }, { longitude: 121.366401, latitude: 31.123433 }, { longitude: 121.367002, latitude: 31.124209 }, { longitude: 121.367018, latitude: 31.124213 }, { longitude: 121.364996, latitude: 31.125844 }, { longitude: 121.364878, latitude: 31.125664 }, { longitude: 121.364545, latitude: 31.125343 }, { longitude: 121.363896, latitude: 31.124810 }, { longitude: 121.363596, latitude: 31.124686 }]
         let start, end;
+        list = list.filter(res => res.longitude)
         if (!list.length) {
           wx.hideLoading()
           wx.showToast({
