@@ -67,6 +67,8 @@
 }
 .manage_list .manage_left_image{
   margin-left: 30rpx;
+  position: relative;
+  top: 5rpx;
   width: 30rpx;
   height: 30rpx;
 }

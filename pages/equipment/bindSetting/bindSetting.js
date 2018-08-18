@@ -1,12 +1,12 @@
 // pages/equipment/bindSetting/bindSetting.js
-let app=getApp()
+const app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    active:''
+    active:'',
   },
 
   /**
@@ -14,33 +14,72 @@ Page({
    */
   onLoad: function (options) {
     this.setActive()
+    this.isAdmin()
+  },
+  
+  isAdmin() {
+    if (app.nowCodeList[app.equIndex].admin_id == app.globalData.userInfo.id) {
+      this.setData({
+        isAdmin: true
+      })
+    }
   },
 
   setActive() {
     this.setData({
-      active: app.bindSettingId
+      active: app.nowCodeList[app.equIndex].bind_mode
     })
   },
 
   setOneMode() {
-    app.bindSettingId = '1'
-    this.setData({
-      active: '1'
-    })
+    // if (!this.data.isAdmin) {
+    //   app.show('无权限')
+    //   return
+    // }
+    if (app.nowCodeList[app.equIndex].bind_mode === 1) {
+      return
+    }
+    this.editMode(1)
   },
 
 
   setTwoMode() {
-    app.bindSettingId = '2'
-    this.setData({
-      active: '2'
-    })
+    // if (!this.data.isAdmin) {
+    //   app.show('无权限')
+    //   return
+    // }
+    if (app.nowCodeList[app.equIndex].bind_mode === 0) {
+      return
+    }
+    this.editMode(0)
   },
 
   setThreeMode() {
-    app.bindSettingId = '3'
-    this.setData({
-      active: '3'
+    // if (!this.data.isAdmin) {
+    //   app.show('无权限')
+    //   return
+    // }
+    if (app.nowCodeList[app.equIndex].bind_mode === 2) {
+      return
+    }
+    this.editMode(2)
+  },
+
+  editMode(value) {
+    app.showLoading('修改中')
+    app.request({
+      url: `${app.api.setEqu}${app.nowCodeList[app.equIndex].id}`,
+      method: 'put',
+      data: {
+        bind_mode: value
+      }
+    }).then(res => {
+      wx.hideLoading()
+      app.nowCodeList[app.equIndex].bind_mode = Number(value)
+      this.setActive()
+    }).catch(err => {
+      wx.hideLoading()
+      app.show('修改失败')
     })
   },
 

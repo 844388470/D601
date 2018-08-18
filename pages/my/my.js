@@ -2,14 +2,16 @@
 const app = getApp();
 Page({
   data: {
-    equArray:[]
+    equArray:[],
+    setTimeTrack:null,
+    userInfo: app.globalData.userInfo
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-
+    this.startArrayTime()
   },
   goSetting(e) {
     wx.navigateTo({
@@ -42,12 +44,23 @@ Page({
     })
   },
 
+  startArrayTime() {                     //开启倒计时
+    this.setArray()
+    this.data.setTimeTrack = setInterval(() => {
+      this.setArray()
+    }, 1000)
+  },
+
   setArray(){
     this.setData({
       equArray: app.nowCodeList
     })
   },
 
+  endArrayTime() {                       //结束倒计时
+    clearInterval(this.data.setTimeTrack)
+    this.data.setTimeTrack = null
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
@@ -59,7 +72,9 @@ Page({
   },
 
   onShow(){
-    this.setArray()
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
   },
   /**
    * 页面上拉触底事件的处理函数

@@ -1,5 +1,5 @@
 // pages/equipment/aroundName/aroundName.js
-let app=getApp()
+const app=getApp()
 Page({
 
   /**
@@ -11,7 +11,45 @@ Page({
   },
 
   addEqu(){
-    console.log(this.data.inputCode)
+    app.showLoading('修改中')
+    let [...list] = JSON.parse(JSON.stringify(app.aroundList))
+    if (app.aroundAddObj.state=='add'){
+      list.push({
+        ...app.aroundAddObj,
+        name: this.data.inputCode,
+        status:0
+      })
+    }else{
+      list[app.aroundAddObj.index]= {
+        ...list[app.aroundAddObj.index],
+        ...app.aroundAddObj,
+        name:this.data.inputCode
+      }
+    }
+    list=list.map(res=>{
+      return {
+        name: res.name,
+        status: res.status,
+        address: res.address,
+        longitude: res.longitude,
+        latitude: res.latitude,
+        radius:res.radius,
+      }
+    })
+    app.request({
+      url: `${app.api.getIndex}${app.nowCodeList[app.equIndex].id}/fences`,
+      method: 'POST',
+      data: list
+    }).then(res => {
+      wx.hideLoading()
+      app.aroundChange=true
+      wx.navigateBack({
+        delta: 2
+      })
+    }).catch(res => {
+      wx.hideLoading()
+      app.show('修改失败')
+    })
   },
 
   getInputCode(e){

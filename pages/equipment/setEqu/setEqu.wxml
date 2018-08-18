@@ -5,14 +5,14 @@
       <text class="userInfo_left_text">设备名称</text>
     </view>
     <view class="userInfo_right">
-      <input class="userInfo_right_title  change" type='text' placeholder='请输入' value='{{name}}' bindinput='setEquName' bindblur="blurData" bindblur="blurinput"></input>
+      <input class="userInfo_right_title  change" type='text' placeholder='请输入' value='{{name}}' bindinput='setEquName' bindblur="blurData" bindblur="blurinput" disabled='{{!isAdmin}}'></input>
       <image class='userInfo_right_direction' src="../../../image/right.png"></image>
     </view>
   </view>
 
    <view class="userInfo list">
     <view class="userInfo_left">
-      <text class="userInfo_left_text">型号</text>
+      <text class="userInfo_left_text">设备型号</text>
     </view>
     <view class="userInfo_right">
       <input class="userInfo_right_title" type='text' value='{{models}}'  disabled='true'></input>
@@ -21,12 +21,39 @@
 
   <view class="userInfo list">
     <view class="userInfo_left">
-      <text class="userInfo_left_text">iemi</text>
+      <text class="userInfo_left_text">设备SN</text>
+    </view>
+    <view class="userInfo_right">
+      <input class="userInfo_right_title" type='text' value='{{sn}}'  disabled='true'></input>
+    </view>
+  </view>
+
+  <view class="userInfo list">
+    <view class="userInfo_left">
+      <text class="userInfo_left_text">设备IMEI</text>
     </view>
     <view class="userInfo_right">
       <input class="userInfo_right_title" type='text' value='{{imei}}'  disabled='true'></input>
     </view>
   </view>
+
+  <view class="userInfo list" bindtap='goQrCode'>
+    <view class="userInfo_left">
+      <text class="userInfo_left_text">绑定二维码</text>
+    </view>
+    <view class="userInfo_right">
+      <image class='userInfo_right_direction' src="../../../image/right.png"></image>
+    </view>
+  </view> 
+
+  <view class="userInfo list" bindtap='goManage' wx:if="{{isAdmin}}">
+    <view class="userInfo_left">
+      <text class="userInfo_left_text">绑定管理</text>
+    </view>
+    <view class="userInfo_right">
+      <image class='userInfo_right_direction' src="../../../image/right.png"></image>
+    </view>
+  </view> 
 
   <view class="userInfo list"  bindtap='goPositionMode'>
     <view class="userInfo_left">
@@ -38,22 +65,13 @@
     </view>
   </view>
 
-  <!-- <view class="userInfo list" bindtap='goManage'>
-    <view class="userInfo_left">
-      <text class="userInfo_left_text">绑定管理</text>
-    </view>
-    <view class="userInfo_right">
-      <image class='userInfo_right_direction' src="../../../image/right.png"></image>
-    </view>
-  </view> 
-
-   <view class="userInfo list" bindtap='goAround'>
+  <view class="userInfo list" bindtap='goAround'>
     <view class="userInfo_left">
       <text class="userInfo_left_text">电子围栏</text>
     </view>
     <view class="userInfo_right">
       <image class='userInfo_right_direction' src="../../../image/right.png"></image>
     </view>
-  </view> -->
-   <view class='btn' bindtap='deleteEvent'>解除绑定</view>  
+  </view> 
+  <view class='btn' bindtap='deleteEvent'>解除绑定</view>  
 </view>

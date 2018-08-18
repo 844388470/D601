@@ -1,11 +1,12 @@
 // pages/equipment/positionMode/positionMode.js
-let app=getApp();
+const app=getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    isAdmin:false,
     active:'',
   },
 
@@ -14,6 +15,15 @@ Page({
    */
   onLoad: function (options) {
     this.setActive()
+    this.isAdmin()
+  },
+
+  isAdmin() {
+    if (app.nowCodeList[app.equIndex].admin_id == app.globalData.userInfo.id) {
+      this.setData({
+        isAdmin: true
+      })
+    }
   },
 
   setActive(){
@@ -23,54 +33,43 @@ Page({
   },
 
   setOneMode(){
-    wx.showLoading({
-      title: '修改中...',
-      mask: true
-    })
+    if (!this.data.isAdmin) {
+      app.show('无权限')
+      return
+    }
+    if (app.nowCodeList[app.equIndex].locate_mode===0){
+      return
+    }
+    this.editMode(0)
+  },
+
+  editMode(value){
+    app.showLoading('修改中')
     app.request({
-      url: `${app.api.getIndex}${app.nowCodeList[app.equIndex].id}`,
+      url: `${app.api.setEqu}${app.nowCodeList[app.equIndex].id}`,
       method: 'put',
       data: {
-        locate_mode: '0'
+        locate_mode: value
       }
     }).then(res => {
       wx.hideLoading()
-      app.nowCodeList[app.equIndex].locate_mode = '0'
+      app.nowCodeList[app.equIndex].locate_mode = Number(value)
       this.setActive()
     }).catch(err => {
       wx.hideLoading()
-      wx.showToast({
-        title: '修改失败',
-        icon: 'none',
-        duration: 2000
-      })
+      app.show('修改失败')
     })
   },
 
-
   setTwoMode() {
-    wx.showLoading({
-      title: '修改中...',
-      mask: true
-    })
-    app.request({
-      url: `${app.api.getIndex}${app.nowCodeList[app.equIndex].id}`,
-      method: 'put',
-      data: {
-        locate_mode: '1'
-      }
-    }).then(res => {
-      wx.hideLoading()
-      app.nowCodeList[app.equIndex].locate_mode = '1'
-      this.setActive()
-    }).catch(err => {
-      wx.hideLoading()
-      wx.showToast({
-        title: '修改失败',
-        icon: 'none',
-        duration: 2000
-      })
-    })
+    if (!this.data.isAdmin) {
+      app.show('无权限')
+      return
+    }
+    if (app.nowCodeList[app.equIndex].locate_mode === 1) {
+      return
+    }
+    this.editMode(1)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

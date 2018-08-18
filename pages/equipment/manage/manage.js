@@ -1,5 +1,5 @@
 // pages/equipment/manage/manage.js
-let app=getApp()
+const app=getApp()
 Page({
 
   /**
@@ -7,32 +7,62 @@ Page({
    */
   data: {
     settingArray: [
-      { name: '管理员确认', id: '1' }, { name: '允许任何人', id: '2' }, { name: '禁止任何人', id: '3' }
+      { name: '管理员确认', id: '0' }, { name: '允许任何人', id: '1' }, { name: '禁止任何人', id: '2' }
     ],
     settingName: '',
-    settingId:'1',
-    list: [{ phone: 17717374320, rules: 'admin', userId: '1', isDelete: true }, { phone: 13131313131, rules: 'user', userId: '2', isDelete: true }]
+    settingId:'0',
+    list: []
   },
+
 
   setSettingName() {
     this.setData({
-      settingName: app.util.filterIdName(this.data.settingArray, app.bindSettingId)
+      settingName: app.util.filterIdName(this.data.settingArray, app.nowCodeList[app.equIndex].bind_mode)
+    })
+  },
+
+  getEquRequestList(){
+    app.showLoading('获取用户中')
+    app.request({
+      url: `${app.api.setEqu}${app.nowCodeList[app.equIndex].id}/users`,
+      method:'GET'
+    }).then(res=>{
+      app.hideLoading()
+      for(let i of res){
+          i.admin = (i.id === app.nowCodeList[app.equIndex].admin_id ? true : false)
+      }
+      this.setData({
+        list:res
+      })
+    }).catch(err=>{
+      app.hideLoading()
+      app.show('获取失败')
     })
   },
 
   deletePhone(e){
-    console.log(e.target.dataset.index)
     wx.showModal({
       title: '警告',
-      content: '确认删除吗?',
+      content: '确认删除该用户吗?',
       success: (res)=> {
         if (res.confirm) {
-          this.data.list.splice(e.target.dataset.index, 1)
-          this.setData({
-            list: this.data.list
-          })
+          this.deleteUser(e.target.dataset.id)
         }
       }
+    })
+  },
+
+  deleteUser(id){
+    app.showLoading('删除中')
+    app.request({
+      url: `${app.api.adminDeleteUser}${id}/devices/${app.nowCodeList[app.equIndex].id}`,
+      method: 'DELETE'
+    }).then(res=>{
+      wx.hideLoading()
+      this.getEquRequestList()
+    }).catch(err=>{
+      wx.hideLoading()
+      app.show('删除失败')
     })
   },
 
@@ -53,6 +83,7 @@ Page({
    */
   onLoad: function (options) {
     this.setSettingName()
+    this.getEquRequestList()
   },
 
   /**

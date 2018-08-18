@@ -9,22 +9,26 @@ Page({
     name:'',
     orgName:'',
     models:'',
+    sn:'',
     imei:'',
     positionName: '',
     positionId:'0',
+    isAdmin:false,
     modeArray:[
       { name: '标准模式', id: '0' }, { name: '性能模式', id: '1' }
     ]
   },
 
-  blurData(){
-
+  isAdmin(){
+    if (app.nowCodeList[app.equIndex].admin_id == app.globalData.userInfo.id){
+      this.setData({
+        isAdmin:true
+      })
+    }
   },
 
-  setPositionName(){
-    this.setData({
-      positionName: app.util.filterIdName(this.data.modeArray, app.positionModeId)
-    })
+  blurData(){
+
   },
 
   setName(){
@@ -32,6 +36,7 @@ Page({
       name: app.nowCodeList[app.equIndex].name,
       orgName: app.nowCodeList[app.equIndex].name,
       models: app.nowCodeList[app.equIndex].model || '',
+      sn: app.nowCodeList[app.equIndex].imsi || '',
       imei: app.nowCodeList[app.equIndex].imei,
       positionName: app.util.filterIdName(this.data.modeArray, app.nowCodeList[app.equIndex].locate_mode)
     })
@@ -61,14 +66,24 @@ Page({
         orgName: this.data.name
       })
     }).catch(err=>{
+      this.setData({
+        name: this.data.orgName
+      })
       wx.hideLoading()
       app.show('修改失败')
     })
   },
 
-  goPositionMode(){
+
+  goPositionMode() {
     wx.navigateTo({
       url: '../positionMode/positionMode'
+    })
+  },
+  
+  goQrCode(){
+    wx.navigateTo({
+      url: '../qrCode/qrCode'
     })
   },
 
@@ -92,9 +107,6 @@ Page({
       method: 'DELETE'
     }).then(res => {
       wx.hideLoading()
-      // if (app.nowCodeId == app.nowCodeList[app.equIndex].id) {
-      //   app.nowCodeId = '-1'
-      // }
       app.nowCodeList.splice(app.equIndex,1)
       if (app.nowCodeList.length) {
         wx.navigateBack({
@@ -114,7 +126,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.isAdmin()
   },
 
   /**

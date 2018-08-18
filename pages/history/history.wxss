@@ -1,42 +1,126 @@
-/* .content>view>view{
-  padding:20rpx;
+ .content{
+  width:100%;
+  background-color:#f1f1f1;
+   /* min-height:100vh;  */
 }
+
 .list{
-  border:1rpx solid #eee;
-  padding: 20rpx;
-  font-size:29rpx;
+  padding:0 27rpx;
 }
 
-.list>view{
-  margin-top:10rpx;
-}
-.list>view:first-child{
-  margin-top:0rpx;
+.list:last-child{
+  padding-bottom:50rpx;
 }
 
-
-.list+.list{
-  border-top:0;
-  box-shadow-top: 0 0 0 0;
+.list .list_title{
+  line-height: 70rpx;
+  font-size: 28rpx;
+  color: #a9a9a9;
 }
 
-.fs30+.list{
-  margin-top:20rpx;
+.list .list_list{
+  background-color:#fff;
+  padding: 0 27rpx 27rpx;
+  position: relative;
 }
 
-.circle {
+.list .list_list{
+  border-top-left-radius: 15rpx;
+  border-top-right-radius: 15rpx;
+}
+
+.list .list_list+.list_list{
+  border-radius: 0;
+  border-top:1rpx solid #f1f1f1; 
+}
+
+.list .list_list:last-child{
+  border-bottom-left-radius: 15rpx;
+  border-bottom-right-radius: 15rpx;
+} 
+
+.list .list_list_head{
+  font-size: 30rpx;
+  color: #000;
+  line-height: 80rpx;
+}
+
+.list .list_list_address{
+  padding:0;
+  font-size: 31rpx;
+  position: relative;
+}
+
+.list .list_list_address_name{
+  margin-bottom: 16rpx;
+  position: relative;
+}
+
+.list .list_list_address_name_text{
+  padding-left: 40rpx;
+}
+
+.list .list_list_address_line{
+  position: absolute;
+  top: 36rpx;
+  left: 14rpx;
+  width: 0;
+  border-right: 5rpx dotted #02ad00;
+  height: 40rpx;
+}
+
+.list .list_list_address_name_circle {
+  position: absolute;
+  top: 6rpx;
+  left: 1rpx;
   display: inline-block;
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background-color: #CC9999;
-  margin-right:20rpx;
+  background-color: #ff7800;
 }
-.green{
-  background-color: #99CC99;
-} */
 
-.flexc{
+.list_list_address_name_circle.green{
+  background-color: #02ad00;
+}
+
+.list .list_list_address_right{
+  position: absolute;
+  width:25rpx;
+  height:50rpx;
+  margin-left:20rpx;
+  top: 18rpx;right: 10rpx;
+}
+
+.list .list_list_juli{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16rpx;
+  font-size: 31rpx;
+}
+
+.list_list_juli .list_list_juli_image{
+  width: 45rpx;
+  height: 30rpx;
+  margin-right: 15rpx;
+}
+
+.list_list_juli .list_list_juli_image.people{
+  width: 30rpx;
+  height: 45rpx;
+}
+
+.list_list_juli .list_list_juli_image.fire{
+  width: 40rpx;
+  height: 40rpx;
+} 
+
+
+
+
+
+  .flexc{
   margin: 30rpx;
  
 }
@@ -63,4 +147,4 @@
 }
 .ll{
   color:transparent;
-}
+}  

@@ -1,0 +1,12 @@
+<!--pages/equipment/qrCode/qrCode.wxml-->
+<view class='content'>
+  <view class='main_top'>
+    <view class="canvas-box">
+      <canvas canvas-id="mycanvas"/>
+    </view>
+    <text>绑定码:{{value}}</text>
+  </view>
+  <view class='main_bottom'>
+    <button class='btn download' bindtap='download' wx:if='{{iamgeStates}}' disabled='{{!download}}'>保存至本地</button> 
+  </view>
+</view>

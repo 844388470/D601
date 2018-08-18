@@ -14,16 +14,16 @@
         <cover-view class="tip_address_top"><cover-view class="circle green"></cover-view><cover-view class="tip_address_text">{{startName}}</cover-view></cover-view>
         <cover-view class="tip_address_top"><cover-view class="circle"></cover-view><cover-view class="tip_address_text">{{endName}}</cover-view></cover-view>
       </cover-view>
-      <!-- <cover-view class="tip_juli">
+      <cover-view class="tip_juli">
         <cover-view class="flex-flex flexl">
-          <cover-image class="tip_juli_image" src="../../../image/history/rules.png"></cover-image><cover-view class="fs28">13.5km</cover-view>
+          <cover-image class="tip_juli_image" src="../../../image/history/rules.png"></cover-image><cover-view class="fs28">{{distance}}km</cover-view>
         </cover-view>
         <cover-view class="flex-flex flexl">
-          <cover-image class="tip_juli_image people" src="../../../image/history/people.png"></cover-image><cover-view class="fs28">12312</cover-view>
+          <cover-image class="tip_juli_image people" src="../../../image/history/people.png"></cover-image><cover-view class="fs28">{{bushu}}千步</cover-view>
         </cover-view>
         <cover-view class="flex-flex flexl">
-          <cover-image class="tip_juli_image fire" src="../../../image/history/fire.png"></cover-image><cover-view class="fs28">85212</cover-view>
+          <cover-image class="tip_juli_image fire" src="../../../image/history/fire.png"></cover-image><cover-view class="fs28">{{kalu}}kcal</cover-view>
         </cover-view>
-      </cover-view>  -->
+      </cover-view>  
   </cover-view>
 </view>

@@ -14,12 +14,12 @@
 
   <view class='manage_list' wx:for="{{list}}" wx:key="userId"> 
     <view class='manage_left'>
-      <text class='manage_left_text'>+86 {{item.phone}}</text>
-      <image class='manage_left_image'  src='../../../image/vip_vip.png' wx:if="{{item.rules=='admin'}}"></image>
-      <image class='manage_left_image'  src='../../../image/vip.png' wx:if="{{item.rules!=='admin'}}"></image>
+      <text class='manage_left_text'>{{item.nickname}}</text>
+      <image class='manage_left_image'  src='../../../image/vip_vip.png' wx:if="{{item.admin}}"></image>
+      <image class='manage_left_image'  src='../../../image/vip.png' wx:if="{{!item.admin}}"></image>
     </view>
     <view class='manage_right'>
-      <image class='manage_right_image'  src='../../../image/delete.png' wx:if="{{item.rules!=='admin'}}" bindtap='deletePhone'></image>
+      <image class='manage_right_image'  src='../../../image/delete.png' wx:if="{{!item.admin}}" bindtap='deletePhone' data-id='{{item.id}}'></image>
     </view>
   </view>
   <view class="guize" bindtap='goRules'>绑定规则</view>

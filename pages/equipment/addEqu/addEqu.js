@@ -6,12 +6,45 @@ Page({
    * 页面的初始数据
    */
   data: {
-    inputCode:''
+    inputCode: '',
+    inputCodes:'',
+    list:[],
+    bindList:[],
+    time:null
+  },
+
+  addTimeoutFn() {                  //时差 开始定时器
+    this.data.time = setInterval(() => {
+      app.request({
+        url: app.api.getEquList,
+        method: 'GET'
+      }).then((arr) => {
+        if (!arr.length && app.nowCodeList.length) {
+          app.nowCodeList = arr
+          wx.reLaunch({
+            url: './addEqu'
+          })
+        }
+        if (!app.nowCodeList.length && arr.length) {
+          app.nowCodeList = arr
+          app.nowCodeId = arr[0].id
+          wx.reLaunch({
+            url: '../../index/index'
+          })
+        }
+        app.nowCodeList = arr
+      })
+    }, 6000)
+  },
+
+  deleteTimeoutFn() {               //时差 取消定时器
+    clearInterval(this.data.time)
+    this.data.time = null
   },
 
   getInputCode(e){
     this.setData({
-      inputCode:e.detail.value
+      inputCodes:e.detail.value
     })
   },
 
@@ -21,7 +54,8 @@ Page({
       success:function(res){
         if (typeof res.result =='string'){
           that.setData({
-            inputCode: res.result
+            inputCode: res.result,
+            inputCodes: res.result
           })
         }
       }
@@ -29,12 +63,24 @@ Page({
   },
 
   addEqu(){
+    this.setData({
+      inputCode: this.data.inputCodes
+    })
     if (!this.data.inputCode){
       app.show('设备码不得为空')
       return 
     } else if (app.nowCodeList.filter(res => res.imei == this.data.inputCode).length){
       app.show('当前账号已绑定该设备码')
       return
+    } else if (this.data.bindList.filter(res => res.imei == this.data.inputCode).length) {
+      if (this.data.bindList.filter(res => res.imei == this.data.inputCode)[0].status==3){
+        app.show('该设备正在等待管理员确认，请尽快联系管理员')
+        return
+      }
+      if (this.data.bindList.filter(res => res.imei == this.data.inputCode)[0].status == 1) {
+        app.show('等待设备响应中，请至绑定记录查看详情')
+        return
+      }
     }
     app.showLoading('添加中')
     app.request({
@@ -44,10 +90,23 @@ Page({
         imei: this.data.inputCode
       }
     }).then(res => {
-      this.getList()
+      this.getBindList(true)
     }).catch(err => {
       app.hideLoading()
-      app.show('添加失败')
+      app.show(err)
+    })
+  },
+
+  getBindList(state) {
+    app.request({
+      url: app.api.getBindRecord,
+    }).then(res => {
+      this.setData({
+        bindList: res
+      })
+      if (state){
+        this.getList()
+      }
     })
   },
 
@@ -55,20 +114,38 @@ Page({
     app.request({
       url: app.api.getEquList,
       method: 'GET'
-    }).then((arr)=>{
+    }).then((arr)=>{ 
       app.hideLoading()
       const list = arr.filter(res => res.imei == this.data.inputCode)
-      if (arr.length && list.length) {
+      if (list.length) {
         app.nowCodeList = arr
         app.nowCodeId = list[0].id
         wx.reLaunch({
           url: '../../index/index'
         })
-      } else if (!list.length){
-        // app.show('正在审核,请等候')
-      } else {
-        return Promise.reject()
+      }else{
+        if (this.data.bindList.filter(res => res.imei == this.data.inputCode).length){
+          if (this.data.bindList.filter(res => res.imei == this.data.inputCode)[0].status == 3) {
+            app.show('已提交管理员审批')
+          }
+          if (this.data.bindList.filter(res => res.imei == this.data.inputCode)[0].status == 1) {
+            app.show('等待设备响应')
+          }
+        }
+        if (!arr.length && app.nowCodeList.length) {
+          app.nowCodeList = arr
+          wx.reLaunch({
+            url: './addEqu'
+          })
+        }else if (arr.length && !app.nowCodeList.length) {
+          app.nowCodeList = arr
+          app.nowCodeId = arr[0].id
+          wx.reLaunch({
+            url: '../../index/index'
+          })
+        }
       }
+      app.nowCodeList = arr
     }).catch((err)=>{
       app.hideLoading()
       app.show('添加失败')
@@ -85,7 +162,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getBindList(true)
   },
 
   /**
@@ -99,21 +176,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.addTimeoutFn()
+    this.getBindList()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    this.deleteTimeoutFn()
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    this.deleteTimeoutFn()
   },
 
   /**

@@ -1,6 +1,7 @@
 // pages/find/find.js
-
+import io from '../../socketIo/socket.io-mp.js'
 const app = getApp();
+
 Page({
   data: {
     isFirst:true,
@@ -37,6 +38,7 @@ Page({
   onLoad(){
     this.isDeltel()
     this.setSelectName()
+    this.startSocket()
   },
   getIndex(){                                                   //获取位置
     this.deleteTimeoutFn()
@@ -66,6 +68,7 @@ Page({
       }
     }).catch(err => {
       this.setData({
+        markerDatas:[],
         text: {
           message: '获取地址失败',
           date: '',
@@ -82,8 +85,9 @@ Page({
     }).then((arr) => {
       if (arr.length) {
         app.nowCodeList = arr
-
+        this.isDeltel()
       } else {
+        app.nowCodeList = arr
         wx.reLaunch({
           url: '../../equipment/addEqu/addEqu'
         })
@@ -140,18 +144,20 @@ Page({
   isDeltel(){                       //判断当前设备是否存在
     this.endTrackMode()
     if (app.nowCodeList.filter(obj => obj.id == app.nowCodeId).length===0){
+      if (!app.nowCodeList.length){
+        wx.reLaunch({
+          url: '../equipment/addEqu/addEqu'
+        })
+      }
       app.nowCodeId=app.nowCodeList[0].id
       this.setSelectName()
       this.isSos()
-      this.isCurrentEquIsTrack()
-      // this.getIndex()
     }else{
       this.setSelectName()
       this.isSos()
-      this.isCurrentEquIsTrack()
     }
   },
-  isSos() {                         //判断当前设备是否处于SOS模式
+  isSos() {                         //判断当前设备是否处于什么模式
     // if(true){
     //   wx.switchTab({
     //     url: '/pages/index/index'
@@ -161,19 +167,14 @@ Page({
       this.setData({
         sosState:true
       })
-    }else{
+    } else if (app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].startTime) {
+      this.startTrackMode()
+    }else {
+      this.getIndex()
+      this.endTrackMode()
       this.setData({
         sosState: false
       })
-    }
-    this.getIndex()
-  },
-  isCurrentEquIsTrack(){            //判断当前设备是否处于追踪模式
-    if (app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].startTime){
-      this.startTrackMode()
-    }else{
-      this.getIndex()
-      this.endTrackMode()
     }
   },
   countdownSelect(e){               //选择追踪时间
@@ -243,12 +244,6 @@ Page({
       countdowns:''
     })
   },
-  onPullDownRefresh: function () {
-    console.log("下拉")
-  },
-  onReachBottom: function () {
-    console.log("上拉")
-  },
   isReturnIndex(){                      //返回位置页判断
     if (app.nowCodeList.filter(obj => obj.id == app.nowCodeId).length === 0) {
       this.isDeltel()
@@ -258,6 +253,33 @@ Page({
       }
     }
     this.setArray()
+  },
+  startSocket(){                        //开始监听Socket
+    let socket = io(`${app.api.api}`)
+
+    socket.on('connect', function () {
+      console.log('连上了');
+    });
+
+    socket.on('test', (data) => {
+      const  n  = {data}
+      console.log(typeof data)
+      this.getList()
+    });
+
+    socket.on('D606-Warning', (data) => {
+      const n = JSON.parse(data)
+      console.log(data)
+      // console.log()
+      app.show(`设备${n.data.imei.substr(-4)}被打开了`)
+    });
+
+    // wx.connectSocket({
+    //   url: `${app.api.api}`
+    // })
+    // wx.onSocketMessage((res)=>{
+    //   console.log(res)
+    // })
   },
   onShow() {
     this.isReturnIndex()

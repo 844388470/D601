@@ -1,9 +1,11 @@
 <!--pages/equipment/aroundName/aroundName.wxml-->
 
 <view class="content">
-  <view class='operation'>
-    <input type='text' placeholder='围栏名称' value='{{inputCode}}' cursor-spacing='110' bindinput='getInputCode'></input>
-    <view class="btn register" wx:if="{{option=='add'}}" bindtap='addEqu'>添加</view>
-    <view class="btn register" wx:if="{{option=='edit'}}" bindtap='addEqu'>修改</view>
+  <view class="register">
+    <view class="register_right">
+      <input class='register_right_title' type='number' placeholder='围栏名称' value='{{inputCode}}' cursor-spacing='110' bindinput='getInputCode'></input>
+    </view>
   </view>
+  <view class="btn" wx:if="{{option=='add'}}" bindtap='addEqu'>确认添加</view>
+  <view class="btn" wx:if="{{option=='edit'}}" bindtap='addEqu'>确认修改</view>
 </view>

@@ -44,6 +44,15 @@
   display: table-cell;
 }
 
+.userInfo .userInfo_right input{
+  width:450rpx;
+  display:inline-block;
+  vertical-align:middle;
+  font-size:31rpx;
+  color:#a1a1a1;
+  text-align:right;
+}
+
 .userInfo .userInfo_right_head{
   width: 123rpx;
   height: 123rpx;
@@ -99,3 +108,4 @@
   height:30rpx;
   margin-right:20rpx;
 }
+

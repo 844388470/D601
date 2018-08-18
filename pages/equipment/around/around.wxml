@@ -1,18 +1,25 @@
 <!--pages/equipment/around/around.wxml-->
 <view class='content'>
   <view class="p">最多可设置4个电子围栏，当设备进入或离开电子围栏范围，App端将收到推送消息。</view>
-  <view class="flexspace fs30">
+  <view class="title">
     <text>电子围栏({{list.length}}/4)</text>
-    <text bindtap='goAddAround'>新增</text>
+    <text bindtap='editMode' class="title_edit">{{edit?'切换':'编辑'}}</text>
   </view>
-  <view class='list boxshadow' wx:for="{{list}}" wx:key="index">
-    <!-- <view class="map">
-      <map id="map" longitude="{{item.markers[0].longitude}}" latitude="{{item.markers[0].latitude}}" scale="18" markers="{{item.markers}}" circles="{{item.circles}}"></map>
-      <cover-view class="zhezhao"></cover-view>
-    </view> -->
-    <view class='name fs30'>
-      <view>{{item.name}}  方圆{{item.distance}}m</view>
-      <view>{{item.adressName}}</view>
+  <view class='add' wx:if="{{edit&&isAdmin}}" bindtap='goAddAround'>
+      <image src='../../../image/around/add.png' class="add_iamge"></image>
+      <text class='add_text'>添加</text>
+  </view>
+  <view class='list' wx:for="{{list}}" wx:key="id" bindtap='editAround' data-index='{{index}}'>
+    <view class='list_left' data-index='{{index}}'>
+      <view class="list_left_title" data-index='{{index}}'>{{item.name}}  方圆{{item.radius}}m</view>
+      <view class="list_left_address" data-index='{{index}}'>
+        <image class="list_left_address_img" src='../../../image/message_index.png' data-index='{{index}}'></image>
+        <text class='list_left_address_main' data-index='{{index}}'>{{item.address}}</text>
+      </view>
+    </view>
+    <view class="list_right" data-index='{{index}}'>
+      <image src='../../../image/delete.png' class='list_right_delete' wx:if="{{edit}}" catchtap='deleteMode' data-index='{{index}}'></image>
+      <switch  wx:if="{{!edit}}" class="list_right_check"  checked ="{{item.status}}" catchchange="setEquChecked" data-index='{{index}}'/>
     </view>
   </view>
 </view>

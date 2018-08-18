@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/login/isLogin/isLogin",
+    "pages/equipment/around/around",
     "pages/login/signIn/signIn",
     "pages/equipment/manage/manage",
     "pages/message/message",
@@ -8,7 +9,6 @@
     "pages/login/register/register",
     "pages/my/my",
     "pages/index/index",
-    "pages/equipment/around/around",
     "pages/setting/about/about",
     "pages/equipment/addAround/addAround",
     "pages/equipment/setEqu/setEqu",
@@ -25,6 +25,7 @@
     "pages/map/mapAround/mapAround",
     "pages/equipment/positionMode/positionMode",
     "pages/equipment/bindSetting/bindSetting",
+    "pages/equipment/qrCode/qrCode",
     "pages/login/bindRecord/bindRecord"
   ],
   "window": {
@@ -45,6 +46,12 @@
         "text": "位置",
         "iconPath": "image/index.png",
         "selectedIconPath": "image/index-select.png"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "image/message.png",
+        "selectedIconPath": "image/message-select.png"
       },
       {
         "pagePath": "pages/history/history",

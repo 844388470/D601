@@ -1,5 +1,5 @@
 <view class="content">
-  <view class="message">
+  <!-- <view class="message">
     <view class="message_time">2018-06-04 周一</view>
     <view class="message_main">
       <view class="message_list">
@@ -90,5 +90,25 @@
         <image class="message_list_image " src='../../image/right.png'></image>
       </view>
     </view>
-  </view>
+  </view>  -->
+  <view class="message" wx:for="{{list}}" wx:key="id" wx:if="{{userId!==item.user_id}}">
+    <view class="message_time">{{item.create_date}}</view>
+    <view class="message_main">
+      <view class="message_list">
+        <!-- <text class="message_list_circle" wx:if="{{false}}"></text> -->
+        <!-- <text class="message_list_line" wx:if="{{false}}"></text> -->
+        <view class="message_list_time "></view> 
+        <view class="message_list_content" >
+          <text class="message_list_content_text">请求绑定设备</text> 
+          <view class="message_list_content_select">
+            <text wx:if="{{item.status=='9'}}">已接受</text>
+            <text wx:if="{{item.status=='5'}}">已拒绝</text>
+            <image src='../../image/no.png' class="message_list_content_select_no"  wx:if="{{item.status=='3'}}" bindtap='jujue' data-id="{{item.id}}"></image>
+            <image src='../../image/yes.png' class="message_list_content_select_yes"  wx:if="{{item.status=='3'}}" bindtap='tongyi' data-id="{{item.id}}"></image>
+          </view>
+        </view>
+        <!-- <image wx:if="{{true}}" class="message_list_image " src='../../image/right.png'></image> -->
+      </view>
+    </view>
+  </view> 
 </view>

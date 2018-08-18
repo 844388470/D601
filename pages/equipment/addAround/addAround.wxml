@@ -1,17 +1,29 @@
 <!--pages/equipment/addAround/addAround.wxml-->
 <view class="content">
-  <view class='map'>
+  <view class='map' style="{{searchState?'bottom:420rpx':'bottom:340rpx'}}">
     <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" markers="{{markers}}" circles="{{circles}}" bindregionchange="controltap"></map>
-    <cover-image src='../../../image/ding.png' class="index" wx:if="{{ding}}"></cover-image>
+    <cover-image src='../../../image/message_index.png' class="index" wx:if="{{ding}}" style="{{'width:'+width+'px;height:'+height+'px;left:'+left+'rpx;top:'+top+'rpx'}}"></cover-image>
   </view>
   <view class="tip boxshadow">
-      <view class="title">滑动调整安全区域范围:{{radius}}m</view>
-      <view class="huakaui">
-        <slider step="5" bindchanging="sliderchange" min="100" max="2000" value="radius"/>
+      <view class="title">
+        <text>滑动调整安全区域范围:</text>
+        <text class="tip_title_text">{{radiusxian}}m</text>
+        <image class='tip_title_img'  src='../../../image/around/search.png' catchtap='searchStateChange'></image>
+      </view>
+      <view class="search"  wx:if="{{searchState}}">
+        <input value="{{searchValue}}" catchfocus="inputFocus" catchblur="inputBlur" bindinput="inputChange" placeholder='请输入地址' placeholder-style='fontSize:28rpx;'></input>
+        <cover-view class="select" wx:if="{{selectState&&search.length}}">
+          <cover-view class="select_main">
+            <cover-view class="select_main_list" wx:for="{{search}}" wx:key="id" bindtap='checkAddress' data-index="{{index}}">{{item.title}}</cover-view>
+          </cover-view>
+        </cover-view>
+      </view>
+      <view>
+        <slider class="huakaui" step="50" bindchanging="sliderchange" min="100" max="2000" value="{{radius}}" block-size="16" block-color="#02ad00" bindchange='bindEndChange'/>
       </view>
       <view class="flexl address">
-        <cover-image class="image_location" src='../../../image/index.png'></cover-image>
-        <view>{{name}}</view>
+        <cover-image class="image_location" src='../../../image/message_index.png'></cover-image>
+        <view class="pellipsis">{{address}}</view>
       </view>
       <view class="btn" bindtap='goAroundName'>下一步</view>
   </view>

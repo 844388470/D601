@@ -8,11 +8,11 @@
   <view class="positionMode" bindtap='setTwoMode'>
     <view class="positionMode_title">需要管理员确认</view>
     <view class="positionMode_content">新增绑定请求需要经过您的确认</view>
-    <image class="positionMode_image" src="../../../image/active.png" wx:if="{{active=='2'}}"></image>
+    <image class="positionMode_image" src="../../../image/active.png" wx:if="{{active===0}}"></image>
   </view>
   <view class="positionMode" bindtap='setThreeMode'>
     <view class="positionMode_title">禁止任何人绑定</view>
     <view class="positionMode_content">新增的绑定请求都将自动被拒绝</view>
-    <image class="positionMode_image" src="../../../image/active.png" wx:if="{{active=='3'}}"></image>
+    <image class="positionMode_image" src="../../../image/active.png" wx:if="{{active=='2'}}"></image>
   </view>
 </view>

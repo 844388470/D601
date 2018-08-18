@@ -1,40 +1,133 @@
 // pages/equipment/addAround/addAround.js
-let app=getApp()
+const app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    longitude:'121.4106',
-    latitude:'31.191658',
-    longitudes: '121.4106',
-    latitudes: '31.191658',
-    radius:100,
-    name:'上海市闵行区莘庄镇西子国际中心',
-    markers:'',
-    circles: [{ longitude: '121.4106', latitude: '31.191658', radius: 100, fillColor: '#99cc9955' }],
+    isAdmin: false,
+    imgsrc:'../../../image/message_index.png',
+    longitude:'',
+    latitude:'',
+    longitudes: '',
+    latitudes: '',
+    radius: 0,
+    radiusxian:0,
+    address:'',
+    markers:[],
+    circles: [],
     width:'40',
     height:'40',
-    ding:false
+    left:0,
+    top:0,
+    ding:false,
+    search:[],
+    searchValue:'',
+    searchState:false,
+    selectState:false,
+    time:null,
+  },
+
+  isAdmin() {
+    if (app.nowCodeList[app.equIndex].admin_id == app.globalData.userInfo.id) {
+      this.setData({
+        isAdmin: true
+      })
+    }
+  },
+
+  searchStateChange(){
+    this.setData({
+      top: this.data.searchState ? this.data.top + 40 : this.data.top - 40,
+      searchState: !this.data.searchState
+    })
+  },
+
+  checkAddress(e){
+    const obj = this.data.search[e.target.dataset.index]
+    this.setData({
+      searchValue: obj.title,
+      longitude: obj.location.lng,
+      latitude: obj.location.lat,
+      longitudes: obj.location.lng,
+      latitudes: obj.location.lat,
+      address: obj.address,
+      circles: [{ longitude: obj.location.lng, latitude: obj.location.lat, radius: this.data.radius, fillColor: '#99cc9955' }],
+      markers: [{ longitude: obj.location.lng, latitude: obj.location.lat, iconPath: this.data.imgsrc, width: this.data.width, height: this.data.height }]
+    })
+  },
+
+  inputFocus(){
+    this.setData({
+      selectState: true,
+    })
+  },
+
+  inputBlur() {
+    this.setData({
+      selectState: false,
+    })
+  },
+
+  inputChange(e){
+    this.setData({
+      searchValue:e.detail.value
+    })
+    clearTimeout(this.data.time);
+    this.data.time = setTimeout(()=>{
+      if (e.detail.value) {
+        this.getSearchList()
+      }
+    }, 500);
+  },
+
+  getSearchList(){
+    app.getAddressList(this.data.searchValue).then(res=>{
+      if (res.data.length){
+        this.setData({
+          search: res.data
+        })
+      }
+    })
+  },
+
+  bindEndChange(e){
+    this.setData({
+      radius: e.detail.value,
+      radiusxian: e.detail.value,
+      circles: [{ longitude: this.data.longitudes, latitude: this.data.latitudes, radius: e.detail.value, fillColor: '#99cc9955' }]
+    })
   },
 
   sliderchange(e){
     this.setData({
-      radius: e.detail.value,
+      radiusxian: e.detail.value,
       circles: [{ longitude: this.data.longitudes, latitude: this.data.latitudes, radius: e.detail.value, fillColor: '#99cc9955' }]
     })
   },
 
   goAroundName(){
+    if (!this.data.isAdmin) {
+      app.show('无权限')
+      this.setData({
+        list: this.data.list
+      })
+      return
+    }
+    app.aroundAddObj={
+      ...app.aroundAddObj,
+      address: this.data.address,
+      longitude: this.data.longitudes,
+      latitude: this.data.latitudes,
+      radius: this.data.radius,
+    }
     wx.navigateTo({
-      url: '../aroundName/aroundName?lat=' + this.data.latitudes + '&lng=' + this.data.longitudes + '&radius=' + this.data.radius + '&name=' + app.aroundAddObj.name,
+      url: '../aroundName/aroundName',
     })
   },
 
   controltap(e){
-    let radius = this.data.radius
-    let that=this
     if(e.type=='begin'){
       this.setData({
         markers: [],
@@ -43,16 +136,18 @@ Page({
       })
       return
     }
+    const radius = this.data.radius
+    const that = this
     wx.createMapContext('map').getCenterLocation({
-      success(res){
+      success:(res)=>{
         app.mapApi([{ longitude: res.longitude, latitude: res.latitude}]).then((data)=>{
           that.setData({
             longitudes: res.longitude,
             latitudes: res.latitude,
             circles: [{ longitude: res.longitude, latitude: res.latitude, radius: radius, fillColor: '#99cc9955' }],
-            markers: [{ longitude: res.longitude, latitude: res.latitude, iconPath: '../../../image/ding.png', width: that.data.width, height: that.data.height }],
+            markers: [{ longitude: res.longitude, latitude: res.latitude, iconPath: this.data.imgsrc, width: that.data.width, height: that.data.height }],
             ding: false,
-            name: data[0]
+            address: data[0]
           })
         })
       }
@@ -77,25 +172,30 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onLoad: function () {
+    this.isAdmin()
+    const { longitude, latitude } = app.aroundAddObj
+    const obj = app.aroundAddObj
+    const bili = 750/wx.getSystemInfoSync().windowWidth
+    const width = 27
+    const height = 36
+    const left = (750 - width*bili)/2
+    const top = (wx.getSystemInfoSync().windowHeight - 170) / 2 * bili - height * bili
+    console.log('小米top+1 right+8')
     this.setData({
-      width: wx.getSystemInfoSync().windowWidth*0.08,
-      height: (wx.getSystemInfoSync().windowHeight - (351 * wx.getSystemInfoSync().windowWidth/750)) * 0.08
+      width: width,
+      height: height,
+      left:left,
+      top: top,
+      longitude: longitude,
+      latitude: latitude,
+      longitudes: longitude,
+      latitudes: latitude,
+      radius:Number(obj.radius),
+      radiusxian: Number(obj.radius),
+      address: obj.address,
+      markers: [{ longitude: longitude, latitude: latitude, iconPath: this.data.imgsrc, width, height}],
+      circles: [{ longitude: longitude, latitude: latitude, radius: Number(obj.radius), fillColor: '#99cc9955' }]
     })
-    // return 
-    if (app.aroundAddObj.state==='add'){
-      this.setData({
-        markers: [{ longitude: '121.4106', latitude: '31.191658', iconPath: '../../../image/ding.png', width: this.data.width, height:this.data.height }]
-      })
-    } else if (app.aroundAddObj.state === 'edit'){
-      this.setData({
-        longitude: app.aroundAddObj.longitude,
-        latitude: app.aroundAddObj.latitude,
-        radius: app.aroundAddObj.radius,
-        name: app.aroundAddObj.name,
-        markers: [{ longitude: app.aroundAddObj.longitude, latitude: app.aroundAddObj.latitude, iconPath: '../../../image/ding.png', width: this.data.width, height: this.data.height}],
-        circles: [{ longitude: app.aroundAddObj.longitude, latitude: app.aroundAddObj.latitude, radius: app.aroundAddObj.radius, fillColor: '#99cc9955' }]
-      })
-    }
   },
 
   /**

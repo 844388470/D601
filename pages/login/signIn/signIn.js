@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    loginMode:'phone',
+    loginMode:'weixin',
     inputPhone: '',
     inputCode: '',
     canLogin: false,
@@ -43,7 +43,7 @@ Page({
           wx.setStorageSync('openid', data.openid);
           wx.setStorageSync('token', data.token);
           app.refapi()
-          this.setUserInfo(user)
+          this.getUserInfo(user)
         }).catch((err)=>{
           app.hideLoading()
           app.show('登陆失败')
@@ -88,6 +88,23 @@ Page({
     }).then(res => {
       app.globalData.userInfo = data;
       this.getList()
+    }).catch(err => {
+      app.hideLoading()
+      app.show('登陆失败')
+    })
+  },
+
+  getUserInfo(data){                      //获取用户信息
+    app.request({
+      url: app.api.getUserDetails,
+      method: 'get'
+    }).then(res => {
+      if (res.nickname){
+        this.getList()
+        app.globalData.userInfo = res;
+      }else{
+        this.setUserInfo(data)
+      }
     }).catch(err => {
       app.hideLoading()
       app.show('登陆失败')

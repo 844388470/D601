@@ -2,17 +2,17 @@
   <view class="head">
     <image class="head_background" src="../../image/headbackground.png"></image>
     <!-- <view class="head_content"  bindtap='goUserInfo'> -->
-    <view class="head_content">
+    <view class="head_content" bindtap='goUserInfo'>
       <view class="head_content_img">
         <view class="head_content_imgage">
-          <!-- <image class="head_portrait"  src="../../image/login-bg.jpg"></image>       -->  
-          <open-data type="userAvatarUrl" class="head_portrait"></open-data>  
+           <image class="head_portrait"  src="{{userInfo.headimgurl}}"></image>         
+          <!-- <open-data type="userAvatarUrl" class="head_portrait"></open-data>   -->
         </view>
       </view>
     </view>
     <image class="head_setting" src="../../image/setting.png"  bindtap='goSetting'></image>
     <view class="head_name">
-      <open-data class="head_name" type="userNickName"></open-data>
+      <text class="head_name">{{userInfo.nickname}}</text>
     </view>
   </view>
   <!-- <view class="count"  bindtap='goMotion'>
@@ -38,8 +38,8 @@
     <view class='count_list' bindtap='goSetEqu'  wx:for="{{equArray}}" wx:key="id" data-index='{{index}}'>
       <view class="count_list_left" data-index='{{index}}'>{{item.name}}</view>
       <view class="count_list_right" data-index='{{index}}'>
-        <!-- <image class='count_list_right_electricMax' src='../../image/electricMax.png'></image>
-        <text class='count_list_right_text'>100%</text> -->
+         <!-- <image class='count_list_right_electricMax' src='../../image/electricMax.png'></image>
+        <text class='count_list_right_text'>100%</text>  -->
         <image class='count_list_right_image' src='../../image/hui_right.png' data-index='{{index}}'></image>
       </view>
       <view class="count_list_tu" data-index='{{index}}'></view>
