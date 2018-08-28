@@ -1,12 +1,12 @@
-let env = "dev";
+import env from '../config.js'
 const config = {
-  dev: "https://api.rinlink.com",
-  zs:'http://restapi.amap.com/v3/geocode/regeo'
+  dev: "https://tapi.rinlink.com",
+  zs:'https://api.rinlink.com'
 };
 const api = config[env];
 
 export default function(){
-  // 获取坐标
+  // 获取坐标zszs
   return {
     api,
     getEquList: `${api}/api/users/${wx.getStorageSync('id')}/devices`,       //获取设备列表
@@ -18,7 +18,7 @@ export default function(){
     adminDeleteUser: `${api}/api/users/`,                                    //管理员解除用户与设备绑定 (需+ 用户id+/devices+设备id)
     getIndex: `${api}/api/devices/`,            //获取设备最新的数据 实际加上+ 设备id/latest  + 获取围栏+设备id/fe 获取设备的绑定请求+设备id/requests
     getBindRecord: `${api}/api/users/${wx.getStorageSync('id')}/requests`,   //获取用户绑定记录列表           
-    deleteBind: `${api}/api/requests/`,                                      //删除用户绑定记录的某一条（+记录id）  修改绑定设备的状态（+请求id）
+    deleteBind: `${api}/api/requests/`,                                      //删除用户绑定记录的某一条（+记录id）  修改绑定设备的状态（+请求记录的id）
 
     getUserInfo: `${api}/api/users/`,   //获取更新用户数据
     getCoor: `${api}/api/users/${wx.getStorageSync('id')}/devices`,//获取用户设备列表(展示用)

@@ -86,8 +86,7 @@ Page({
         headimgurl: data.avatarUrl,
       }
     }).then(res => {
-      app.globalData.userInfo = data;
-      this.getList()
+      this.getUserInfo(data)
     }).catch(err => {
       app.hideLoading()
       app.show('登陆失败')
