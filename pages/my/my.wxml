@@ -23,7 +23,7 @@
     <view class="count_right">
       <image class="count_right_image" src='../../image/right.png'></image>
     </view>
-  </view> -->
+  </view>  -->
 
   <view class="count equcount">
     <view class='equ'>

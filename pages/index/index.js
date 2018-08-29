@@ -36,8 +36,8 @@ Page({
     sosState:false,
   },
   onLoad(){
-    this.isDeltel()
-    this.setSelectName()
+    // this.isDeltel()
+    // this.setSelectName()
     this.startSocket()
   },
   getIndex(){                                                   //获取位置
@@ -258,7 +258,40 @@ Page({
     let socket = io(`${app.api.api}`)
 
     socket.on('connect', function () {
-      console.log('连上了');
+      console.log('已连接');
+    });
+
+    socket.on('connecting', function () {
+      console.log('连接中');
+    });
+
+    socket.on('connected', function () {
+      console.log('connected');
+    });
+
+
+    socket.on('disconnect', function () {
+      console.log("已断开");
+    });
+
+    socket.on('connect_failed', function () {
+      console.log('连接失败');
+    });
+
+    socket.on('error', function () {
+      console.log('发生错误');
+    });
+
+    socket.on('reconnecting', function () {
+      console.log('正在重连');
+    });
+
+    socket.on('reconnect', function () {
+      console.log('重连成功');
+    });
+
+    socket.on('reconnect_failed', function () {
+      console.log('重连失败');
     });
 
     socket.on('test', (data) => {

@@ -114,3 +114,25 @@
 .message_list_content .message_list_content_select_no{
   width: 30rpx;height: 30rpx;
 }
+
+.selector.project{
+  box-sizing: border-box;
+  margin-top: 27rpx;
+  margin-bottom: 25rpx;
+  position: relative;
+  margin-left:230rpx;
+  margin-right: 230rpx;
+  height:60rpx;
+  background-color:#02ad00;
+  border-radius:30rpx;
+  color:#fff;
+}
+
+.selector.project .iconfont{
+  width:28rpx;
+  height:16rpx;
+}
+.selector.project .pellipsis{
+  width: 160rpx;
+  text-align: center;
+}

@@ -1,185 +1,193 @@
-<view class="content" wx:if="{{model=='d601'}}">
-  <view class="content" > 
-      <view class="list">
-        <view class="list_title">2018-06-04 周一</view>
-        <view class="list_list"  bindtap='goMap'>
-          <view class="list_list_head">
-            08:11-09:12
+
+<!-- <view class="content" wx:if="{{model=='d601'}}"> -->
+<view class="content">
+  <view class="content"> 
+    <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name">
+      <cover-view class="project flexc picker selector">
+        <cover-view class="fs28 pellipsis">{{indexs}}</cover-view>
+        <cover-image class="iconfont" src='../../image/bottom.png'></cover-image>
+      </cover-view>
+    </picker>
+    <view class="list">
+      <view class="list_title">2018-06-04 周一</view>
+      <view class="list_list"  bindtap='goMap'>
+        <view class="list_list_head">
+          08:11-09:12
+        </view>
+        <view class="list_list_address">
+          <view class="list_list_address_line"></view>
+          <view class="list_list_address_name">
+            <view class="list_list_address_name_circle green"></view>
+            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
           </view>
-          <view class="list_list_address">
-            <view class="list_list_address_line"></view>
-            <view class="list_list_address_name">
-              <view class="list_list_address_name_circle green"></view>
-              <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-            </view>
-            <view class="list_list_address_name">
-              <view class="list_list_address_name_circle"></view>
-              <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-            </view>
-            <image class="list_list_address_right" src="../../../image/right.png"></image>
+          <view class="list_list_address_name">
+            <view class="list_list_address_name_circle"></view>
+            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
           </view>
-          <view class="list_list_juli">
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
-            </view>
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
-            </view>
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
-            </view>
+          <image class="list_list_address_right" src="../../../image/right.png"></image>
+        </view>
+        <view class="list_list_juli">
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
+          </view>
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
+          </view>
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
           </view>
         </view>
       </view>
-      <view class="list">
-        <view class="list_title">2018-06-04 周一</view>
-        <view class="list_list"  bindtap='goMap'>
-          <view class="list_list_head">
-            08:11-09:12
-          </view>
-          <view class="list_list_address">
-            <view class="list_list_address_line"></view>
-            <view class="list_list_address_name">
-              <view class="list_list_address_name_circle green"></view>
-              <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-            </view>
-            <view class="list_list_address_name">
-              <view class="list_list_address_name_circle"></view>
-              <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-            </view>
-            <image class="list_list_address_right" src="../../../image/right.png"></image>
-          </view>
-          <view class="list_list_juli">
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
-            </view>
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
-            </view>
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
-            </view>
-          </view>
+    </view>
+    <view class="list">
+      <view class="list_title">2018-06-04 周一</view>
+      <view class="list_list"  bindtap='goMap'>
+        <view class="list_list_head">
+          08:11-09:12
         </view>
-        <view class="list_list"  bindtap='goMap'>
-          <view class="list_list_head">
-            08:11-09:12
+        <view class="list_list_address">
+          <view class="list_list_address_line"></view>
+          <view class="list_list_address_name">
+            <view class="list_list_address_name_circle green"></view>
+            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
           </view>
-          <view class="list_list_address">
-            <view class="list_list_address_line"></view>
-            <view class="list_list_address_name">
-              <view class="list_list_address_name_circle green"></view>
-              <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-            </view>
-            <view class="list_list_address_name">
-              <view class="list_list_address_name_circle"></view>
-              <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-            </view>
-            <image class="list_list_address_right" src="../../../image/right.png"></image>
+          <view class="list_list_address_name">
+            <view class="list_list_address_name_circle"></view>
+            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
           </view>
-          <view class="list_list_juli">
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
-            </view>
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
-            </view>
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
-            </view>
+          <image class="list_list_address_right" src="../../../image/right.png"></image>
+        </view>
+        <view class="list_list_juli">
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
+          </view>
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
+          </view>
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
           </view>
         </view>
       </view>
-      <view class="list">
-        <view class="list_title">2018-06-04 周一</view>
-        <view class="list_list"  bindtap='goMap'>
-          <view class="list_list_head">
-            08:11-09:12
+      <view class="list_list"  bindtap='goMap'>
+        <view class="list_list_head">
+          08:11-09:12
+        </view>
+        <view class="list_list_address">
+          <view class="list_list_address_line"></view>
+          <view class="list_list_address_name">
+            <view class="list_list_address_name_circle green"></view>
+            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
           </view>
-          <view class="list_list_address">
-            <view class="list_list_address_line"></view>
-            <view class="list_list_address_name">
-              <view class="list_list_address_name_circle green"></view>
-              <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-            </view>
-            <view class="list_list_address_name">
-              <view class="list_list_address_name_circle"></view>
-              <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-            </view>
-            <image class="list_list_address_right" src="../../../image/right.png"></image>
+          <view class="list_list_address_name">
+            <view class="list_list_address_name_circle"></view>
+            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
           </view>
-          <view class="list_list_juli">
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
-            </view>
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
-            </view>
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
-            </view>
+          <image class="list_list_address_right" src="../../../image/right.png"></image>
+        </view>
+        <view class="list_list_juli">
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
+          </view>
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
+          </view>
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
           </view>
         </view>
       </view>
-      <view class="list">
-        <view class="list_title">2018-06-04 周一</view>
-        <view class="list_list"  bindtap='goMap'>
-          <view class="list_list_head">
-            08:11-09:12
-          </view>
-          <view class="list_list_address">
-            <view class="list_list_address_line"></view>
-            <view class="list_list_address_name">
-              <view class="list_list_address_name_circle green"></view>
-              <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-            </view>
-            <view class="list_list_address_name">
-              <view class="list_list_address_name_circle"></view>
-              <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-            </view>
-            <image class="list_list_address_right" src="../../../image/right.png"></image>
-          </view>
-          <view class="list_list_juli">
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
-            </view>
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
-            </view>
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
-            </view>
-          </view>
+    </view>
+    <view class="list">
+      <view class="list_title">2018-06-04 周一</view>
+      <view class="list_list"  bindtap='goMap'>
+        <view class="list_list_head">
+          08:11-09:12
         </view>
-        <view class="list_list"  bindtap='goMap'>
-          <view class="list_list_head">
-            08:11-09:12
+        <view class="list_list_address">
+          <view class="list_list_address_line"></view>
+          <view class="list_list_address_name">
+            <view class="list_list_address_name_circle green"></view>
+            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
           </view>
-          <view class="list_list_address">
-            <view class="list_list_address_line"></view>
-            <view class="list_list_address_name">
-              <view class="list_list_address_name_circle green"></view>
-              <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-            </view>
-            <view class="list_list_address_name">
-              <view class="list_list_address_name_circle"></view>
-              <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-            </view>
-            <image class="list_list_address_right" src="../../../image/right.png"></image>
+          <view class="list_list_address_name">
+            <view class="list_list_address_name_circle"></view>
+            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
           </view>
-          <view class="list_list_juli">
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
-            </view>
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
-            </view>
-            <view class="flex-flex flexl">
-              <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
-            </view>
+          <image class="list_list_address_right" src="../../../image/right.png"></image>
+        </view>
+        <view class="list_list_juli">
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
+          </view>
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
+          </view>
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
           </view>
         </view>
       </view>
+    </view>
+    <view class="list">
+      <view class="list_title">2018-06-04 周一</view>
+      <view class="list_list"  bindtap='goMap'>
+        <view class="list_list_head">
+          08:11-09:12
+        </view>
+        <view class="list_list_address">
+          <view class="list_list_address_line"></view>
+          <view class="list_list_address_name">
+            <view class="list_list_address_name_circle green"></view>
+            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
+          </view>
+          <view class="list_list_address_name">
+            <view class="list_list_address_name_circle"></view>
+            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
+          </view>
+          <image class="list_list_address_right" src="../../../image/right.png"></image>
+        </view>
+        <view class="list_list_juli">
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
+          </view>
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
+          </view>
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
+          </view>
+        </view>
+      </view>
+      <view class="list_list"  bindtap='goMap'>
+        <view class="list_list_head">
+          08:11-09:12
+        </view>
+        <view class="list_list_address">
+          <view class="list_list_address_line"></view>
+          <view class="list_list_address_name">
+            <view class="list_list_address_name_circle green"></view>
+            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
+          </view>
+          <view class="list_list_address_name">
+            <view class="list_list_address_name_circle"></view>
+            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
+          </view>
+          <image class="list_list_address_right" src="../../../image/right.png"></image>
+        </view>
+        <view class="list_list_juli">
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
+          </view>
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
+          </view>
+          <view class="flex-flex flexl">
+            <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
 

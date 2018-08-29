@@ -1,4 +1,10 @@
 <view class="content">
+  <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name">
+    <cover-view class="project flexc picker selector">
+      <cover-view class="fs28 pellipsis">{{indexs}}</cover-view>
+      <cover-image class="iconfont" src='../../image/bottom.png'></cover-image>
+    </cover-view>
+  </picker>
   <!-- <view class="message">
     <view class="message_time">2018-06-04 周一</view>
     <view class="message_main">
@@ -91,7 +97,7 @@
       </view>
     </view>
   </view>  -->
-  <view class="message" wx:for="{{list}}" wx:key="id" wx:if="{{userId!==item.user_id}}">
+   <view class="message" wx:for="{{list}}" wx:key="id" wx:if="{{userId!==item.user_id}}">
     <view class="message_time">{{item.create_date}}</view>
     <view class="message_main">
       <view class="message_list">
@@ -110,5 +116,5 @@
         <!-- <image wx:if="{{true}}" class="message_list_image " src='../../image/right.png'></image> -->
       </view>
     </view>
-  </view> 
+  </view>  
 </view>
