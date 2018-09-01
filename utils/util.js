@@ -20,7 +20,8 @@ const timeFn = (min, max) => {
   if(!min || !max){
     return ''
   }
-  let value = new Date(max).getTime() - new Date(min.replace(/-/g, "/")).getTime();
+  // let value = new Date(max).getTime() - new Date(min.replace(/-/g, "/")).getTime();
+  let value = new Date(max).getTime() - new Date(min).getTime();
   if (value >= 31104000000){
     return Math.floor(value / 31104000000) + '年前'
   } else if (value >= 2592000000){
@@ -37,7 +38,7 @@ const timeFn = (min, max) => {
 }
 
 const timeWeek = (time) => {
-  let week = new Date(time).getDay();
+  let week = new Date(time.replace(/-/g, "/")).getDay();
   switch (week) {
     case 0:
       return "周日";
@@ -65,5 +66,6 @@ const filterIdName = (arr, id, idname = 'id',name='name') => {
 module.exports = {
   formatTime,
   filterIdName,
+  timeWeek,
   timeFn: timeFn
 }

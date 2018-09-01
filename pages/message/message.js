@@ -1,4 +1,4 @@
-
+import io from '../../socketIo/socket.io-mp.js'
 const app = getApp();
 Page({
   data: {
@@ -6,7 +6,8 @@ Page({
     indexs: '',
     list:[],
     indexs: '',
-    userId: ''
+    userId: '',
+    setTime:null
   },
 
   /**
@@ -14,6 +15,10 @@ Page({
    */
   onShow() {
     this.isReturnIndex()
+    this.startTime()
+  },
+  onHide(){
+    this.endTime()
   },
   onLoad() {
     
@@ -22,6 +27,7 @@ Page({
     })
     // this.getList()
     // this.setSelectName()
+    
   },
 
   goMap(e){
@@ -36,10 +42,32 @@ Page({
   jujue(e){
     app.showLoading('操作中')
     app.request({
-      url: `${app.api.deleteBind}${e.target.dataset.id}`,
+      url: `${app.api.deleteBind}`,
+      method: `get`,
+      data: {
+        user_id: e.target.dataset.userid,
+        did: e.target.dataset.did,
+        status: 3,
+      }
+    }).then(res => {
+      if (res.length) {
+        this.editReq(res[0].id, 5)
+      } else {
+        wx.hideLoading()
+        app.show('用户已取消申请')
+      }
+      console.log(res)
+    }).catch(err => {
+      wx.hideLoading()
+    })
+  },
+
+  editReq(e,state){
+    app.request({
+      url: `${app.api.deleteBind}${e}`,
       method:`PUT`,
       data:{
-        status:5
+        status: state
       }
     }).then(res=>{
       wx.hideLoading()
@@ -52,14 +80,21 @@ Page({
   tongyi(e){
     app.showLoading('操作中')
     app.request({
-      url: `${app.api.deleteBind}${e.target.dataset.id}`,
-      method: `PUT`,
+      url: `${app.api.deleteBind}`,
+      method: `get`,
       data: {
-        status: 9
+        user_id: e.target.dataset.userid,
+        did: e.target.dataset.did,
+        status: 3,
       }
     }).then(res => {
-      wx.hideLoading()
-      this.getList()
+      if(res.length){
+        this.editReq(res[0].id,9)
+      }else{
+        wx.hideLoading()
+        app.show('用户已取消申请')
+      }
+      console.log(res)
     }).catch(err => {
       wx.hideLoading()
     })
@@ -94,10 +129,10 @@ Page({
       }
       app.nowCodeId = app.nowCodeList[0].id
       this.setSelectName()
-      // this.getList()
+      this.getList()
     } else {
       this.setSelectName()
-      // this.getList()
+      this.getList()
     }
   },
 
@@ -107,13 +142,68 @@ Page({
       url: `${app.api.getMessageList}${app.nowCodeId}/messages`,
       method:'GET'
     }).then(res=>{
+      app.messageState = false
       wx.hideLoading()
-      
+      const list=[]
+      for (let i in res){
+        const filterL = list.filter(obj => obj.time.substr(0, 10) == res[i].create_date.substr(0, 10))
+        const dstate = app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'id', 'admin_id') == app.globalData.userInfo.id
+        const ustate = res[i].user_id == app.globalData.userInfo.id
+        if (filterL.length){
+          if (res[i].type == 51  || res[i].type == 52 || res[i].type == 53){
+            if (dstate){
+              filterL[0].list.push({
+                ...res[i],
+                create_date: res[i].create_date.substr(11)
+              })
+            } else if (ustate && (res[i].type == 51 || res[i].type == 52)){
+              filterL[0].list.push({
+                ...res[i],
+                create_date: res[i].create_date.substr(11)
+              })
+            }
+          }else{
+            filterL[0].list.push({
+              ...res[i],
+              create_date: res[i].create_date.substr(11)
+            })
+          }
+        }else{
+          if (res[i].type == 51 || res[i].type == 52 || res[i].type == 53) {
+            if (dstate) {
+              list.push({
+                time: res[i].create_date.substr(0, 10) + ' ' + app.util.timeWeek(res[i].create_date),
+                list: [{
+                  ...res[i],
+                  create_date: res[i].create_date.substr(11)
+                }]
+              })
+            } else if (ustate && (res[i].type == 51 || res[i].type == 52)) {
+              list.push({
+                time: res[i].create_date.substr(0, 10) + ' ' + app.util.timeWeek(res[i].create_date),
+                list: [{
+                  ...res[i],
+                  create_date: res[i].create_date.substr(11)
+                }]
+              })
+            }
+          } else {
+            list.push({
+              time: res[i].create_date.substr(0, 10) + ' ' + app.util.timeWeek(res[i].create_date),
+              list: [{
+                ...res[i],
+                create_date: res[i].create_date.substr(11)
+              }]
+            })
+          }
+        }
+      }
       this.setData({
-        list:res,
+        list: list,
       })
     }).catch(err => {
-
+      wx.hideLoading()
+      app.show('获取失败')
     })
   },
 
@@ -129,4 +219,16 @@ Page({
     this.setArray()
   },
 
+  startTime() {                        //监听改变
+    this.data.setTime = setInterval(() => {
+      if (app.messageState) {
+        this.isDeltel()
+      }
+    }, 3000)
+  },
+
+  endTime(){
+    clearInterval(this.data.setTime)
+    this.data.setTime = null
+  }
 })

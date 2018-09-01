@@ -135,9 +135,24 @@
 }
 .selector.project .pellipsis{
   width: 160rpx;
+  line-height: 60rpx;
+  text-align: center;
+}
+.zero{
+  display: inline-block;
+  width: 100%;
+  color: #a9a9a9;
+  font-size: 22rpx;
   text-align: center;
 }
 
+.gengduo{
+  display:inline-block;
+  width:100%;
+  color:#a9a9a9;
+  font-size:26rpx;
+  text-align:center;
+}
 
 
 

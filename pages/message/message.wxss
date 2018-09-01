@@ -25,7 +25,7 @@
   box-sizing: border-box;
   position: relative;
   border-bottom: 1rpx solid #eaeaea;
-  height: 139rpx;
+  /* height: 139rpx; */
   padding: 20rpx 0;
 }
 
@@ -55,7 +55,7 @@
   height: 30rpx;
   position: absolute;
   right: 0;
-  top: 55rpx;
+  top: 40%;
 }
 
 .message_list .message_list_circle{
@@ -74,15 +74,16 @@
 .message_list .message_list_line{
   display: inline-block;
   width: 1rpx;
-  height: 139rpx;
+  /* height: 139rpx; */
   position: absolute;
   background-color: #02ad00;
   left: -20rpx;
   top: 0;
+  bottom: -1rpx;
 }
 
 .message_list:first-child .message_list_line{
-  height: 109rpx;
+  /* height: 109rpx; */
   top: 33rpx;
 }
 
@@ -92,8 +93,9 @@
 }
 
 .message_list_content .message_list_content_text{
-  width: 450rpx;
-  text-overflow:ellipsis;overflow:hidden;white-space:nowrap;
+  width: 500rpx;
+  text-overflow:ellipsis;overflow:hidden;
+  /* white-space:nowrap; */
 }
 
 .message_list_content .message_list_content_select{
@@ -134,5 +136,13 @@
 }
 .selector.project .pellipsis{
   width: 160rpx;
+  line-height: 60rpx;
+  text-align: center;
+}
+.zero{
+  display: inline-block;
+  width: 100%;
+  color: #a9a9a9;
+  font-size: 22rpx;
   text-align: center;
 }

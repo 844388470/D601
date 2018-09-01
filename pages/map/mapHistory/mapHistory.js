@@ -27,15 +27,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-      app.request({
-        url: `${app.api.getHistory}${options.id}/positions`,
-        method: 'GET',
-        data: {
-          startTime: `${options.date}T${options.start}:00`,
-          endTime: `${options.date}T${options.end}:59`
-        }
-      }).then(res => {
-        let list = res || []
+      // app.request({
+      //   url: `${app.api.getHistory}${options.id}/positions`,
+      //   method: 'GET',
+      //   data: {
+      //     startTime: options.start,
+      //     endTime: options.end
+      //   }
+      // }).then(res => {
+        // let list = res || []
         // let list = [
         //   { longitude: 121.3406087, latitude: 31.1499699 },
         //   { longitude: 121.3330688, latitude: 31.1612538 },
@@ -57,7 +57,8 @@ Page({
         //   { longitude: 121.3036681, latitude: 31.1940063 },
         // ]
         // let list = [{ longitude: 121.363090, latitude: 31.124060 }, { longitude: 121.363268, latitude: 31.124365 }, { longitude: 121.363204, latitude: 31.124549 }, { longitude: 121.363590, latitude: 31.124691 }, { longitude: 121.364615, latitude: 31.122583 }, { longitude: 121.365591, latitude: 31.122840 }, { longitude: 121.366401, latitude: 31.123433 }, { longitude: 121.367002, latitude: 31.124209 }, { longitude: 121.367018, latitude: 31.124213 }, { longitude: 121.364996, latitude: 31.125844 }, { longitude: 121.364878, latitude: 31.125664 }, { longitude: 121.364545, latitude: 31.125343 }, { longitude: 121.363896, latitude: 31.124810 }, { longitude: 121.363596, latitude: 31.124686 }]
-        let start, end;
+        let res = JSON.parse(options.data)
+        let list = [...res]
         list = list.filter(res => res.longitude)
         if (!list.length) {
           wx.hideLoading()
@@ -83,13 +84,14 @@ Page({
             }
           }
         }
+        console.log(list)
         app.mapApi([list[0], list[list.length - 1]]).then(ress => {
           this.setData({
             optionType: 3,
-            time: `${options.date}`,
+            time: `${res[0].eventTime.substr(0,10)}`,
             longitude: list[0].longitude,
             latitude: list[0].latitude,
-            timeFnNumber: `${options.start}-${options.end}`,
+            timeFnNumber: `${res[0].eventTime.substr(11, 8)}-${res[res.length-1].eventTime.substr(11, 8)}`,
             polyline: [{
               points: list,
               color: '#02ad00',
@@ -105,14 +107,14 @@ Page({
         this.getDistanceList(list)
         // this.distances(list[0],list[1])
         wx.hideLoading()
-      }).catch(err => {
-        wx.hideLoading()
-        wx.showToast({
-          title: '获取失败,请重试',
-          icon: 'none',
-          duration: 2000
-        })
-      })
+      // }).catch(err => {
+      //   wx.hideLoading()
+      //   wx.showToast({
+      //     title: '获取失败,请重试',
+      //     icon: 'none',
+      //     duration: 2000
+      //   })
+      // })
   },
 
   getdistance(list){

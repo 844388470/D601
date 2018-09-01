@@ -30,7 +30,7 @@
       </cover-view>
   </picker>
   <cover-view class="refresh trackMode" wx:if="{{countdowns}}" bindtap='isEndTrackMode'>
-      <cover-image class="refresh_image" src='../../image/countdown.png'></cover-image>
+      <cover-image class="refresh_image" src='../../image/tingzhi.png'></cover-image>
   </cover-view>
   <cover-view class="refresh trackMode countdown" wx:if="{{countdowns}}">
     <cover-view class="trackMode_SOS">
@@ -39,7 +39,7 @@
   </cover-view>
   <cover-view class="refresh trackMode" wx:if="{{sosState}}">
     <cover-view class="trackMode_SOS">
-      SOS
+      <cover-image class="refresh_image" src='../../image/baojing.png'></cover-image>
     </cover-view>
   </cover-view>
 </view>

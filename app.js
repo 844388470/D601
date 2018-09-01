@@ -95,6 +95,8 @@ App({
     radius:'',
     index:''
   },
+  messageState: false,
+  historyState:false,
   globalData: {
     userInfo:{}
   }

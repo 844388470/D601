@@ -21,14 +21,14 @@ Page({
       timeFn:''
     },
     timeSelect:[
-      { time: '15min', second: '900' },
-      { time: '30min', second: '1800' },
-      { time: '45min', second: '2700' },
-      { time: '60min', second: '3600' },
-      { time: '75min', second: '4500' },
-      { time: '90min', second: '5400' },
-      { time: '105min', second: '6300' },
-      { time: '120min', second: '7200' }
+      { time: '15min', second: '15' },
+      { time: '30min', second: '30' },
+      { time: '45min', second: '45' },
+      { time: '60min', second: '60' },
+      { time: '75min', second: '75' },
+      { time: '90min', second: '90' },
+      { time: '105min', second: '105' },
+      { time: '120min', second: '120' }
     ],
     starttime:'',                     //开始追踪时间
     duration:'',                      //持续时长
@@ -36,8 +36,6 @@ Page({
     sosState:false,
   },
   onLoad(){
-    // this.isDeltel()
-    // this.setSelectName()
     this.startSocket()
   },
   getIndex(){                                                   //获取位置
@@ -55,7 +53,7 @@ Page({
             longitude: list.longitude,
             text: {
               message: '最后定位',
-              date: list.eventTime,
+              date: app.util.formatTime(list.eventTime),
               address: list.latitude == '0' && list.longitude=='0'?'无法解析地址' : res[0],
               timeFn: app.util.timeFn(list.eventTime, new Date())
             }
@@ -115,7 +113,7 @@ Page({
     })
   },
   addTimeout(){                                                 //启动自动刷新位置
-    this.getIndex()
+    // this.getIndex()
     this.data.settime = setInterval(()=>{
       this.getIndex()
     }, this.data.setInterTime)
@@ -163,29 +161,47 @@ Page({
     //     url: '/pages/index/index'
     //   })
     // }
-    if (app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].local_mode == 3) {
+    if (app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].sos_mode == 1) {
+      this.endTrackMode()
       this.setData({
         sosState:true
       })
-    } else if (app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].startTime) {
+    } else if (app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].track_mode == 1) {
       this.startTrackMode()
+      this.setData({
+        sosState: false
+      })
     }else {
-      this.getIndex()
       this.endTrackMode()
       this.setData({
         sosState: false
       })
     }
+    this.getIndex()
   },
   countdownSelect(e){               //选择追踪时间
-    app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].startTime = new Date()
-    app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].duration = this.data.timeSelect[e.detail.value].second
-    this.startTrackMode()
+    // app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].startTime = new Date()
+    // app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].duration = this.data.timeSelect[e.detail.value].second
+    app.showLoading('启动中')
+    app.request({
+      url: `${app.api.setEqu}${app.nowCodeId}`,
+      method: 'put',
+      data: {
+        track_mode: 1,
+        track_mode_duration: this.data.timeSelect[e.detail.value].second
+      }
+    }).then(res => {
+      wx.hideLoading()
+      this.getList()
+    }).catch(err => {
+      wx.hideLoading()
+      app.show('启动失败')
+    })
   },
   startTrackMode(){                 //开始追踪模式
     this.setData({
-      starttime: app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].startTime,
-      duration: app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].duration
+      starttime: app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].track_mode_start_date,
+      duration: app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].track_mode_duration
     })
     this.startCountdown()
     this.addTimeout()
@@ -196,14 +212,28 @@ Page({
       content: '确认停止追踪模式吗？',
       success: (res) => {
         if (res.confirm) {
-          this.endTrackMode()
+          app.showLoading('停止中')
+          app.request({
+            url: `${app.api.setEqu}${app.nowCodeId}`,
+            method: 'put',
+            data: {
+              track_mode: 0,
+              track_mode_duration: 0
+            }
+          }).then(res => {
+            wx.hideLoading()
+            this.getList()
+          }).catch(err => {
+            wx.hideLoading()
+            app.show('停止失败')
+          })
         }
       }
     })
   },
   endTrackMode() {                  //结束追踪模式
     this.setData({
-      starttime: '',
+      starttime: app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].track_mode_start_date,
       duration: '',
       countdowns: '',
     })
@@ -218,13 +248,14 @@ Page({
   },
   countdownEvent(){                     //倒计时事件
     let name=''
-    const time = parseInt((new Date().getTime() - new Date(this.data.starttime).getTime())/1000)
-    if (!this.data.starttime){
-      app.show('无启动时间')
-      return 
-    }
-    if (time == this.data.duration || time < this.data.duration){
-      const timeFn = Number(this.data.duration-time)
+    const time = parseInt((new Date().getTime() - new Date(this.data.starttime.replace(/-/g, "/")).getTime())/1000)
+    const miao = Number(this.data.duration)*60
+    // if (!this.data.starttime){
+    //   app.show('无启动时间')
+    //   return 
+    // }
+    if (time < miao){
+      const timeFn = Number(miao-time)
       if (timeFn / 60 > 1) {
         name = `${parseInt(timeFn / 60)}min`
       } else {
@@ -257,8 +288,9 @@ Page({
   startSocket(){                        //开始监听Socket
     let socket = io(`${app.api.api}`)
 
-    socket.on('connect', function () {
+    socket.on('connect', ()=> {
       console.log('已连接');
+      this.getList()
     });
 
     socket.on('connecting', function () {
@@ -269,6 +301,9 @@ Page({
       console.log('connected');
     });
 
+    socket.on('asd', function () {
+      console.log('asd');
+    });
 
     socket.on('disconnect', function () {
       console.log("已断开");
@@ -296,7 +331,8 @@ Page({
 
     socket.on('test', (data) => {
       const  n  = {data}
-      console.log(typeof data)
+      app.messageState=true
+      console.log(data)
       this.getList()
     });
 
