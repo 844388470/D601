@@ -9,12 +9,12 @@
   <view class="message" wx:for="{{list}}" wx:key="time" >
     <view class="message_time">{{item.time}}</view>
     <view class="message_main">
-      <view class="message_list"  wx:for="{{item.list}}" wx:key="id"  wx:for-item="items">
+      <view class="message_list"  wx:for="{{item.list}}" wx:key="id"  wx:for-item="items" bindtap='goMap' data-type='{{items.type}}' data-did='{{items.did}}'>
         <text class="message_list_circle" wx:if="{{item.list.length!==1}}"></text>
         <text class="message_list_line" wx:if="{{item.list.length!==1}}"></text>
-        <view class="message_list_time ">{{items.create_date}}</view>
+        <view class="message_list_time " data-type='{{items.type}}' data-did='{{items.did}}'>{{items.create_date}}</view>
         <view class="message_list_content" >
-          <text class="message_list_content_text">{{items.message}}</text>
+          <text class="message_list_content_text"  data-type='{{items.type}}' data-did='{{items.did}}'>{{items.message}}</text>
           <view class="message_list_content_select">
             <text wx:if="{{items.status==1&&items.type==53}}">已接受</text>
             <text wx:if="{{items.status==2&&items.type==53}}">已拒绝</text>
@@ -23,7 +23,7 @@
             <image src='../../image/yes.png' class="message_list_content_select_yes" wx:if="{{items.status===0&&items.type==53}}" bindtap='tongyi' data-userid='{{items.user_id}}' data-did='{{items.did}}' bindtap='tongyi'></image>
           </view>
         </view>
-        <image wx:if="{{items.type!==53}}" class="message_list_image " src='../../image/right.png'></image>
+        <image wx:if="{{items.type!==53}}" class="message_list_image " src='../../image/right.png'  data-type='{{items.type}}' data-did='{{items.did}}'></image>
       </view>
     </view>
   </view>

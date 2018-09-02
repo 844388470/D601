@@ -37,6 +37,12 @@ Page({
   },
   onLoad(){
     this.startSocket()
+    this.getListTime()
+  },
+  getListTime(){
+    setInterval(() => {
+      this.getList()
+    }, 60000)
   },
   getIndex(){                                                   //获取位置
     this.deleteTimeoutFn()
@@ -329,11 +335,22 @@ Page({
       console.log('重连失败');
     });
 
-    socket.on('test', (data) => {
-      const  n  = {data}
-      app.messageState=true
-      console.log(data)
-      this.getList()
+    socket.on('messages', (data) => {
+      const  n  = data
+      if (JSON.stringify(data) == "{}"){
+        
+      }else{
+        if (app.nowCodeList.filter(obj => obj.id == data.did)){
+          if (data.type == 2 || data.type == 3 || data.type == 4 || data.type == 5 ) {
+            app.show(data.message)
+          }else{
+            // app.show(data.message)
+          }
+        }
+      }
+      // app.messageState=true
+      // console.log(n)
+      // this.getList()
     });
 
     socket.on('D606-Warning', (data) => {

@@ -31,9 +31,14 @@ Page({
   },
 
   goMap(e){
-    wx.navigateTo({
-      url: '../map/mapAround/mapAround?type=1&&n=' + e.target.dataset.type
-    })
+    if (e.target.dataset.type && e.target.dataset.type==1){
+      // wx.navigateTo({
+      //   url: '../map/mapAround/mapAround?did=' + e.target.dataset.did
+      // })
+    }
+    // wx.navigateTo({
+    //   url: '../map/mapAround/mapAround?type=1&&n=' + e.target.dataset.type
+    // })
     // wx.navigateTo({
     //   url: '../map/map'
     // })
