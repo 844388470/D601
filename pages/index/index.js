@@ -34,6 +34,7 @@ Page({
     duration:'',                      //持续时长
     countdowns:'',                    //追踪模式倒计时显示
     sosState:false,
+    mode:true,
   },
   onLoad(){
     this.startSocket()
@@ -89,9 +90,11 @@ Page({
     }).then((arr) => {
       if (arr.length) {
         app.nowCodeList = arr
+        this.setArray()
         this.isDeltel()
       } else {
         app.nowCodeList = arr
+        this.setArray()
         wx.reLaunch({
           url: '../../equipment/addEqu/addEqu'
         })
@@ -167,20 +170,23 @@ Page({
     //     url: '/pages/index/index'
     //   })
     // }
-    if (app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].sos_mode == 1) {
-      this.endTrackMode()
-      this.setData({
-        sosState:true
-      })
-    } else if (app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].track_mode == 1) {
+    // if (app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].sos_mode == 1) {
+    //   this.endTrackMode()
+    //   this.setData({
+    //     sosState:true
+    //   })
+    // } else 
+    if (app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].track_mode == 1) {
       this.startTrackMode()
       this.setData({
-        sosState: false
+        sosState: false,
+        mode: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'id', 'model').substr(0, 4)
       })
     }else {
       this.endTrackMode()
       this.setData({
-        sosState: false
+        sosState: false,
+        mode: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'id', 'model').substr(0, 4)
       })
     }
     this.getIndex()
@@ -239,7 +245,7 @@ Page({
   },
   endTrackMode() {                  //结束追踪模式
     this.setData({
-      starttime: app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].track_mode_start_date,
+      starttime: '',
       duration: '',
       countdowns: '',
     })
@@ -280,6 +286,19 @@ Page({
     this.setData({
       countdowns:''
     })
+  },
+  setmode(){
+    // const state = app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'id', 'model').substr(0, 4)
+    // let clas=''
+    // if (state !== 'D603' && state !== 'd603'){
+    //   clas = true
+    // }else{
+    //   clas = false
+    // }
+    // this.setData({
+    //   mode: clas
+    // })
+    // console.log(this.data.mode)
   },
   isReturnIndex(){                      //返回位置页判断
     if (app.nowCodeList.filter(obj => obj.id == app.nowCodeId).length === 0) {

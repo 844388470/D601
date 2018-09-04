@@ -126,3 +126,7 @@ map {
   width: 100rpx;
   background-color: rgba(0,0,0,0)
 }
+.mode{
+  width: 0;
+  height: 0;
+}

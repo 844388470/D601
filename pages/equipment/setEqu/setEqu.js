@@ -14,9 +14,10 @@ Page({
     positionName: '',
     positionId:'0',
     isAdmin:false,
+    ismode:'',
     modeArray:[
       { name: '标准模式', id: '0' }, { name: '性能模式', id: '1' }
-    ]
+    ],
   },
 
   isAdmin(){
@@ -36,6 +37,7 @@ Page({
       name: app.nowCodeList[app.equIndex].name,
       orgName: app.nowCodeList[app.equIndex].name,
       models: app.nowCodeList[app.equIndex].model || '',
+      ismode: app.nowCodeList[app.equIndex].model.substr(0,4),
       sn: app.nowCodeList[app.equIndex].imsi || '',
       imei: app.nowCodeList[app.equIndex].imei,
       positionName: app.util.filterIdName(this.data.modeArray, app.nowCodeList[app.equIndex].locate_mode)

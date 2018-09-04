@@ -65,7 +65,7 @@
     </view>
   </view>
 
-  <view class="userInfo list" bindtap='goAround'>
+  <view class="userInfo list" bindtap='goAround' wx:if="{{ismode!=='d603'&&ismode!=='D603'}}">
     <view class="userInfo_left">
       <text class="userInfo_left_text">电子围栏</text>
     </view>
