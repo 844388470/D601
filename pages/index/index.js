@@ -60,7 +60,7 @@ Page({
             longitude: list.longitude,
             text: {
               message: '最后定位',
-              date: app.util.formatTime(list.eventTime),
+              date: list.eventTime,
               address: list.latitude == '0' && list.longitude=='0'?'无法解析地址' : res[0],
               timeFn: app.util.timeFn(list.eventTime, new Date())
             }

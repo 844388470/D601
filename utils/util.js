@@ -20,8 +20,8 @@ const timeFn = (min, max) => {
   if(!min || !max){
     return ''
   }
-  // let value = new Date(max).getTime() - new Date(min.replace(/-/g, "/")).getTime();
-  let value = new Date(max).getTime() - new Date(min).getTime();
+  let value = new Date(max).getTime() - new Date(min.replace(/-/g, "/")).getTime();
+  // let value = new Date(max).getTime() - new Date(min).getTime();
   if (value >= 31104000000){
     return Math.floor(value / 31104000000) + '年前'
   } else if (value >= 2592000000){

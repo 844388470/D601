@@ -5,7 +5,7 @@
       <image class="iconfont" src='../../image/bottom.png'></image>
     </view>
   </picker>
-  <text wx:if="{{list.length===0}}" class="zero">无轨迹</text> 
+  <text wx:if="{{list.length===0}}" class="zero">无消息</text> 
   <view class="message" wx:for="{{list}}" wx:key="time" >
     <view class="message_time">{{item.time}}</view>
     <view class="message_main">
