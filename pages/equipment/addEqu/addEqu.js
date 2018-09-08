@@ -54,8 +54,8 @@ Page({
       success:function(res){
         if (typeof res.result =='string'){
           that.setData({
-            inputCode: res.result,
-            inputCodes: res.result
+            inputCode: res.result.substr(-15),
+            inputCodes: res.result.substr(-15)
           })
         }
       }

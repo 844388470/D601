@@ -68,7 +68,7 @@ Page({
           this.addTimeoutFn()
         })
       }else{
-        app.show('电信返回为空')
+        app.show('获取失败')
         return Promise.reject()
       }
     }).catch(err => {
@@ -314,12 +314,12 @@ Page({
     let socket = io(`${app.api.api}`)
 
     socket.on('connect', ()=> {
-      console.log('已连接');
+      console.log('已连接',new Date());
       this.getList()
     });
 
     socket.on('connecting', function () {
-      console.log('连接中');
+      console.log('连接中', new Date());
     });
 
     socket.on('connected', function () {
@@ -331,27 +331,27 @@ Page({
     });
 
     socket.on('disconnect', function () {
-      console.log("已断开");
+      console.log("已断开", new Date());
     });
 
     socket.on('connect_failed', function () {
-      console.log('连接失败');
+      console.log('连接失败', new Date());
     });
 
     socket.on('error', function () {
-      console.log('发生错误');
+      console.log('发生错误', new Date());
     });
 
     socket.on('reconnecting', function () {
-      console.log('正在重连');
+      console.log('正在重连', new Date());
     });
 
     socket.on('reconnect', function () {
-      console.log('重连成功');
+      console.log('重连成功', new Date());
     });
 
     socket.on('reconnect_failed', function () {
-      console.log('重连失败');
+      console.log('重连失败', new Date());
     });
 
     socket.on('messages', (data) => {

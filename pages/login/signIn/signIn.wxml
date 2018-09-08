@@ -24,7 +24,7 @@
   <view wx:if="{{loginMode=='weixin'}}">
     <open-data type="userAvatarUrl" class="image"></open-data>
     <button class='btn shouquan' bindgetuserinfo='weixinLogin' open-type="getUserInfo">登录</button> 
-    <label bindtap='changPhone' class='changePhone'>账号登录</label>
+    <!-- <label bindtap='changPhone' class='changePhone'>账号登录</label> -->
   </view>
 
 </view>
