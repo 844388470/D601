@@ -157,20 +157,20 @@
 
 
 
-  /* .flexc{
+   .flexc{
   margin: 30rpx;
  
 }
-.flexc>view:first-child{
+/* .flexc>view:first-child{
   margin: 30rpx;
   font-size: 32rpx;
   line-height: 32rpx;
-}
-.selector{
+} */
+/* .selector{
   margin-left: 30rpx;
   font-size: 32rpx;
   padding: 20rpx 20rpx 20rpx 50rpx;
-}
+} */
 .btn{
   background-color:#02ad00;
   color:#fff;
@@ -184,4 +184,8 @@
 }
 .ll{
   color:transparent;
-}   */
+}   
+.selectTime{
+  font-size:28rpx;
+  line-height: 60rpx;
+}

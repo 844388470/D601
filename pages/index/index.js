@@ -34,7 +34,7 @@ Page({
     duration:'',                      //持续时长
     countdowns:'',                    //追踪模式倒计时显示
     sosState:false,
-    mode:true,
+    mode:'',
   },
   onLoad(){
     this.startSocket()

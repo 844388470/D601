@@ -7,7 +7,8 @@ Page({
     list:[],
     indexs: '',
     userId: '',
-    setTime:null
+    setTime:null,
+    setTimeoat:null
   },
 
   /**
@@ -16,9 +17,11 @@ Page({
   onShow() {
     this.isReturnIndex()
     this.startTime()
+    this.addTimeout()
   },
   onHide(){
     this.endTime()
+    this.deleteTimeout()
   },
   onLoad() {
     
@@ -42,6 +45,18 @@ Page({
     // wx.navigateTo({
     //   url: '../map/map'
     // })
+  },
+
+  addTimeout() {                                                 //启动自动刷新位置
+    // this.getIndex()
+    this.data.setTimeoat = setInterval(() => {
+      this.isDeltel()
+    }, 30000)
+  },
+
+  deleteTimeout() {                                             //停止自动刷新位置
+    clearInterval(this.data.setTimeoat)
+    this.data.setTimeoat = null
   },
 
   jujue(e){

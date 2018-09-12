@@ -84,7 +84,6 @@ Page({
             }
           }
         }
-        console.log(list)
         app.mapApi([list[0], list[list.length - 1]]).then(ress => {
           this.setData({
             optionType: 3,
@@ -104,7 +103,7 @@ Page({
           })
         })
         this.getdistance(list)
-        this.getDistanceList(list)
+        // this.getDistanceList(list)
         // this.distances(list[0],list[1])
         wx.hideLoading()
       // }).catch(err => {
@@ -119,7 +118,7 @@ Page({
 
   getdistance(list){
     const res = this.getDistanceList(list)
-    const bushu = app.globalData.userInfo.height ? (res / (app.globalData.userInfo.height * 0.45)):0
+    const bushu = res / (1.7 * 0.45)
     this.setData({
       distance: (res/1000).toFixed(2),
       kalu: (bushu * 0.5 / 1000).toFixed(2),
