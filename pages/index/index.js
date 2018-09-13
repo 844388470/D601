@@ -359,7 +359,7 @@ Page({
       if (JSON.stringify(data) == "{}"){
         
       }else{
-        if (app.nowCodeList.filter(obj => obj.id == data.did)){
+        if (app.nowCodeList.filter(obj => obj.id == data.did).length){
           if (data.type == 2 || data.type == 3 || data.type == 4 || data.type == 5 ) {
             app.show(data.message)
           }else{
