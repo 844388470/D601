@@ -20,13 +20,16 @@ Page({
     optionType: 0,
     distance: '',
     bushu: '',
-    kalu: ''
+    kalu: '',
+    index: 0,
+    isWifi: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    app.showLoading('获取轨迹')
     app.request({
       url: `${app.api.getHistory}${options.id}/positions`,
       method: 'GET',
@@ -49,40 +52,14 @@ Page({
         return
       }
       for (let i = 0; i < list.length; i++) {
-        if (i == 0) {
-          list[i] = {
-            latitude: list[0].latitude, longitude: list[0].longitude, iconPath: '../../image/map_index.png', width: 40, height: 50, anchor: { x: 0.5, y: 0.7 }
-          }
-        } else if (i == list.length - 1) {
-          list[i] = {
-            latitude: list[i].latitude, longitude: list[i].longitude, iconPath: '../../image/map_index_h.png', width: 40, height: 50, anchor: { x: 0.5, y: 0.7 }
-          }
-        } else {
-          list[i] = {
-            latitude: list[i].latitude, longitude: list[i].longitude, iconPath: '../../image/yuan.png', width: 12, height: 12, anchor: { x: 0.5, y: 0.5 }
-          }
+        list[i] = {
+          id: i, latitude: list[i].latitude, longitude: list[i].longitude, iconPath: '../../../image/yuan.png', width: 12, height: 12, anchor: { x: 0.5, y: 0.5 }, eventTime: list[i].eventTime, wifiGpsFlag: list[i].wifiGpsFlag
         }
       }
-      app.mapApi([list[0], list[list.length - 1]]).then(ress => {
-        this.setData({
-          optionType: 3,
-          // time: `${res[0].eventTime.substr(0, 10)}`,
-          time: ``,
-          longitude: list[0].longitude,
-          latitude: list[0].latitude,
-          timeFnNumber: `${res[0].eventTime.substr(5)}  ---  ${res[res.length - 1].eventTime.substr(5)}`,
-          polyline: [{
-            points: list,
-            color: '#02ad00',
-            arrowLine: true,
-            width: 3,
-          }],
-          startName: ress[0],
-          endName: ress[1],
-          markerDatas: list,
-        })
+      this.setData({
+        list: list
       })
-      this.getdistance(list)
+      this.setIndex(0)
       wx.hideLoading()
     }).catch(err => {
       wx.hideLoading()
@@ -92,6 +69,66 @@ Page({
         duration: 2000
       })
     })
+  },
+
+  lastStep() {
+    if (this.data.index === 0) {
+      app.show('已最早')
+      return
+    }
+    this.setIndex(this.data.index - 1)
+  },
+
+  nextStep() {
+    if (this.data.index === this.data.list.length - 1) {
+      app.show('已最迟')
+      return
+    }
+    this.setIndex(this.data.index + 1)
+  },
+
+  setIndex(index) {
+    let list = this.data.list.map(res => {
+      return {
+        ...res
+      }
+    })
+    app.showLoading('请稍后')
+    list[index] = {
+      ...list[index],
+      iconPath: '../../../image/message_index.png',
+      width: 22,
+      height: 30,
+      anchor: { x: 0.5, y: 1 }
+    }
+    app.mapApi([list[index]]).then(ress => {
+      app.hideLoading()
+      this.setData({
+        index,
+        time: list[index].eventTime,
+        longitude: list[index].longitude,
+        latitude: list[index].latitude,
+        isWifi: list[index].wifiGpsFlag,
+        polyline: [{
+          points: list.slice(0, index + 1),
+          color: '#02ad00',
+          arrowLine: true,
+          width: 3,
+        },
+        {
+          points: list.slice(index),
+          color: '#25321C',
+          arrowLine: true,
+          width: 3,
+        }],
+        startName: ress[0],
+        markerDatas: list
+      })
+    })
+  },
+
+  markertap(e) {
+    this.setIndex(e.markerId)
   },
 
   getdistance(list) {
