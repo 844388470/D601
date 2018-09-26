@@ -18,7 +18,8 @@ Page({
       message:'未定位,请选择设备',
       date:'',
       address:'',
-      timeFn:''
+      timeFn:'',
+      isWifi:''
     },
     timeSelect:[
       { time: '15min', second: '15' },
@@ -62,7 +63,8 @@ Page({
               message: '最后定位',
               date: list.eventTime,
               address: list.latitude == '0' && list.longitude=='0'?'无法解析地址' : res[0],
-              timeFn: app.util.timeFn(list.eventTime, new Date())
+              timeFn: app.util.timeFn(list.eventTime, new Date()),
+              isWifi: list.wifiGpsFlag == 1 ? 'GPS' : list.wifiGpsFlag == 2 ? 'WIFI' : list.wifiGpsFlag === 0 ? '基站':''
             }
           })
           this.addTimeoutFn()
@@ -78,7 +80,8 @@ Page({
           message: '获取地址失败',
           date: '',
           address: '',
-          timeFn: ''
+          timeFn: '',
+          isWifi:''
         }
       })
     })

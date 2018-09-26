@@ -1,5 +1,5 @@
 <view class='content'>
-  <map id='myMap' longitude='{{longitude}}' latitude='{{latitude}}' markers='{{markerDatas}}' scale='18' ></map>
+  <map id='myMap' longitude='{{longitude}}' latitude='{{latitude}}' markers='{{markerDatas}}' scale='18' show-location="{{false}}"></map>
   <cover-view class="tip">
       <cover-view class="top">
         <cover-view class="image_location">
@@ -7,7 +7,7 @@
         </cover-view>
         <cover-view class="title_time">
           <cover-view class="title">{{text.message}}</cover-view>
-          <cover-view class="time">{{text.date }}</cover-view>
+          <cover-view class="time bottom"><cover-view style="width:400rpx">{{text.date}}</cover-view><cover-view style="width:120rpx;text-align:right">{{text.isWifi}}</cover-view></cover-view>
         </cover-view>
       </cover-view>
       <cover-view class="bottom">
