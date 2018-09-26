@@ -25,9 +25,10 @@ map{
   font-size: 32rpx;
   color: #000;
   padding:0 0 10rpx;
-  display: flex;
+  /* display: flex; */
   align-items: center;
-  justify-content: space-between;
+  position: relative;
+  /* justify-content: space-between; */
 }
 
 .tip_head .tip_head_date{
@@ -35,8 +36,27 @@ map{
 }
 
 .tip_head .tip_head_time{
-  width: 300rpx;
-  text-align: right;
+  margin-left: 80rpx;
+  margin-right: 80rpx;
+  /* width: 500rpx; */
+  text-align: center;
+  line-height: 80rpx;
+}
+
+.tip_head_image_left{
+  position: absolute;
+  width: 80rpx;
+  height: 80rpx;
+  top: 0;
+  left: 0;
+}
+
+.tip_head_image_right{
+  position: absolute;
+  width: 80rpx;
+  height: 80rpx;
+  top: 0;
+  right: 0;
 }
 
 .tip .tip_address{
@@ -51,7 +71,8 @@ map{
 }
 
 .tip .tip_address_text{
-  padding-left: 40rpx;
+  /* padding-left: 40rpx; */
+  line-height: 50rpx;
 }
 
 .tip .tip_address_line{
