@@ -1,6 +1,6 @@
 
 <!-- <view class="content" wx:if="{{model=='d601'}}"> -->
-<view class="content" wx:if="{{model!=='d603'&&model!=='D603'}}">
+<view class="content" wx:if="{{model!=='d603'&&model!=='D603'&&model!=='D606'&&model!=='d606'}}">
   <view class="content"> 
     <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name">
       <view class="project flexc picker selector">
@@ -165,7 +165,7 @@
   </view>
 </view>
 
-<view class="content"  wx:if="{{model=='d603'||model=='D603'}}">
+<view class="content"  wx:if="{{model=='d603'||model=='D603'||model=='D606'||model=='d606'}}">
     <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name">
       <view class="project flexc picker selector">
         <view class="fs28 pellipsis">{{indexs}}</view>
