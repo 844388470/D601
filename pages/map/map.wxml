@@ -5,8 +5,8 @@
         <cover-view class="tip_head_time">
           {{index+1+'/'+list.length}}
         </cover-view>
-        <cover-image class="tip_head_image_left" src="../../../image/left.png" bindtap='lastStep'></cover-image>
-        <cover-image class="tip_head_image_right" src="../../../image/x_right.png" bindtap='nextStep'></cover-image>
+        <cover-image class="tip_head_image_left" src="../../image/left.png" bindtap='lastStep'></cover-image>
+        <cover-image class="tip_head_image_right" src="../../image/x_right.png" bindtap='nextStep'></cover-image>
         <!-- <cover-view class="tip_head_date">
           {{time}}
         </cover-view> -->

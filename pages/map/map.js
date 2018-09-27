@@ -53,7 +53,7 @@ Page({
       }
       for (let i = 0; i < list.length; i++) {
         list[i] = {
-          id: i, latitude: list[i].latitude, longitude: list[i].longitude, iconPath: '../../../image/yuan.png', width: 12, height: 12, anchor: { x: 0.5, y: 0.5 }, eventTime: list[i].eventTime, wifiGpsFlag: list[i].wifiGpsFlag
+          id: i, latitude: list[i].latitude, longitude: list[i].longitude, iconPath: '../../image/yuan.png', width: 12, height: 12, anchor: { x: 0.5, y: 0.5 }, eventTime: list[i].eventTime, wifiGpsFlag: list[i].wifiGpsFlag
         }
       }
       this.setData({
@@ -96,7 +96,7 @@ Page({
     app.showLoading('请稍后')
     list[index] = {
       ...list[index],
-      iconPath: '../../../image/message_index.png',
+      iconPath: '../../image/message_index.png',
       width: 22,
       height: 30,
       anchor: { x: 0.5, y: 1 }

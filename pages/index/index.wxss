@@ -31,7 +31,7 @@ map {
 .title_time{
   float: left;
   margin-left:25rpx;
-  width:550rpx;
+  width:540rpx;
 }
 
 .title_time .title{
