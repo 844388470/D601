@@ -98,22 +98,27 @@ map {
   right: 27rpx;
   background-color: #fff;
   border-radius:50%;
-  width: 80rpx;
-  height: 80rpx;
+  width: 90rpx;
+  height: 90rpx;
   text-align: center;
+  overflow:visible;
 }
 
 .refresh .refresh_image{
-  width: 64rpx;
-  height: 64rpx;
+  width: 45rpx;
+  height: 45rpx;
   margin-top: 8rpx;
   display: inline-block;
+}
+
+.refresh .refresh_text{
+  font-size: 18rpx;
 }
 
 .trackMode{
   bottom:320rpx;
   font-size: 28rpx;
-  line-height: 80rpx;
+  /* line-height: 80rpx; */
 }
 
 .trackMode_SOS{

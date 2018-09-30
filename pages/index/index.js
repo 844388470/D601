@@ -22,14 +22,14 @@ Page({
       isWifi:''
     },
     timeSelect:[
-      { time: '15min', second: '15' },
-      { time: '30min', second: '30' },
-      { time: '45min', second: '45' },
-      { time: '60min', second: '60' },
-      { time: '75min', second: '75' },
-      { time: '90min', second: '90' },
-      { time: '105min', second: '105' },
-      { time: '120min', second: '120' }
+      { time: '持续15min', second: '15' },
+      { time: '持续30min', second: '30' },
+      { time: '持续45min', second: '45' },
+      { time: '持续60min', second: '60' },
+      { time: '持续75min', second: '75' },
+      { time: '持续90min', second: '90' },
+      { time: '持续105min', second: '105' },
+      { time: '持续120min', second: '120' }
     ],
     starttime:'',                     //开始追踪时间
     duration:'',                      //持续时长
