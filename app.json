@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/equipment/addEqu/addEqu",
     "pages/login/isLogin/isLogin",
+    "pages/equipment/addEqu/addEqu",
     "pages/equipment/equInfo/equInfo",
     "pages/equipment/around/around",
     "pages/login/signIn/signIn",
