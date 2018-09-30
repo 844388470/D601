@@ -1,254 +1,80 @@
-import io from '../../socketIo/socket.io-mp.js'
+
 const app = getApp();
 Page({
   data: {
     array: [],
     indexs: '',
-    list:[],
-    indexs: '',
-    userId: '',
-    setTime:null,
-    setTimeoat:null
+    startDate: app.util.formatTime(new Date()).substring(0, 10),
+    startTime: '00:00',
+    endDate: app.util.formatTime(new Date()).substring(0, 10),
+    endTime: '23:59',
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onShow() {
-    this.isReturnIndex()
-    this.startTime()
-    this.addTimeout()
+    this.setSelectName()
   },
-  onHide(){
-    this.endTime()
-    this.deleteTimeout()
+  onHide() {
+    
   },
   onLoad() {
     
-    this.setData({
-      userId: app.globalData.userInfo.id
-    })
-    // this.getList()
-    // this.setSelectName()
-    
   },
-
-  goMap(e){
-    if (e.target.dataset.type && e.target.dataset.type==1){
-      // wx.navigateTo({
-      //   url: '../map/mapAround/mapAround?did=' + e.target.dataset.did
-      // })
-    }
-    // wx.navigateTo({
-    //   url: '../map/mapAround/mapAround?type=1&&n=' + e.target.dataset.type
-    // })
-    // wx.navigateTo({
-    //   url: '../map/map'
-    // })
-  },
-
-  addTimeout() {                                                 //启动自动刷新位置
-    // this.getIndex()
-    this.data.setTimeoat = setInterval(() => {
-      this.isDeltel()
-    }, 30000)
-  },
-
-  deleteTimeout() {                                             //停止自动刷新位置
-    clearInterval(this.data.setTimeoat)
-    this.data.setTimeoat = null
-  },
-
-  jujue(e){
-    app.showLoading('操作中')
-    app.request({
-      url: `${app.api.deleteBind}`,
-      method: `get`,
-      data: {
-        user_id: e.target.dataset.userid,
-        did: e.target.dataset.did,
-        status: 3,
-      }
-    }).then(res => {
-      if (res.length) {
-        this.editReq(res[0].id, 5)
-      } else {
-        wx.hideLoading()
-        app.show('用户已取消申请')
-      }
-      console.log(res)
-    }).catch(err => {
-      wx.hideLoading()
-    })
-  },
-
-  editReq(e,state){
-    app.request({
-      url: `${app.api.deleteBind}${e}`,
-      method:`PUT`,
-      data:{
-        status: state
-      }
-    }).then(res=>{
-      wx.hideLoading()
-      this.getList()
-    }).catch(err=>{
-      wx.hideLoading()
-    })
-  },
-
-  tongyi(e){
-    app.showLoading('操作中')
-    app.request({
-      url: `${app.api.deleteBind}`,
-      method: `get`,
-      data: {
-        user_id: e.target.dataset.userid,
-        did: e.target.dataset.did,
-        status: 3,
-      }
-    }).then(res => {
-      if(res.length){
-        this.editReq(res[0].id,9)
-      }else{
-        wx.hideLoading()
-        app.show('用户已取消申请')
-      }
-      console.log(res)
-    }).catch(err => {
-      wx.hideLoading()
-    })
-  },  
 
   bindPickerChange(e) {                                          //切换设备
     if (!app.nowCodeList.length) {
       return
     }
-    app.nowCodeId = app.nowCodeList[e.detail.value].id
-    this.isDeltel()
+    app.nowCodeId = app.nowCodeList[e.detail.value].deviceNo
+    this.setSelectName()
   },
 
-  setArray() {                                                   //设置设备
+  bindStartDate(e) {
     this.setData({
-      array: app.nowCodeList
+      startDate: app.util.formatTime(e.detail.value).substring(0, 10)
     })
   },
 
-  setSelectName() {                                              //设置当前设备的名称
+  bindStartTime(e) {
     this.setData({
-      indexs: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'id', 'name')
+      startTime: `${e.detail.value}`
     })
   },
 
-  isDeltel() {                       //判断当前设备是否存在
-    if (app.nowCodeList.filter(obj => obj.id == app.nowCodeId).length === 0) {
-      if (!app.nowCodeList.length) {
-        wx.reLaunch({
-          url: '../equipment/addEqu/addEqu'
-        })
-      }
-      app.nowCodeId = app.nowCodeList[0].id
-      this.setSelectName()
-      this.getList()
-    } else {
-      this.setSelectName()
-      this.getList()
-    }
+  bindEndDate(e) {
+    this.setData({
+      endDate: app.util.formatTime(e.detail.value).substring(0, 10)
+    })
   },
 
-  getList(){
-    app.showLoading('获取中')
-    app.request({
-      url: `${app.api.getMessageList}${app.nowCodeId}/messages`,
-      method:'GET'
-    }).then(res=>{
-      app.messageState = false
-      wx.hideLoading()
-      const list=[]
-      for (let i in res){
-        const filterL = list.filter(obj => obj.time.substr(0, 10) == res[i].create_date.substr(0, 10))
-        const dstate = app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'id', 'admin_id') == app.globalData.userInfo.id
-        const ustate = res[i].user_id == app.globalData.userInfo.id
-        if (filterL.length){
-          if (res[i].type == 51  || res[i].type == 52 || res[i].type == 53){
-            if (dstate){
-              filterL[0].list.push({
-                ...res[i],
-                create_date: res[i].create_date.substr(11)
-              })
-            } else if (ustate && (res[i].type == 51 || res[i].type == 52)){
-              filterL[0].list.push({
-                ...res[i],
-                create_date: res[i].create_date.substr(11)
-              })
-            }
-          }else{
-            filterL[0].list.push({
-              ...res[i],
-              create_date: res[i].create_date.substr(11)
-            })
-          }
-        }else{
-          if (res[i].type == 51 || res[i].type == 52 || res[i].type == 53) {
-            if (dstate) {
-              list.push({
-                time: res[i].create_date.substr(0, 10) + ' ' + app.util.timeWeek(res[i].create_date),
-                list: [{
-                  ...res[i],
-                  create_date: res[i].create_date.substr(11)
-                }]
-              })
-            } else if (ustate && (res[i].type == 51 || res[i].type == 52)) {
-              list.push({
-                time: res[i].create_date.substr(0, 10) + ' ' + app.util.timeWeek(res[i].create_date),
-                list: [{
-                  ...res[i],
-                  create_date: res[i].create_date.substr(11)
-                }]
-              })
-            }
-          } else {
-            list.push({
-              time: res[i].create_date.substr(0, 10) + ' ' + app.util.timeWeek(res[i].create_date),
-              list: [{
-                ...res[i],
-                create_date: res[i].create_date.substr(11)
-              }]
-            })
-          }
-        }
-      }
-      this.setData({
-        list: list,
+  bindEndTime(e) {
+    this.setData({
+      endTime: `${e.detail.value}`
+    })
+  },
+
+  setSelectName() {                                                  //设置当前设备的名称
+    this.setData({
+      array: app.nowCodeList,
+      indexs: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'deviceNo', 'deviceNickname'),
+    })
+  },
+
+  goChaXun() {
+    if (!app.nowCodeId) {
+      wx.showToast({
+        title: '无设备',
+        icon: 'none'
       })
-    }).catch(err => {
-      wx.hideLoading()
-      app.show('获取失败')
+      return
+    }
+    if (new Date(`${this.data.startDate} ${this.data.startTime}:00`).getTime() > new Date(`${this.data.endDate} ${this.data.endTime}:59`).getTime()) {
+      wx.showToast({
+        title: '开始时间不得大于结束时间',
+        icon: 'none'
+      })
+      return
+    }
+    wx.navigateTo({
+      url: `../motion/motion?startDate=${this.data.startDate}&endDate=${this.data.endDate}&startTime=${this.data.startTime}&endTime=${this.data.endTime}&id=${app.nowCodeId}`
     })
   },
-
-  isReturnIndex() {                      //返回位置页判断
-    let filterList = app.nowCodeList.filter(obj => obj.id == app.nowCodeId)
-    if (filterList.length === 0) {
-      this.isDeltel()
-    } else {
-      if (filterList[0].name !== this.data.indexs) {
-        this.isDeltel()
-      }
-    }
-    this.setArray()
-  },
-
-  startTime() {                        //监听改变
-    this.data.setTime = setInterval(() => {
-      if (app.messageState) {
-        this.isDeltel()
-      }
-    }, 3000)
-  },
-
-  endTime(){
-    clearInterval(this.data.setTime)
-    this.data.setTime = null
-  }
 })

@@ -8,7 +8,9 @@ Page({
    */
   data: {
     imagePath: '',
-    value:'',
+    values: '',    
+    value: '',
+    key:'',
     iamgeStates:false,
     download:true,
   },
@@ -18,7 +20,42 @@ Page({
    */
   onLoad: function (options) {
     // this.formSubmit('111')
-    this.formSubmit(app.nowCodeList[app.equIndex].imei)
+    this.getEquSerect(app.nowCodeList[app.equIndex].deviceNo, app.nowCodeList[app.equIndex].setNo)
+  },
+
+  getEquSerect(imei, id) {
+    const data = {
+      appid: app.appid,
+      dt: parseInt(new Date().getTime() / 1000),
+      secret: app.secret,
+      deviceSetNo: id,
+    }
+    app.showLoading('生成二维码中')
+    app.request({
+      url: app.api.getEquSerect,
+      method: 'post',
+      data: {
+        ...data,
+        sign: app.md5(app.util.getsign(data)).toUpperCase()
+      }
+    }).then(res => {
+      if (res.code === 0) {
+        this.setData({
+          value: imei,
+          key: res.secert
+        })
+        this.formSubmit(`${imei},${res.secert}`)
+      } else {
+        return Promise.reject()
+      }
+    }).catch((err) => {
+      app.hideLoading()
+      app.show('获取失败')
+    })
+  },
+
+  repeat(){
+    this.getEquSerect(app.nowCodeList[app.equIndex].deviceNo, app.nowCodeList[app.equIndex].setNo)
   },
 
   setCanvasSize() {
@@ -48,17 +85,18 @@ Page({
       canvasId: 'mycanvas',
       success:res=> {
         var tempFilePath = res.tempFilePath;
-        console.log(tempFilePath);
         this.setData({
           imagePath: tempFilePath,
-          value: url,
-          iamgeStates:true
+          values: url,
+          iamgeStates: false
         });
+        app.hideLoading()
       },
       fail:res =>{
-        setTimeout(()=>{
-          this.canvasToTempImage(url)
-        },500)
+        this.setData({
+          iamgeStates: true
+        });
+        app.hideLoading()
       }
     });
   },

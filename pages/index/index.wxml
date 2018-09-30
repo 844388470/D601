@@ -15,7 +15,7 @@
         <cover-view class="timeFn">{{text.timeFn }}</cover-view>
       </cover-view>
   </cover-view>
-  <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name">
+  <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="deviceNickname">
       <cover-view class="project flexc picker selector">
         <cover-view class="fs28 pellipsis">{{indexs}}</cover-view>
         <cover-image class="iconfont" src='../../image/bottom.png'></cover-image>

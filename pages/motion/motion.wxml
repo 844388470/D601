@@ -1,28 +1,16 @@
-<!--pages/motion/motion.wxml-->
- <view class="content">
-    <view class="flexc top tc">
-      <view class="flex-flex"><view>1277</view><view class="fs28">总公里数</view></view>
-      <view class="flex-flex"><view>30</view><view class="fs28">达标天数</view></view>
-      <view class="shu"></view>
+<view class="content">
+  <text wx:if="{{list.length===0}}" class="zero">该时间段无消息</text> 
+  <view class="message" wx:for="{{list}}" wx:key="time" >
+    <view class="message_time">{{item.time}}</view>
+    <view class="message_main">
+      <view class="message_list"  wx:for="{{item.list}}" wx:key="id"  wx:for-item="items">
+        <text class="message_list_circle" wx:if="{{item.list.length!==1}}"></text>
+        <text class="message_list_line" wx:if="{{item.list.length!==1}}"></text>
+        <view class="message_list_time " data-type='{{items.type}}' data-did='{{items.did}}'>{{items.time}}</view>
+        <view class="message_list_content" >
+          <text class="message_list_content_text"  data-type='{{items.type}}' data-did='{{items.did}}'>{{items.content}}</text>
+        </view>
+      </view>
     </view>
-    <view class="echart">
-      <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
-    </view> 
-    <view class="flexc top tc">
-      <view class="flex-flex"><view class="fs50">{{stepNumber}}</view><view class="fs25">累计步数</view></view>
-      <view class="flex-flex"><view class="fs50">{{mileage}}</view><view class="fs25">累计里程km</view></view>
-      <view class="shu xshu"></view>
-    </view>
-    <view class='anniu tc'>
-        <text class="{{activeIndex==1?'active':''}}" bindtap='tapActive' data-type='1'>日</text>
-        <text class="{{activeIndex==2?'active':''}}" bindtap='tapActive' data-type='2'>周</text>
-        <text class="{{activeIndex==3?'active':''}}" bindtap='tapActive' data-type='3'>月</text>
-    </view> 
-    <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name" wx-if="{{false}}">
-      <cover-view class="project flexc picker">
-        <cover-image src='../../image/filter.png'></cover-image>
-        <cover-view class="fs28 pellipsis">{{indexs}}</cover-view>
-      </cover-view>
-    </picker>
-</view> 
-
+  </view>
+</view>

@@ -1,18 +1,6 @@
 /* pages/equipment/setEqu/setEqu.wxss */
 @import '../../userInfo/userInfo';
 
- /* .content>.flexspace{
-  position:relative;
-  height:112rpx;
-  overflow:hidden;
-  margin-bottom:10rpx;
-  font-size:35rpx;
-}
-
-.iconfont{
-  padding-right: 25rpx;
-} */
-
 .btn{
   position: absolute;
   bottom: 100rpx;
@@ -21,9 +9,18 @@
   left: 5%;
   color: #fff;
 } 
+
 .userInfo_right{
   width: 540rpx;
   text-align: right;
+}
+
+.equData .userInfo_right{
+  width: 500rpx;
+}
+
+.equData .userInfo_right input{
+  text-align: left;
 }
 .userInfo.list{
   border-top: 0;
@@ -33,4 +30,23 @@
 .userInfo .userInfo_right_title.change{
   width: 500rpx;display: inline-block;
   vertical-align: middle;
+}
+
+.tab{
+
+}
+
+.tab .tab-button{
+  display: inline-block;
+  width: 50%;
+  background-color: #f1f1f1;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 28rpx;
+  
+}
+
+.tab .tab-button.active{
+  color:#fff;
+  background-color: #02ad00;
 }

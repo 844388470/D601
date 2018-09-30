@@ -1,122 +1,53 @@
 <view class="content">
-  <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name">
-    <view class="project flexc picker selector">
-      <view class="fs28 pellipsis">{{indexs}}</view>
-      <image class="iconfont" src='../../image/bottom.png'></image>
-    </view>
-  </picker>
-  <text wx:if="{{list.length===0}}" class="zero">无消息</text> 
-  <view class="message" wx:for="{{list}}" wx:key="time" >
-    <view class="message_time">{{item.time}}</view>
-    <view class="message_main">
-      <view class="message_list"  wx:for="{{item.list}}" wx:key="id"  wx:for-item="items" bindtap='goMap' data-type='{{items.type}}' data-did='{{items.did}}'>
-        <text class="message_list_circle" wx:if="{{item.list.length!==1}}"></text>
-        <text class="message_list_line" wx:if="{{item.list.length!==1}}"></text>
-        <view class="message_list_time " data-type='{{items.type}}' data-did='{{items.did}}'>{{items.create_date}}</view>
-        <view class="message_list_content" >
-          <text class="message_list_content_text"  data-type='{{items.type}}' data-did='{{items.did}}'>{{items.message}}</text>
-          <view class="message_list_content_select">
-            <text wx:if="{{items.status==1&&items.type==53}}">已接受</text>
-            <text wx:if="{{items.status==2&&items.type==53}}">已拒绝</text>
-            <text wx:if="{{items.status==3&&items.type==53}}">等待管理员操作</text>
-            <image src='../../image/no.png' class="message_list_content_select_no" wx:if="{{items.status===0&&items.type==53}}" bindtap='jujue' data-userid='{{items.user_id}}' data-did='{{items.did}}' bindtap='jujue'></image>
-            <image src='../../image/yes.png' class="message_list_content_select_yes" wx:if="{{items.status===0&&items.type==53}}" bindtap='tongyi' data-userid='{{items.user_id}}' data-did='{{items.did}}' bindtap='tongyi'></image>
+    <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="deviceNickname">
+      <view class="project flexc picker selector">
+        <view class="fs28 pellipsis">{{indexs}}</view>
+        <image class="iconfont" src='../../image/bottom.png'></image>
+      </view>
+    </picker>
+    <picker mode="date" bindchange="bindStartDate" class="width100">
+      <view class="flexc">
+        <view class="selectTime">开始日期:</view>
+        <view class="flex-flex selector tr flexr">
+            <view class="mr  tr width100 selectTime">{{startDate}}</view>
+        </view>
+        <view class=''>
+          <view class='iconfont tako-icon-youjiantou-copy fs30 selectTime'></view>
+        </view>
+      </view>
+    </picker>  
+    <picker mode="time" bindchange="bindStartTime" class="width100">
+      <view class="flexc">
+        <view class="selectTime">开始时间:</view>
+        <view class="flex-flex selector tr flexr">
+            <view class="mr  tr width100 selectTime">{{startTime}}</view>
+        </view>
+        <view class=''>
+          <view class='iconfont tako-icon-youjiantou-copy fs30 selectTime'></view>
+        </view>
+      </view>
+    </picker>  
+    <picker mode="date" bindchange="bindEndDate" class="width100">
+      <view class="flexc">
+          <view class="selectTime flex-flex">结束日期:</view>
+          <view class="flex-flex selector tr flexr">
+              <view class="mr  tr width100 selectTime">{{endDate}}</view>
+              <view class=''>
+                <view class='iconfont tako-icon-youjiantou-copy fs30 selectTime'></view>
+              </view>
           </view>
+      </view>
+    </picker>  
+    <picker mode="time" bindchange="bindEndTime" class="width100">
+      <view class="flexc">
+        <view class="selectTime">结束时间:</view>
+        <view class="flex-flex selector tr flexr">
+            <view class="mr  tr width100 selectTime">{{endTime}}</view>
         </view>
-        <image wx:if="{{items.type!==53}}" class="message_list_image " src='../../image/right.png'  data-type='{{items.type}}' data-did='{{items.did}}'></image>
-      </view>
-    </view>
-  </view>
-  <!-- <view class="message">
-    <view class="message_time">2018-06-03 周日</view>
-    <view class="message_main">
-      <view class="message_list">
-        <text class="message_list_circle"></text>
-        <text class="message_list_line"></text>
-        <view class="message_list_time ">08:11</view>
-        <view class="message_list_content">
-          <text class="message_list_content_text">电量低,请及时充电</text>
-        </view>
-        <image class="message_list_image " src='../../image/right.png'></image>
-      </view>
-      <view class="message_list">
-        <text class="message_list_circle"></text>
-        <text class="message_list_line"></text>
-        <view class="message_list_time ">08:11</view>
-        <view class="message_list_content "></view>
-        <view class="message_list_content">
-          <text class="message_list_content_text">已达成今天运动目标</text>
-        </view>
-        <image class="message_list_image " src='../../image/right.png'></image>
-      </view>
-      <view class="message_list" bindtap='goMap' data-type='2'>
-        <text class="message_list_circle" data-type='2'></text>
-        <text class="message_list_line" data-type='2'></text>
-        <view class="message_list_time" data-type='2'>08:11</view>
-        <view class="message_list_content" data-type='2'>
-          <text class="message_list_content_text" data-type='2'>进入电子围栏</text>
-        </view>
-        <image class="message_list_image " src='../../image/right.png' data-type='2'></image>
-      </view>
-      <view class="message_list" bindtap='goMap' data-type='1'>
-        <text class="message_list_circle" data-type='1'></text>
-        <text class="message_list_line" data-type='1'></text>
-        <view class="message_list_time" data-type='1'>08:11</view>
-        <view class="message_list_content" data-type='1'>离开电子围栏</view>
-        <image class="message_list_image" src='../../image/right.png' data-type='1'></image>
-      </view>
-      <view class="message_list">
-        <text class="message_list_circle"></text>
-        <text class="message_list_line"></text>
-        <view class="message_list_time ">08:11</view>
-        <view class="message_list_content ">固件升级成功</view>
-        <image class="message_list_image " src='../../image/right.png'></image>
-      </view>
-      <view class="message_list">
-        <text class="message_list_circle"></text>
-        <text class="message_list_line"></text>
-        <view class="message_list_time ">08:11</view>
-        <view class="message_list_content" >
-          <text class="message_list_content_text">130000000 请求绑定设备</text>
-          <view class="message_list_content_select">
-            <text>已接受</text>
-          </view>
-        </view>
-        <image wx:if="{{false}}" class="message_list_image " src='../../image/right.png'></image>
-      </view>
-      <view class="message_list">
-        <text class="message_list_circle"></text>
-        <text class="message_list_line"></text>
-        <view class="message_list_time ">08:11</view>
-        <view class="message_list_content">
-          <text class="message_list_content_text">130000000 请求绑定设备</text>
-          <view class="message_list_content_select">
-            <text wx:if="{{false}}">已接受</text>
-            <image src='../../image/no.png' class="message_list_content_select_no"></image>
-            <image src='../../image/yes.png' class="message_list_content_select_yes"></image>
-          </view>
-        </view>
-        <image class="message_list_image " src='../../image/right.png'></image>
-      </view>
-    </view>
-  </view>   -->
-  <!-- <view class="message" wx:for="{{list}}" wx:key="time" wx:if="{{userId!==item.user_id}}">
-    <view class="message_time">{{item.create_date}}</view>
-    <view class="message_main">
-      <view class="message_list">
-         <text class="message_list_circle" wx:if="{{false}}"></text> 
-         <text class="message_list_line" wx:if="{{false}}"></text> 
-        <view class="message_list_time "></view> 
-        <view class="message_list_content" >
-          <text class="message_list_content_text">请求绑定设备</text> 
-          <view class="message_list_content_select">
-            <text wx:if="{{item.status=='9'}}">已接受</text>
-            <text wx:if="{{item.status=='5'}}">已拒绝</text>
-            <image src='../../image/no.png' class="message_list_content_select_no"  wx:if="{{item.status=='3'}}" bindtap='jujue' data-id="{{item.id}}"></image>
-            <image src='../../image/yes.png' class="message_list_content_select_yes"  wx:if="{{item.status=='3'}}" bindtap='tongyi' data-id="{{item.id}}"></image>
-          </view>
+        <view class=''>
+          <view class='iconfont tako-icon-youjiantou-copy fs30 selectTime'></view>
         </view>
       </view>
-    </view>
-  </view>   -->
+    </picker> 
+    <view class="btn" bindtap='goChaXun'>查询</view>
 </view>

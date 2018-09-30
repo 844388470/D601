@@ -8,7 +8,7 @@ const formatTime = time => {
   const minute = date.getMinutes()
   const second = date.getSeconds()
 
-  return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':')
+  return [year, month, day].map(formatNumber).join('-') + [hour, minute, second].map(formatNumber).join(':')
 }
 
 const formatNumber = n => {
@@ -62,10 +62,30 @@ const filterIdName = (arr, id, idname = 'id',name='name') => {
   return n.length !== 0 ? n[0][name]:''
 }
 
+const getsign = (obj) => {
+  let arr=[]
+  let str=''
+  for(let i in obj){
+    if(obj[i]){
+      arr.push(i)
+    }
+  }
+  arr.sort((a,b)=>{
+    for (var i = 0; i < a.length; i++) {
+      if (a.charCodeAt(i) == b.charCodeAt(i)) continue;
+      return a.charCodeAt(i) - b.charCodeAt(i);
+    }
+  })
+  for(let i of arr){
+    str += str ? `&${i}=${obj[i]}` : `${i}=${obj[i]}`
+  }
+  return str +'&appSecret=5Ktul9tEP2'
+}
 
 module.exports = {
   formatTime,
   filterIdName,
   timeWeek,
-  timeFn: timeFn
+  timeFn: timeFn,
+  getsign: getsign
 }

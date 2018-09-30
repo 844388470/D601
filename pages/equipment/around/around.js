@@ -7,19 +7,10 @@ Page({
    */
   data: {
     edit:false,
-    isAdmin:false,
-    list: [
-      
-    ]
+    isAdmin:!false,
+    list: []
   },
-  
-  isAdmin(){
-    if (app.nowCodeList[app.equIndex].admin_id == app.globalData.userInfo.id) {
-      this.setData({
-        isAdmin: true
-      })
-    }
-  },
+
 
   editMode(){
     this.setData({
@@ -28,10 +19,6 @@ Page({
   },
 
   goAddAround(){
-    if(this.data.list.length==4){
-      app.show('电子围栏个数已达上限')
-      return 
-    }
     app.aroundList = this.data.list
     app.aroundAddObj = {
       state: 'add',
@@ -48,30 +35,31 @@ Page({
   },
 
   editAround(e){
-    if (!this.data.edit){
-      return 
-    }
-    app.aroundList = this.data.list
-    app.aroundAddObj = {
-      state: 'edit',
-      address: this.data.list[e.target.dataset.index].address,
-      name: this.data.list[e.target.dataset.index].name,
-      longitude: this.data.list[e.target.dataset.index].longitude,
-      latitude: this.data.list[e.target.dataset.index].latitude,
-      radius: this.data.list[e.target.dataset.index].radius,
-      index: e.target.dataset.index
-    }
+    // if (!this.data.edit){
+    //   return 
+    // }
+    // app.aroundList = this.data.list
+    // app.aroundAddObj = {
+    //   state: 'edit',
+    //   address: this.data.list[e.target.dataset.index].address,
+    //   name: this.data.list[e.target.dataset.index].name,
+    //   longitude: this.data.list[e.target.dataset.index].longitude,
+    //   latitude: this.data.list[e.target.dataset.index].latitude,
+    //   radius: this.data.list[e.target.dataset.index].radius,
+    //   index: e.target.dataset.index
+    // }
+    const obj = this.data.list[e.target.dataset.index]
     wx.navigateTo({
-      url: '../addAround/addAround'
+      url: `../addAround/addAround?id=${obj.fenceId}&name=${obj.fenceName}&address=${obj.fenceRemark}&position=${obj.pointArrays}`
     })
   },
 
   deleteMode(e){
     const [...list] = JSON.parse(JSON.stringify(this.data.list))
-    if (!this.data.isAdmin) {
-      app.show('无权限')
-      return
-    }
+    // if (!this.data.isAdmin) {
+    //   app.show('无权限')
+    //   return
+    // }
     wx.showModal({
       title: '警告',
       content: '删除后无法恢复,确认删除吗？',
@@ -87,13 +75,13 @@ Page({
   setEquChecked(e){
     const [...list] = JSON.parse(JSON.stringify(this.data.list))
     list[e.target.dataset.index].status = e.detail.value?1:0
-    if(!this.data.isAdmin){
-      app.show('无权限')
-      this.setData({
-        list:this.data.list
-      })
-      return
-    }
+    // if(!this.data.isAdmin){
+    //   app.show('无权限')
+    //   this.setData({
+    //     list:this.data.list
+    //   })
+    //   return
+    // }
     this.editList(list, this.data.list)
   },
 
@@ -128,26 +116,40 @@ Page({
   },
 
   isChange(){
-    if (app.aroundChange){
-      console.log('刷新列表')
-      this.getList()
-      app.aroundChange=false
-    }
+    // if (app.aroundChange){
+    //   console.log('刷新列表')
+    //   this.getList()
+    //   app.aroundChange=false
+    // }
   },
 
   getList(){
-    app.showLoading('获取中')
+    const data = {
+      appid: app.appid,
+      dt: parseInt(new Date().getTime() / 1000),
+      secret: app.secret,
+      openid: wx.getStorageSync('openid')
+    }
+    app.showLoading('获取围栏')
     app.request({
-      url: `${app.api.getIndex}${app.nowCodeList[app.equIndex].id}/fences`,
-      method:'GET'
-    }).then(res=>{
-      app.hideLoading()
-      if(res.length){
-        this.setData({
-          list:res
-        })
+      url: app.api.getFence,
+      method: 'post',
+      data: {
+        ...data,
+        sign: app.md5(app.util.getsign(data)).toUpperCase()
       }
-    }).catch(res=>{
+    }).then(res => {
+      app.hideLoading()
+      if (res.code === 0) {
+        if (res.fenceList.length) {
+          this.setData({
+            list: res.fenceList
+          })
+        }
+      } else {
+        return Promise.reject()
+      }
+    }).catch((err) => {
       app.hideLoading()
       app.show('获取失败')
     })
@@ -157,8 +159,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.isAdmin()
-    this.getList()
+    // this.getList()
   },
 
   /**
@@ -172,7 +173,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.isChange()
+    // this.isChange()
+    this.getList()
   },
 
   /**

@@ -1,0 +1,14 @@
+<!--pages/equipment/setEqu/setEqu.wxml-->
+<view class="content">
+  <view class="userInfo list" wx:for="{{list}}"  wx:key="fieldName">
+    <view class="userInfo_left">
+      <text class="userInfo_left_text">{{item.fieldName}}</text>
+    </view>
+    <view class="userInfo_right">
+      <input class="userInfo_right_title change" type='text' value='{{item.content}}'  disabled='true'></input>
+    </view>
+  </view>
+
+  <view class='btn' bindtap='bindEqu' wx:if="{{isSuccess}}">绑定设备</view>  
+  <view class='btn' bindtap='retry' wx:if="{{!isSuccess}}">重试</view>  
+</view>

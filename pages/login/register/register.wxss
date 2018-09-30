@@ -19,7 +19,7 @@
   font-weight: 500;
   line-height: 48rpx;
   display: table-cell; 
-  width: 180rpx;
+  width: 150rpx;
   border-right: 1rpx solid #e4e4e4;
   margin-right: 20rpx;
 }
@@ -48,7 +48,7 @@
 }
 
 .register_right.code .register_right_title{
-  width: 250rpx;
+  width: 330rpx;
 }
 
 .register .register_right_getcode{
@@ -59,6 +59,7 @@
   color: #01c000;
   border-bottom: 1rpx solid #01c000;
 }
+
 .register .register_right_getcode.active{
   color: #999;
   border-bottom: 1rpx solid #999;  
@@ -70,11 +71,13 @@
   margin-left:5rpx;
    margin-right:20rpx; 
 }
+
 .register_left_tu.yanz{
   width: 40rpx;
   height:28rpx;
   margin-right:20rpx;
 }
+
 .register_left_tu.pass{
   width: 36rpx;
   height:40rpx;

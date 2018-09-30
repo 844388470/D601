@@ -4,9 +4,11 @@
     <view class="canvas-box">
       <canvas canvas-id="mycanvas"/>
     </view>
-    <text>绑定码:{{value}}</text>
+    <text  wx:if='{{values}}' >设备ID:{{value}}</text>
+    <text  wx:if='{{values}}' >密钥:{{key}}</text>
   </view>
   <view class='main_bottom'>
-    <button class='btn download' bindtap='download' wx:if='{{iamgeStates}}' disabled='{{!download}}'>保存至本地</button> 
+    <button class='btn download' bindtap='download' wx:if='{{values}}' disabled='{{!download}}'>保存至本地</button> 
+    <button class='btn download' bindtap='download' wx:if='{{iamgeStates}}'>重试</button> 
   </view>
 </view>

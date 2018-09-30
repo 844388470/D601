@@ -2,55 +2,23 @@
 import util from './utils/util.js'
 import api from './config/api.js'
 import request from './utils/request.js'
+import md5 from './md5/md5.js'
 import { filterCooName, getAddressList, getDistance} from './utils/mapApi.js'
 App({
   onLaunch: function (options) {
-    // wx.checkSession({
-    //   success: () => {
-    //     const openid = wx.getStorageSync('openid');
-    //     if (openid) {
-    //       wx.reLaunch({
-    //         url: `../../login/signIn/signIn`
-    //       })
-    //     } else {
-    //       this.getLoginCode();
-    //     }
-    //   },
-    //   fail: () => {
-    //     this.getLoginCode(); //重新登录
-    //   }
-    // })
-  },
-  getLoginCode: function () {
-    // wx.login({
-    //   success: res => {
-    //     request({ 
-    //       url: `${api.getLoginCode}`,
-    //       data: { code: res.code },
-    //       method:'post'  
-    //     }).then(data=>{
-    //       wx.setStorageSync('id', data.id);
-    //       wx.setStorageSync('openid', data.openid);
-    //       wx.setStorageSync('token', data.token);
-    //       wx.reLaunch({
-    //         url: `../../login/signIn/signIn`
-    //       })
-    //     })
-    //   }
-    // })
+    
   },
 
-
-  onShow: function (options) {
-    console.log('show')
+  onShow: function () {
+    
   },
 
   onHide: function () {
-    console.log('hide')
+    
   },
 
   onError: function (msg) {
-    console.log(msg)
+    
   },
 
   show(msg){
@@ -75,10 +43,15 @@ App({
   refapi:function(){
     this.api=api()
   },
-  api:api(),
+  api:api,
+  // appid: 'LYWLIocj1B0CFBLH2hoM',
+  appid: 'LYWLnKP6br61RfKw0zrJ',
+  // secret: 'WgngGdw5Bufzgit0R4iI71hSXmVSpLTo',
+  secret:'3PeJGWDi387UrRdNNWmn0b5Kix68xg7n',
   mapApi: filterCooName,
   getAddressList: getAddressList,
   getDistance: getDistance,
+  md5:md5,
   util:util,
   request: request,
   nowCodeId:'',                   //选中设备id
@@ -95,8 +68,6 @@ App({
     radius:'',
     index:''
   },
-  messageState: false,
-  historyState:false,
   globalData: {
     userInfo:{}
   }

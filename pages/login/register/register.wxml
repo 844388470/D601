@@ -2,7 +2,7 @@
 <view class="content">
   <view class="register">
     <view class="register_left">
-      <image class="register_left_tu phone" src='../../../image/register/phone.png'></image>
+      <!-- <image class="register_left_tu phone" src='../../../image/register/phone.png'></image> -->
       <text class="register_left_text">手机号</text>
     </view>
     <view class="register_right">
@@ -13,25 +13,45 @@
 
   <view class="register">
     <view class="register_left">
-      <image class="register_left_tu yanz" src='../../../image/register/password.png'></image>
+      <!-- <image class="register_left_tu yanz" src='../../../image/register/password.png'></image> -->
       <text class="register_left_text">验证码</text>
     </view>
     <view class="register_right code">
-      <input class='register_right_title' type='number' placeholder='请输入验证码' value='{{inputPhone}}' cursor-spacing='110' bindinput='getInputPhone'></input>
+      <input class='register_right_title' type='text' placeholder='请输入验证码' value='{{inputVerCode}}' cursor-spacing='110' bindinput='getInputVerCode'></input>
       <text class="register_right_getcode {{isInput?'':'active'}}" bindtap='getCode'>{{tips}}</text>
+    </view>
+  </view>
+
+  <view class="register">
+    <view class="register_left">
+      <!-- <image class="register_left_tu pass" src='../../../image/register/lock.png'></image> -->
+       <text class="register_left_text">真实姓名</text> 
+    </view>
+    <view class="register_right">
+      <input class='register_right_title'  type='text' placeholder='请输入真实姓名' value='{{inputName}}' cursor-spacing='110' bindinput='getInputName'></input>
     </view>
   </view>
 
 
   <view class="register">
     <view class="register_left">
-      <image class="register_left_tu pass" src='../../../image/register/lock.png'></image>
-      <text class="register_left_text">密码</text>
+      <!-- <image class="register_left_tu pass" src='../../../image/register/lock.png'></image> -->
+       <text class="register_left_text">身高</text> 
     </view>
     <view class="register_right">
-      <input class='register_right_title'  type='password' placeholder='请输入密码' value='{{inputPhone}}' cursor-spacing='110' bindinput='getInputPhone'></input>
+      <input class='register_right_title'  type='number' placeholder='请输入身高（m）' value='{{inputHeight}}' cursor-spacing='110' bindinput='getInputHeight'></input>
     </view>
   </view>
 
-  <view class='btn'>注册</view>
+  <view class="register">
+    <view class="register_left">
+      <!-- <image class="register_left_tu pass" src='../../../image/register/lock.png'></image> -->
+       <text class="register_left_text">体重</text> 
+    </view>
+    <view class="register_right">
+      <input class='register_right_title'  type='number' placeholder='请输入体重（kg）' value='{{inputWidth}}' cursor-spacing='110' bindinput='getInputWidth'></input>
+    </view>
+  </view>
+
+  <button class='btn' bindgetuserinfo='register' open-type="getUserInfo">注册</button>
 </view>

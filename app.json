@@ -1,6 +1,8 @@
 {
   "pages": [
+    "pages/equipment/addEqu/addEqu",
     "pages/login/isLogin/isLogin",
+    "pages/equipment/equInfo/equInfo",
     "pages/equipment/around/around",
     "pages/login/signIn/signIn",
     "pages/equipment/manage/manage",
@@ -16,7 +18,6 @@
     "pages/userInfo/userInfo",
     "pages/history/history",
     "pages/map/map",
-    "pages/equipment/addEqu/addEqu",
     "pages/login/forgetPassword/forgetPassword",
     "pages/setting/setting",
     "pages/setting/editPassword/editPassword",

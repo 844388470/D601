@@ -1,28 +1,25 @@
 import env from '../config.js'
 const config = {
-  dev: "https://tapi.rinlink.com",
-  zs:'https://api.rinlink.com'
+  zs:'https://api.cmpyun.com'
 };
 const api = config[env];
 
-export default function(){
+export default {
   // 获取坐标zszs
-  return {
     api,
-    getEquList: `${api}/api/users/${wx.getStorageSync('id')}/devices`,       //获取设备列表
-    getUserDetails: `${api}/api/users/${wx.getStorageSync('id')}`,           //获取(修改)用户信息
-    addCoor: `${api}/api/devices/bind`,                                      //添加设备
-    getLoginCode: `${api}/api/users/loginmini`,                              //获取token
-    setEqu: `${api}/api/devices/`,                                           //获取(修改)设备信息 (需+ 设备id)   (按设备查用户+设备id+/users)
-    setUserDevices: `${api}/api/users/${wx.getStorageSync('id')}/devices/`,  //解除用户与设备绑定 (需+ 设备id)
-    adminDeleteUser: `${api}/api/users/`,                                    //管理员解除用户与设备绑定 (需+ 用户id+/devices+设备id)
-    getIndex: `${api}/api/devices/`,            //获取设备最新的数据 实际加上+ 设备id/latest  + 获取围栏+设备id/fe 获取设备的绑定请求+设备id/requests
-    getBindRecord: `${api}/api/users/${wx.getStorageSync('id')}/requests`,   //获取用户绑定记录列表           
-    deleteBind: `${api}/api/requests/`,                                      //删除用户绑定记录的某一条（+记录id）  修改绑定设备的状态（+请求记录的id）
-    getMessageList: `${api}/api/devices/`,                                   //获取消息列表       (+ 设备id+/messages)
-    getHistory: `${api}/api/devices/`,    //获取轨迹  实际加上+ 设备id/positions
-    
-    getUserInfo: `${api}/api/users/`,   //获取更新用户数据
-    getCoor: `${api}/api/users/${wx.getStorageSync('id')}/devices`,//获取用户设备列表(展示用)
-  }
+    getOpenId: `${api}/api/serviceAccept/wxSessionKey`,            //获取openid
+    getUserInfo: `${api}/api/serviceAccept/queryWxUserInfo`,       //获取用户详情
+    setUserInfo: `${api}/api/serviceAccept/updateWxUser`,          //设置用户详情
+    getPhoneCode: `${api}/api/business/sendVerificationCode`,      //获取手机验证码
+    getRegister: `${api}/api/serviceAccept/registerWxUser`,        //注册用户
+    addEqu: `${api}/api/serviceAccept/bindWxDevice`,               //设备绑定用户
+    getEquList: `${api}/api/serviceAccept/findWxDeviceList`,       //获取用户设备列表
+    getEquInfo: `${api}/api/deviceSet/findSingleDeviceInfo`,       //获取设备详情
+    getEquSerect: `${api}/api/deviceSet/findDeviceSetDetail`,      //获取绑定秘钥
+    getHistory: `${api}/api/serviceAccept/findWxDeviceTimeLocation`,      //获取轨迹
+    getIndex: `${api}/api/serviceAccept/findWxDeviceLocation`,      //获取位置
+    getMessage: `${api}/api/serviceAccept/findWxDeviceTimeLocation`,      //获取消息
+    getFence: `${api}/api/serviceAccept/queryWxFence`,      //获取围栏
+    addFence: `${api}/api/serviceAccept/saveWxFence`,      //新建围栏
+    editFence: `${api}/api/serviceAccept/updateWxFence`,      //修改围栏
 }

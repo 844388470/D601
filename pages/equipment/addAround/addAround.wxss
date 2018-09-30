@@ -20,12 +20,15 @@
   margin-left: 20rpx;
 }
 
+
+
 .tip .tip_title_img{
   width: 40rpx;
   height: 40rpx;
   margin-right:10rpx;
   position: absolute;
   right: 20rpx;
+  top: 39rpx;
 }
 
 .image_location{
@@ -54,7 +57,7 @@
   width:100%;
   position: relative;
 }
-.search input{
+.search input,.title input{
   position:relative;
   width: 100%;
   margin-right: 5%;
@@ -66,7 +69,9 @@
   display: inline-block;
   vertical-align: middle;
 }
-
+.title>input{
+  width: 600rpx;
+}
 /* .search button{
   display: inline-block;
   vertical-align: middle;
@@ -89,6 +94,7 @@
   border-radius: 8rpx;
   padding:0 27rpx;
   box-sizing: border-box;
+  z-index: 999;
   overflow-y: scroll
 }
 
@@ -106,4 +112,15 @@
 
 .search .select_main_list:last-child{
   border-bottom: 0;
+}
+
+.xbtn{
+  display: inline-block;
+  width:200rpx;
+  color:#fff;
+  line-height:50rpx;
+  font-size:28rpx;
+  text-align:center;
+  background-color:#02ad00;
+  border-radius:18rpx;
 }

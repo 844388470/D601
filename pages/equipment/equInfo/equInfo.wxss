@@ -1,0 +1,29 @@
+/* pages/equipment/equInfo/equInfo.wxss */
+@import '../../userInfo/userInfo';
+
+.btn{
+  position: relative;
+  margin: 30rpx 0;
+  /* bottom: 100rpx; */
+  width: 90%;
+  background-color: #409EFF;
+  left: 5%;
+  color: #fff;
+} 
+.userInfo_right{
+  width: 540rpx;
+  text-align: right;
+}
+.userInfo.list{
+  border-top: 0;
+  border-bottom: 1rpx solid #e4e4e4;
+}
+
+.userInfo .userInfo_right_title.change{
+  width: 500rpx;display: inline-block;
+  vertical-align: middle;
+}
+
+.userInfo .userInfo_right input {
+  text-align:left;
+}

@@ -6,45 +6,70 @@ Page({
    * 页面的初始数据
    */
   data: {
+    imei:'',
+    setId:'',
     inputCode: '',
-    inputCodes:'',
+    inputKey: '',
+    inputName:'',
     list:[],
     bindList:[],
-    time:null
+    time:null,
+    isRepeat:false,
   },
 
-  addTimeoutFn() {                  //时差 开始定时器
-    this.data.time = setInterval(() => {
-      app.request({
-        url: app.api.getEquList,
-        method: 'GET'
-      }).then((arr) => {
-        if (!arr.length && app.nowCodeList.length) {
-          app.nowCodeList = arr
-          wx.reLaunch({
-            url: './addEqu'
-          })
-        }
-        if (!app.nowCodeList.length && arr.length) {
-          app.nowCodeList = arr
-          app.nowCodeId = arr[0].id
-          wx.reLaunch({
-            url: '../../index/index'
-          })
-        }
-        app.nowCodeList = arr
-      })
-    }, 6000)
+
+  onLoad: function (options) {
+    if (JSON.stringify(options) !== "{}") {
+      this.getEquSerect(options.imei, options.setId)
+    }
   },
 
-  deleteTimeoutFn() {               //时差 取消定时器
-    clearInterval(this.data.time)
-    this.data.time = null
+  getEquSerect(imei,id){
+    const data = {
+      appid: app.appid,
+      dt: parseInt(new Date().getTime() / 1000),
+      secret: app.secret,
+      deviceSetNo: id,
+    }
+    app.showLoading('获取设备绑定密钥')
+    app.request({
+      url: app.api.getEquSerect,
+      method: 'post',
+      data: {
+        ...data,
+        sign: app.md5(app.util.getsign(data)).toUpperCase()
+      }
+    }).then(res => {
+      app.hideLoading()
+      if (res.code === 0) {
+        this.setData({
+          inputCode: imei,
+          inputKey: res.secert
+        })
+      }else {
+        return Promise.reject()
+      }
+    }).catch((err) => {
+      app.hideLoading()
+      app.show('获取失败')
+    })
   },
 
   getInputCode(e){
     this.setData({
-      inputCodes:e.detail.value
+      inputCode:e.detail.value
+    })
+  },
+
+  getInputKey(e) {
+    this.setData({
+      inputKey: e.detail.value
+    })
+  },
+
+  getInputName(e) {
+    this.setData({
+      inputName: e.detail.value
     })
   },
 
@@ -53,102 +78,99 @@ Page({
     wx.scanCode({
       success:function(res){
         if (typeof res.result =='string'){
-          that.setData({
-            inputCode: res.result.substr(-15),
-            inputCodes: res.result.substr(-15)
-          })
+          try {
+            const obj = res.result.split(',')
+            that.setData({
+              inputCode: obj[0],
+              inputKey: obj[1] || ''
+            })
+          } catch (e) {
+            app.show('无法解析')
+          }
         }
       }
     })
   },
 
   addEqu(){
-    this.setData({
-      inputCode: this.data.inputCodes
-    })
     if (!this.data.inputCode){
       app.show('设备码不得为空')
       return 
-    } else if (app.nowCodeList.filter(res => res.imei == this.data.inputCode).length){
-      app.show('当前账号已绑定该设备码')
+    } else if (!this.data.inputKey){
+      app.show('密钥不得为空')
       return
-    } else if (this.data.bindList.filter(res => res.imei == this.data.inputCode).length) {
-      if (this.data.bindList.filter(res => res.imei == this.data.inputCode)[0].status==3){
-        app.show('该设备正在等待管理员确认，请尽快联系管理员')
-        return
-      }
-      if (this.data.bindList.filter(res => res.imei == this.data.inputCode)[0].status == 1) {
-        app.show('等待设备响应中，请至绑定记录查看详情')
-        return
-      }
+    } else if (!this.data.inputName) {
+      app.show('设备昵称不得为空')
+      return
     }
-    app.showLoading('添加中')
+    const data = {
+      appid: app.appid,
+      dt: parseInt(new Date().getTime() / 1000),
+      secret: app.secret,
+      openid: wx.getStorageSync('openid'),
+      deviceNo: this.data.inputCode,
+      // imei: this.data.inputCode,
+      deviceSerect: this.data.inputKey,
+    }
+    app.showLoading('绑定中')
     app.request({
-      url: app.api.addCoor,
+      url: app.api.addEqu,
       method: 'post',
-      data:{
-        imei: this.data.inputCode
+      data: {
+        ...data,
+        deviceNickname: this.data.inputName,
+        sign: app.md5(app.util.getsign(data)).toUpperCase()
       }
     }).then(res => {
-      this.getBindList(true)
-    }).catch(err => {
       app.hideLoading()
-      app.show(err)
-    })
-  },
-
-  getBindList(state) {
-    app.request({
-      url: app.api.getBindRecord,
-    }).then(res => {
-      this.setData({
-        bindList: res
-      })
-      if (state){
+      if (res.code === 0) {
         this.getList()
+      }else if (res.code === 4) {
+        this.setData({
+          isRepeat: true
+        })
+        app.show('该设备已绑定过本用户，请进入更多查看')
+      } else {
+        return Promise.reject()
       }
+    }).catch((err) => {
+      app.hideLoading()
+      app.show('绑定失败')
     })
   },
 
   getList() {                            //获取设备列表
+    const data = {
+      appid: app.appid,
+      dt: parseInt(new Date().getTime() / 1000),
+      secret: app.secret,
+      openid: wx.getStorageSync('openid')
+    }
+    app.showLoading('获取设备列表中...')
     app.request({
       url: app.api.getEquList,
-      method: 'GET'
-    }).then((arr)=>{ 
-      app.hideLoading()
-      const list = arr.filter(res => res.imei == this.data.inputCode)
-      if (list.length) {
-        app.nowCodeList = arr
-        app.nowCodeId = list[0].id
-        wx.reLaunch({
-          url: '../../index/index'
-        })
-      }else{
-        if (this.data.bindList.filter(res => res.imei == this.data.inputCode).length){
-          if (this.data.bindList.filter(res => res.imei == this.data.inputCode)[0].status == 3) {
-            app.show('已提交管理员审批')
-          }
-          if (this.data.bindList.filter(res => res.imei == this.data.inputCode)[0].status == 1) {
-            app.show('等待设备响应')
-          }
-        }
-        if (!arr.length && app.nowCodeList.length) {
-          app.nowCodeList = arr
-          wx.reLaunch({
-            url: './addEqu'
-          })
-        }else if (arr.length && !app.nowCodeList.length) {
-          app.nowCodeList = arr
-          app.nowCodeId = arr[0].id
-          wx.reLaunch({
-            url: '../../index/index'
-          })
-        }
+      method: 'post',
+      data: {
+        ...data,
+        sign: app.md5(app.util.getsign(data)).toUpperCase()
       }
-      app.nowCodeList = arr
-    }).catch((err)=>{
+    }).then(res => {
       app.hideLoading()
-      app.show('添加失败')
+      if (res.code === 0) {
+        app.show('获取成功')
+        // if (res.deviceCount) {
+          app.nowCodeList = res.deviceList
+          app.nowCodeId = res.deviceList[0].deviceNo
+          wx.reLaunch({
+            url: `../../my/my`
+          })
+        // }
+      } else {
+        return Promise.reject()
+      }
+    }).catch((err) => {
+      app.hideLoading()
+      app.show('获取失败')
     })
   },
 
@@ -161,9 +183,6 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    this.getBindList(true)
-  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -176,22 +195,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.addTimeoutFn()
-    this.getBindList()
+ 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    this.deleteTimeoutFn()
+ 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    this.deleteTimeoutFn()
+ 
   },
 
   /**

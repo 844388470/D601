@@ -1,6 +1,6 @@
 
 <!-- <view class="content" wx:if="{{model=='d601'}}"> -->
-<view class="content" wx:if="{{model!=='d603'&&model!=='D603'}}">
+<!-- <view class="content" wx:if="{{model!=='d603'&&model!=='D603'}}">
   <view class="content"> 
     <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name">
       <view class="project flexc picker selector">
@@ -8,37 +8,6 @@
         <image class="iconfont" src='../../image/bottom.png'></image>
       </view>
     </picker>
-    <!-- <view class="list">
-      <view class="list_title">2018-06-04 周一</view>
-      <view class="list_list"  bindtap='goMap'>
-        <view class="list_list_head">
-          08:11-09:12
-        </view>
-        <view class="list_list_address">
-          <view class="list_list_address_line"></view>
-          <view class="list_list_address_name">
-            <view class="list_list_address_name_circle green"></view>
-            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-          </view>
-          <view class="list_list_address_name">
-            <view class="list_list_address_name_circle"></view>
-            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-          </view>
-          <image class="list_list_address_right" src="../../../image/right.png"></image>
-        </view>
-        <view class="list_list_juli">
-          <view class="flex-flex flexl">
-            <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
-          </view>
-          <view class="flex-flex flexl">
-            <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
-          </view>
-          <view class="flex-flex flexl">
-            <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
-          </view>
-        </view>
-      </view>
-    </view> -->
     <view class="list" wx:for="{{list}}" wx:key="time" >
       <view class="list_title">{{item.time}}</view>
       <text wx:if="{{item.list.length===0}}" class="zero">无轨迹</text> 
@@ -72,101 +41,11 @@
       </view>
     </view>
     <span class="gengduo" bindtap='nextMore'>点击加载更多</span>
-    <!-- <view class="list">
-      <view class="list_title">2018-06-04 周一</view>
-      <view class="list_list"  bindtap='goMap'>
-        <view class="list_list_head">
-          08:11-09:12
-        </view>
-        <view class="list_list_address">
-          <view class="list_list_address_line"></view>
-          <view class="list_list_address_name">
-            <view class="list_list_address_name_circle green"></view>
-            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-          </view>
-          <view class="list_list_address_name">
-            <view class="list_list_address_name_circle"></view>
-            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-          </view>
-          <image class="list_list_address_right" src="../../../image/right.png"></image>
-        </view>
-        <view class="list_list_juli">
-          <view class="flex-flex flexl">
-            <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
-          </view>
-          <view class="flex-flex flexl">
-            <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
-          </view>
-          <view class="flex-flex flexl">
-            <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
-          </view>
-        </view>
-      </view>
-    </view>
-    <view class="list">
-      <view class="list_title">2018-06-04 周一</view>
-      <view class="list_list"  bindtap='goMap'>
-        <view class="list_list_head">
-          08:11-09:12
-        </view>
-        <view class="list_list_address">
-          <view class="list_list_address_line"></view>
-          <view class="list_list_address_name">
-            <view class="list_list_address_name_circle green"></view>
-            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-          </view>
-          <view class="list_list_address_name">
-            <view class="list_list_address_name_circle"></view>
-            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-          </view>
-          <image class="list_list_address_right" src="../../../image/right.png"></image>
-        </view>
-        <view class="list_list_juli">
-          <view class="flex-flex flexl">
-            <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
-          </view>
-          <view class="flex-flex flexl">
-            <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
-          </view>
-          <view class="flex-flex flexl">
-            <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
-          </view>
-        </view>
-      </view>
-      <view class="list_list"  bindtap='goMap'>
-        <view class="list_list_head">
-          08:11-09:12
-        </view>
-        <view class="list_list_address">
-          <view class="list_list_address_line"></view>
-          <view class="list_list_address_name">
-            <view class="list_list_address_name_circle green"></view>
-            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-          </view>
-          <view class="list_list_address_name">
-            <view class="list_list_address_name_circle"></view>
-            <view class="list_list_address_name_text">{{'上海市闵行区214县道'}}</view>
-          </view>
-          <image class="list_list_address_right" src="../../../image/right.png"></image>
-        </view>
-        <view class="list_list_juli">
-          <view class="flex-flex flexl">
-            <image class="list_list_juli_image" src="../../image/history/rules.png"></image><view class="fs28">{{'111'}}km</view>
-          </view>
-          <view class="flex-flex flexl">
-            <image class="list_list_juli_image people" src="../../image/history/people.png"></image><view class="fs28">{{'111'}}千步</view>
-          </view>
-          <view class="flex-flex flexl">
-            <image class="list_list_juli_image fire" src="../../image/history/fire.png"></image><view class="fs28">{{'111'}}kcal</view>
-          </view>
-        </view>
-      </view>
-    </view> -->
   </view>
-</view>
+</view> -->
 
-<view class="content"  wx:if="{{model=='d603'||model=='D603'}}">
-    <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name">
+<view class="content">
+    <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="deviceNickname">
       <view class="project flexc picker selector">
         <view class="fs28 pellipsis">{{indexs}}</view>
         <image class="iconfont" src='../../image/bottom.png'></image>
@@ -177,6 +56,17 @@
         <view class="selectTime">开始日期:</view>
         <view class="flex-flex selector tr flexr">
             <view class="mr  tr width100 selectTime">{{startDate}}</view>
+        </view>
+        <view class=''>
+          <view class='iconfont tako-icon-youjiantou-copy fs30 selectTime'></view>
+        </view>
+      </view>
+    </picker>  
+    <picker mode="time" bindchange="bindStartTime" class="width100">
+      <view class="flexc">
+        <view class="selectTime">开始时间:</view>
+        <view class="flex-flex selector tr flexr">
+            <view class="mr  tr width100 selectTime">{{startTime}}</view>
         </view>
         <view class=''>
           <view class='iconfont tako-icon-youjiantou-copy fs30 selectTime'></view>
@@ -194,6 +84,17 @@
           </view>
       </view>
     </picker>  
+    <picker mode="time" bindchange="bindEndTime" class="width100">
+      <view class="flexc">
+        <view class="selectTime">结束时间:</view>
+        <view class="flex-flex selector tr flexr">
+            <view class="mr  tr width100 selectTime">{{endTime}}</view>
+        </view>
+        <view class=''>
+          <view class='iconfont tako-icon-youjiantou-copy fs30 selectTime'></view>
+        </view>
+      </view>
+    </picker> 
     <view class="btn" bindtap='goChaXun'>查询</view>
 </view>
 

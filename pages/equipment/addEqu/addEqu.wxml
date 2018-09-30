@@ -5,12 +5,34 @@
       <text class="register_left_text">设备码</text>
     </view>
     <view class="register_right">
-      <input class='register_right_title' type='number' placeholder='请输入设备码' value='{{inputCodes}}' cursor-spacing='110' bindinput='getInputCode'></input>
+      <input class='register_right_title' type='text' placeholder='请扫描二维码' value='{{inputCode}}' cursor-spacing='110' bindinput='getInputCode'></input>
       <image class='register_saoma' src="../../../image/saoma.png" bindtap='saoma'></image>
     </view>
   </view>
-  <view class="record">
-    <text class='record_text' bindtap='goBindRecord'>绑定记录</text>
+  <view class="register">
+    <view class="register_left">
+      <text class="register_left_text">密钥</text>
+    </view>
+    <view class="register_right">
+      <input class='register_right_title' type='text' placeholder='请输入绑定密钥' value='{{inputKey}}' cursor-spacing='110' bindinput='getInputKey'></input>
+    </view>
   </view>
+  <view class="register">
+    <view class="register_left">
+      <text class="register_left_text">设备昵称</text>
+    </view>
+    <view class="register_right">
+      <input class='register_right_title' type='text' placeholder='请输入昵称' value='{{inputName}}' cursor-spacing='110' bindinput='getInputName'></input>
+    </view>
+  </view>
+  <!-- <view class="record">
+    <text class='record_text' bindtap='goBindRecord'>绑定记录</text>
+  </view> -->
   <view class="btn" bindtap='addEqu'>添加</view>
+  <view class="btn" bindtap='getList' wx:if="{{isRepeat}}">进入更多</view>
+  <view class='record'>
+    <text class='record_title'>Tips:</text>
+    <text class='record_text'>
+     设备绑定密钥请查看设备说明书或向其他已绑定此设备的用户索取。</text>
+  </view>
 </view>

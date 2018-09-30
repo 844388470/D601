@@ -6,73 +6,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-    name:'',
-    orgName:'',
+    active:'1',
+    equData:[],
     models:'',
     sn:'',
     imei:'',
     positionName: '',
     positionId:'0',
-    isAdmin:false,
-    ismode:'',
-    modeArray:[
-      { name: '标准模式', id: '0' }, { name: '性能模式', id: '1' }
-    ],
+    ismode:''
   },
 
-  isAdmin(){
-    if (app.nowCodeList[app.equIndex].admin_id == app.globalData.userInfo.id){
-      this.setData({
-        isAdmin:true
-      })
-    }
-  },
-
-  blurData(){
-
-  },
-
-  setName(){
+  actChong(){
     this.setData({
-      name: app.nowCodeList[app.equIndex].name,
-      orgName: app.nowCodeList[app.equIndex].name,
-      models: app.nowCodeList[app.equIndex].model || '',
-      ismode: app.nowCodeList[app.equIndex].model.substr(0,4),
-      sn: app.nowCodeList[app.equIndex].imsi || '',
-      imei: app.nowCodeList[app.equIndex].imei,
-      positionName: app.util.filterIdName(this.data.modeArray, app.nowCodeList[app.equIndex].locate_mode)
+      active: '1'
     })
   },
 
-  setEquName(e){
+  actEqu() {
     this.setData({
-      name: e.detail.value
+      active: '2'
     })
   },
 
-  blurinput(){
-    if (this.data.orgName == this.data.name){
-      return false
-    }
-    app.showLoading('修改中')
-    app.request({
-      url: `${app.api.setEqu}${app.nowCodeList[app.equIndex].id}`,
-      method:'put',
-      data:{
-        name: this.data.name
-      }
-    }).then(res=>{
-      wx.hideLoading()
-      app.nowCodeList[app.equIndex].name = this.data.name
-      this.setData({
-        orgName: this.data.name
-      })
-    }).catch(err=>{
-      this.setData({
-        name: this.data.orgName
-      })
-      wx.hideLoading()
-      app.show('修改失败')
+  setEquData(){
+    this.setData({
+      equData: app.nowCodeList[app.equIndex].customFieldList,
+      models: app.nowCodeList[app.equIndex].deviceType,
+      sn: app.nowCodeList[app.equIndex].iccid,
+      imei: app.nowCodeList[app.equIndex].deviceNo,
     })
   },
 
@@ -102,33 +63,33 @@ Page({
   },
 
 
-  deleteEvent(){
-    app.showLoading('解除绑定中')
-    app.request({
-      url: `${app.api.setUserDevices}${app.nowCodeList[app.equIndex].id}`,
-      method: 'DELETE'
-    }).then(res => {
-      wx.hideLoading()
-      app.nowCodeList.splice(app.equIndex,1)
-      if (app.nowCodeList.length) {
-        wx.navigateBack({
-          delta: 1
-        })
-      }else{
-        wx.reLaunch({
-          url: '../addEqu/addEqu'
-        })
-      }
-    }).catch(err => {
-      wx.hideLoading()
-      app.show('解除失败')
-    })
-  },
+  // deleteEvent(){
+  //   app.showLoading('解除绑定中')
+  //   app.request({
+  //     url: `${app.api.setUserDevices}${app.nowCodeList[app.equIndex].id}`,
+  //     method: 'DELETE'
+  //   }).then(res => {
+  //     wx.hideLoading()
+  //     app.nowCodeList.splice(app.equIndex,1)
+  //     if (app.nowCodeList.length) {
+  //       wx.navigateBack({
+  //         delta: 1
+  //       })
+  //     }else{
+  //       wx.reLaunch({
+  //         url: '../addEqu/addEqu'
+  //       })
+  //     }
+  //   }).catch(err => {
+  //     wx.hideLoading()
+  //     app.show('解除失败')
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.isAdmin()
+    this.setEquData()
   },
 
   /**
@@ -142,7 +103,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setName()
+    // this.setName()
   },
 
   /**

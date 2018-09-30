@@ -1,6 +1,63 @@
 <!--pages/equipment/setEqu/setEqu.wxml-->
 <view class="content">
-  <view class="userInfo list">
+  <view class='tab'>
+    <view class="{{active=='1'?'active tab-button':'tab-button'}}" bindtap='actChong'>宠物信息</view>
+    <view class="{{active=='2'?'active tab-button':'tab-button'}}" bindtap='actEqu'>设备参数</view>
+  </view>
+  <view wx:if="{{active=='1'}}" class="equData">
+    <view class="userInfo list" wx:for="{{equData}}"  wx:key="fieldName">
+      <view class="userInfo_left">
+        <text class="userInfo_left_text">{{item.fieldName}}</text>
+      </view>
+      <view class="userInfo_right">
+        <input class="userInfo_right_title change" type='text' value='{{item.content}}' disabled='{{true}}'></input>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{active=='2'}}">
+    <view class="userInfo list">
+      <view class="userInfo_left">
+        <text class="userInfo_left_text">设备类型</text>
+      </view>
+      <view class="userInfo_right">
+        <input class="userInfo_right_title" type='text' value='{{models}}'  disabled='true'></input>
+      </view>
+    </view>   
+    <view class="userInfo list">
+      <view class="userInfo_left">
+        <text class="userInfo_left_text">设备iccid</text>
+      </view>
+      <view class="userInfo_right">
+        <input class="userInfo_right_title" type='text' value='{{sn}}'  disabled='true'></input>
+      </view>
+    </view> 
+    <view class="userInfo list">
+      <view class="userInfo_left">
+        <text class="userInfo_left_text">设备IMEI</text>
+      </view>
+      <view class="userInfo_right">
+        <input class="userInfo_right_title" type='text' value='{{imei}}'  disabled='true'></input>
+      </view>
+    </view> 
+    <view class="userInfo list" bindtap='goQrCode'>
+      <view class="userInfo_left">
+        <text class="userInfo_left_text">绑定二维码</text>
+      </view>
+      <view class="userInfo_right">
+        <image class='userInfo_right_direction' src="../../../image/right.png"></image>
+      </view>
+    </view> 
+    <view class="userInfo list" bindtap='goAround'>
+      <view class="userInfo_left">
+        <text class="userInfo_left_text">电子围栏</text>
+      </view>
+      <view class="userInfo_right">
+        <image class='userInfo_right_direction' src="../../../image/right.png"></image>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="userInfo list">
     <view class="userInfo_left">
       <text class="userInfo_left_text">设备名称</text>
     </view>
@@ -72,6 +129,6 @@
     <view class="userInfo_right">
       <image class='userInfo_right_direction' src="../../../image/right.png"></image>
     </view>
-  </view> 
-  <view class='btn' bindtap='deleteEvent'>解除绑定</view>  
+  </view>  -->
+  <!-- <view class='btn' bindtap='deleteEvent'>解除绑定</view>   -->
 </view>
