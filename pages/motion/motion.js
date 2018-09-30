@@ -1,6 +1,6 @@
 // pages/motion/motion.js
 import * as echarts from '../../ec-canvas/echarts.min.js';
-
+import initCalendar, { getSelectedDay} from '../../components/calendar/index';
 let chart=null
 const app = getApp();
 
@@ -11,10 +11,25 @@ Page({
     ec: {
       lazyLoad:true
     },
+    caleState:true,
     echartData:[],
     activeIndex:0,
     stepNumber:0,
-    mileage:0
+    mileage:0,
+    conf: {
+      multi: false, // 是否开启多选,
+      afterTapDay: () => { console.log(getSelectedDay())},
+    }
+  },
+
+  da(){
+    return false
+  },
+
+  canelZhe(e){                                                   //点击外层遮罩
+    this.setData({
+      caleState:false
+    })
   },
 
   setArray() {                                                   //设置设备
@@ -142,16 +157,8 @@ Page({
   },
 
   onLoad: function (options) {
-      // this.init()
-      // let obj={
-      //   target:{
-      //     dataset:{
-      //       type : 1
-      //     }
-      //   }
-      // }
-      // this.tapActive(obj)
-      this.init()
+    initCalendar(this.data.conf)
+    console.log(this.data)
   },
 
 

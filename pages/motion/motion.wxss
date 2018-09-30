@@ -1,5 +1,6 @@
 /* pages/motion/motion.wxss */
-@import '../index/index';
+@import '../../components/calendar/index.wxss';
+/* @import '../index/index'; */
 .container{
    position:absolute;
   top:0;
@@ -63,4 +64,28 @@
 
 .project{
   bottom:10rpx;
+}
+
+.zhezhao{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background-color: rgba(0,0,0,0.4);
+  display: flex;
+}
+
+.zhezhao_content{
+  /* position: absolute;  */
+  margin: auto;
+  padding: 20rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+}
+
+.zhezhao_content_wrap{
+  width: 603rpx;
+  height:646rpx;
 }
