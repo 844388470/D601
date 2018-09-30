@@ -1,16 +1,34 @@
 
 const app=getApp();
+const hour = []
+const minute = []
+const second = []
+
+for (let i = 0; i <= 23; i++) {
+  hour.push({value:i,name:(i>9?i:'0'+i)})
+}
+
+for (let i = 0; i <= 59; i++) {
+  minute.push({ value: i, name:(i>9?i:'0'+i)})
+}
+
+for (let i = 0; i <= 59; i++) {
+  second.push({ value: i, name:(i>9?i:'0'+i)})
+}
 Page({
   data:{
     array:[],
     indexs: '',
     model:'',
     startDate: app.util.formatTime(new Date()).substring(0, 10),
-    startTime: '00:00',
+    startTime: '00:00:00',
     endDate: app.util.formatTime(new Date()).substring(0, 10),
-    endTime: '23:59',
+    endTime: '23:59:59',
     setTime:null,
     page:1,
+    lists: [hour, minute, second],
+    value1:[0,0,0],
+    value2: [23,59,59]
   },
   onShow() {
     this.isReturnIndex()
@@ -39,8 +57,10 @@ Page({
   },
 
   bindStartTime(e) {
+    let [i,j,k]=[...e.detail.value]
     this.setData({
-      startTime: `${e.detail.value}`
+      startTime: `${i > 9 ? i : '0' + i}:${j > 9 ? j : '0' + j}:${k > 9 ? k : '0' + k}`,
+      value1: e.detail.value
     })
   },
 
@@ -51,8 +71,10 @@ Page({
   },
 
   bindEndTime(e) {
+    let [i, j, k] = [...e.detail.value]
     this.setData({
-      endTime: `${e.detail.value}`
+      endTime: `${i > 9 ? i : '0' + i}:${j > 9 ? j : '0' + j}:${k > 9 ? k : '0' + k}`,
+      value2: e.detail.value
     })
   },
 
@@ -80,14 +102,14 @@ Page({
       }
       app.nowCodeId = app.nowCodeList[0].id
       this.setSelectName()
-      if (this.data.model !== 'd603' && this.data.model !== 'D603' && this.data.model !== 'd606' && this.data.model !== 'D606'){
-        this.getList()
-      }
+      // if (this.data.model !== 'd603' && this.data.model !== 'D603' && this.data.model !== 'd606' && this.data.model !== 'D606'){
+      //   this.getList()
+      // }
     } else {
       this.setSelectName()
-      if (this.data.model !== 'd603' && this.data.model !== 'D603' && this.data.model !== 'd606' && this.data.model !== 'D606') {
-        this.getList()
-      }
+      // if (this.data.model !== 'd603' && this.data.model !== 'D603' && this.data.model !== 'd606' && this.data.model !== 'D606') {
+      //   this.getList()
+      // }
     }
   },
 
@@ -217,7 +239,7 @@ Page({
       return 
     }
     wx.navigateTo({
-      url: `../map/map?start=${this.data.startDate}&end=${this.data.endDate}&id=${app.nowCodeId}`
+      url: `../map/map?start=${this.data.startDate} ${this.data.startTime}&end=${this.data.endDate} ${this.data.endTime}&id=${app.nowCodeId}`
     })
   },
 

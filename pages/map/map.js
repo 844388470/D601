@@ -34,8 +34,8 @@ Page({
       url: `${app.api.getHistory}${options.id}/positions`,
       method: 'GET',
       data: {
-        startTime: options.start+' 00:00:01',
-        endTime: options.end+' 23:59:59'
+        startTime: options.start,
+        endTime: options.end
       }
     }).then(res => {
       // let list = res || []

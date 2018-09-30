@@ -1,6 +1,6 @@
 
 <!-- <view class="content" wx:if="{{model=='d601'}}"> -->
-<view class="content" wx:if="{{model!=='d603'&&model!=='D603'&&model!=='D606'&&model!=='d606'}}">
+<view class="content" wx:if="{{false}}">
   <view class="content"> 
     <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name">
       <view class="project flexc picker selector">
@@ -165,7 +165,7 @@
   </view>
 </view>
 
-<view class="content"  wx:if="{{model=='d603'||model=='D603'||model=='D606'||model=='d606'}}">
+<view class="content"  wx:if="{{true}}">
     <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name">
       <view class="project flexc picker selector">
         <view class="fs28 pellipsis">{{indexs}}</view>
@@ -183,6 +183,17 @@
         </view>
       </view>
     </picker>  
+    <picker mode="multiSelector" bindchange="bindStartTime" class="width100" range="{{lists}}" range-key="name" value="{{value1}}">
+      <view class="flexc">
+        <view class="selectTime">开始时间:</view>
+        <view class="flex-flex selector tr flexr">
+            <view class="mr  tr width100 selectTime">{{startTime}}</view>
+        </view>
+        <view class=''>
+          <view class='iconfont tako-icon-youjiantou-copy fs30 selectTime'></view>
+        </view>
+      </view>
+    </picker>  
     <picker mode="date" bindchange="bindEndDate" class="width100">
       <view class="flexc">
           <view class="selectTime flex-flex">结束日期:</view>
@@ -194,6 +205,17 @@
           </view>
       </view>
     </picker>  
+    <picker mode="multiSelector" bindchange="bindEndTime" class="width100" range="{{lists}}" range-key="name" value="{{value2}}">
+      <view class="flexc">
+        <view class="selectTime">结束时间:</view>
+        <view class="flex-flex selector tr flexr">
+            <view class="mr  tr width100 selectTime">{{endTime}}</view>
+        </view>
+        <view class=''>
+          <view class='iconfont tako-icon-youjiantou-copy fs30 selectTime'></view>
+        </view>
+      </view>
+    </picker> 
     <view class="btn" bindtap='goChaXun'>查询</view>
 </view>
 
