@@ -1,25 +1,58 @@
 // pages/motion/motion.js
 import * as echarts from '../../ec-canvas/echarts.min.js';
 import initCalendar, { getSelectedDay} from '../../components/calendar/index';
-let chart=null
+let chart = null
 const app = getApp();
 
 Page({
   data: {
-    // array: [],
-    // indexs: '',
+    array: [{ id: 1, name: '设备一' }, { id: 2, name: '设备二' }, { id: 3, name: '设备三' }],
+    equName: '',
+    equIndex: '',
     ec: {
       lazyLoad:true
     },
-    caleState:true,
+    caleState:false,
     echartData:[],
     activeIndex:0,
     stepNumber:0,
     mileage:0,
-    conf: {
-      multi: false, // 是否开启多选,
-      afterTapDay: () => { console.log(getSelectedDay())},
-    }
+    average:0,
+    time: app.util.formatTime(new Date()).substr(0,10)
+  },
+
+  setTime(){                                      //打开日历
+    this.setData({
+      caleState:true
+    })
+  },
+
+  afterTapDay(){                                  //选择日期之后执行
+    const day = getSelectedDay()[0]
+    this.setData({
+      caleState: false,
+      time: `${day.year}-${day.month > 9 ? day.month : '0' + day.month}-${day.day > 9 ? day.day : '0' + day.day}`
+    })
+    // this.dispose()
+    this.init(111)
+  },
+
+  getData(){
+    app.showLoading('获取中')
+    app.request({
+      url: `${app.api.getSteps}${this.data.equIndex}/steps`,
+      method: 'get',
+      data: {
+        
+      }
+    }).then(res => {
+      console.log(res)
+      wx.hideLoading()
+      this.init()
+    }).catch(err => {
+      wx.hideLoading()
+      app.show('获取失败')
+    })
   },
 
   da(){
@@ -34,7 +67,9 @@ Page({
 
   setArray() {                                                   //设置设备
     this.setData({
-      array: app.nowCodeList
+      array: app.nowCodeList,
+      equName: app.nowCodeList[0].name || '',
+      equIndex: app.nowCodeList[0].id || '',
     })
   },
 
@@ -48,26 +83,40 @@ Page({
     if (!app.nowCodeList.length) {
       return
     }
-    app.nowCodeId = app.nowCodeList[e.detail.value].id
-    // this.getIndex()
+    this.setData({
+      equName: this.data.array[e.detail.value].name,
+      equIndex: this.data.array[e.detail.value].id,
+    })
+    this.dispose()
   },
 
-  init: function () {
+  init(data) {
     this.selectComponent('#mychart-dom-bar').init((canvas, width, height) => {
-      let resName=[],resData=[]
-      for (let i = 0; i < this.data.echartData.length;i++){
-        resName.push(this.data.echartData[i].name)
-        resData.push(this.data.echartData[i].id)
+      let resName = [], resData = [], total=0
+      for (let i = 0; i < 7;i++){
+        resName.push(app.util.formatTime(new Date(this.data.time).getTime() - (6 - i) * 86400000).substr(0,10))
+        let num = data ? 0 : Math.ceil(Math.random() * 20000)
+        resData.push(num)
+        total = total + num
       }
+      this.setData({
+        average: Math.round(total/7)
+      })
       let chart = echarts.init(canvas, null, {
         width: width,
         height: height
       });
       chart.setOption({
-        color: ['#9c9'],
+        color: ['#02ad00'],
+        tooltip:{
+          trigger: 'none',
+          axisPointer: {
+            type: 'cross'
+          }
+        },
         grid: {
           left: 10,
-          right: 10,
+          right: 20,
           bottom: 15,
           top: 10,
           containLabel: true
@@ -75,17 +124,18 @@ Page({
         xAxis: [
           {
             type: 'category',
-            axisTick: { show: false },
-            nameRotate:'60',
-            data: resName,
-            axisLine: {
-              lineStyle: {
-                color: '#999'
+            axisTick: {
+              alignWithLabel: true
+            },
+            axisPointer: {
+              label: {
+                formatter: function (params) {
+                  return '步数  ' + params.value
+                    + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                }
               }
             },
-            axisLabel: {
-              color: '#666'
-            }
+            data: resName
           }
         ],
         yAxis: [
@@ -103,20 +153,8 @@ Page({
         ],
         series: [
           {
-            name: '热度',
-            type: 'bar',
-            label: {
-              normal: {
-                show: true,
-                position: 'inside'
-              }
-            },
+            type: 'line',
             data: resData,
-            itemStyle: {
-              // emphasis: {
-              //   color: '#37a2da'
-              // }
-            }
           }
         ]
       });
@@ -152,13 +190,19 @@ Page({
   },
 
   dispose() {
-    this.chart.dispose()
-    this.init()
+    if (this.chart){
+      this.chart.dispose()
+    }
+    this.getData()
   },
 
   onLoad: function (options) {
-    initCalendar(this.data.conf)
-    console.log(this.data)
+    initCalendar({
+      multi: false, // 是否开启多选,
+      afterTapDay: () => { this.afterTapDay() },
+    })
+    this.setArray()
+    this.dispose()
   },
 
 

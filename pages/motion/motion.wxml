@@ -1,4 +1,3 @@
-<!--pages/motion/motion.wxml-->
 <import src="../../components/calendar/index.wxml"/>
 <view class="zhezhao" bindtap='canelZhe' wx:if="{{caleState}}">
   <view class="zhezhao_content" catchtap='da'>
@@ -7,34 +6,48 @@
         <template is="calendar" data="{{...calendar}}" />
       </view>
     </view>
-    
   </view>
 </view>
 
-  <view class="content">
-    <view class="flexc top tc">
-      <view class="flex-flex"><view>1277</view><view class="fs28">总公里数</view></view>
-      <view class="flex-flex"><view>30</view><view class="fs28">达标天数</view></view>
-      <view class="shu"></view>
+<view class="content">
+  <view class='content_top'>
+    <view class="content_top_selectTime" bindtap='setTime'>
+      {{time}}
     </view>
-    <view class="echart">
-      <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
-    </view> 
-    <view class="flexc top tc">
-      <view class="flex-flex"><view class="fs50">{{stepNumber}}</view><view class="fs25">累计步数</view></view>
-      <view class="flex-flex"><view class="fs50">{{mileage}}</view><view class="fs25">累计里程km</view></view>
-      <view class="shu xshu"></view>
-    </view>
-    <view class='anniu tc'>
-        <text class="{{activeIndex==1?'active':''}}" bindtap='tapActive' data-type='1'>日</text>
-        <text class="{{activeIndex==2?'active':''}}" bindtap='tapActive' data-type='2'>周</text>
-        <text class="{{activeIndex==3?'active':''}}" bindtap='tapActive' data-type='3'>月</text>
-    </view> 
-    <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name" wx-if="{{false}}">
-      <cover-view class="project flexc picker">
-        <cover-image src='../../image/filter.png'></cover-image>
-        <cover-view class="fs28 pellipsis">{{indexs}}</cover-view>
-      </cover-view>
+    <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name">
+      <view class='content_top_selectEqu'>
+        设备名称：{{equName || '无'}}
+      </view>
     </picker>
+  </view>
+  <view class="content_text">
+    <text>一周运动趋势</text>
+    <text class="content_text_right">7日平均:{{average}}步</text>
+  </view>
+  <view class="echart">
+    <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+  </view> 
+  <!-- <view class="flexc top tc">
+    <view class="flex-flex"><view>1277</view><view class="fs28">总公里数</view></view>
+    <view class="flex-flex"><view>30</view><view class="fs28">达标天数</view></view>
+    <view class="shu"></view>
+  </view>
+  
+  <view class="flexc top tc">
+    <view class="flex-flex"><view class="fs50">{{stepNumber}}</view><view class="fs25">累计步数</view></view>
+    <view class="flex-flex"><view class="fs50">{{mileage}}</view><view class="fs25">累计里程km</view></view>
+    <view class="shu xshu"></view>
+  </view>
+  <view class='anniu tc'>
+      <text class="{{activeIndex==1?'active':''}}" bindtap='tapActive' data-type='1'>日</text>
+      <text class="{{activeIndex==2?'active':''}}" bindtap='tapActive' data-type='2'>周</text>
+      <text class="{{activeIndex==3?'active':''}}" bindtap='tapActive' data-type='3'>月</text>
+  </view> 
+  <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name" wx-if="{{false}}">
+    <cover-view class="project flexc picker">
+      <cover-image src='../../image/filter.png'></cover-image>
+      <cover-view class="fs28 pellipsis">{{indexs}}</cover-view>
+    </cover-view>
+  </picker> -->
 </view>  
 
