@@ -3,7 +3,8 @@
   <view class="userInfo">
     <view class="userInfo_left">头像</view>
     <view class="userInfo_right">
-      <image class='userInfo_right_head' src="{{headimg}}"></image>
+      <!-- <image class='userInfo_right_head' src="{{headimg}}"></image> -->
+      <open-data type="userAvatarUrl" class="userInfo_right_head"></open-data>   
       <image class='userInfo_right_direction' src="../../image/right.png"></image>
     </view>
   </view>
@@ -15,7 +16,8 @@
     </view>
     <view class="userInfo_right">
       <!-- <text class='userInfo_right_title'>{{xian.nickname}}</text> -->
-      <input value="{{xian.nickname}}" bindblur="blurNicknameChange"></input>
+      <!-- <input value="{{xian.nickname}}" bindblur="blurNicknameChange"></input> -->
+      <open-data type="userNickName" class="userInfo_right_name"></open-data>
       <image class='userInfo_right_direction' src="../../image/right.png"></image>
     </view>
   </view>
@@ -27,7 +29,7 @@
     </view>
     <view class="userInfo_right">
       <!-- <text class='userInfo_right_title'>{{xian.name}}</text> -->
-      <input value="{{xian.name}}" bindblur="blurNameChange"></input>
+      <input value="{{xian.name}}" bindblur="blurNameChange" disabled='{{true}}'></input>
       <image class='userInfo_right_direction' src="../../image/right.png"></image>
     </view>
   </view>

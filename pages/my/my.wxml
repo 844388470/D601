@@ -5,14 +5,15 @@
     <view class="head_content" bindtap='goUserInfo'>
       <view class="head_content_img">
         <view class="head_content_imgage">
-           <image class="head_portrait"  src="{{userInfo.headimgurl}}"></image>         
-          <!-- <open-data type="userAvatarUrl" class="head_portrait"></open-data>   -->
+           <!-- <image class="head_portrait"  src="{{userInfo.headimgurl}}"></image>          -->
+           <open-data type="userAvatarUrl" class="head_portrait"></open-data>   
         </view>
       </view>
     </view>
     <image class="head_setting" src="../../image/setting.png"  bindtap='goSetting'></image>
     <view class="head_name">
-      <text class="head_name">{{userInfo.nickname}}</text>
+      <!-- <text class="head_name">{{userInfo.nickname}}</text> -->
+      <open-data type="userNickName" class="head_name"></open-data>   
     </view>
   </view>
   <!-- <view class="count"  bindtap='goMotion'>

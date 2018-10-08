@@ -44,7 +44,7 @@
   display: table-cell;
 }
 
-.userInfo .userInfo_right input{
+.userInfo .userInfo_right input,.userInfo .userInfo_right .userInfo_right_name{
   width:450rpx;
   display:inline-block;
   vertical-align:middle;
@@ -59,6 +59,8 @@
   border: 4rpx solid #5dcb5c;
   border-radius: 50%;
   vertical-align: middle;
+  display:inline-block;
+  overflow:hidden;
 }
 
 .userInfo .userInfo_right_title{

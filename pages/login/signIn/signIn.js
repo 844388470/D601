@@ -43,7 +43,7 @@ Page({
           wx.setStorageSync('openid', data.openid);
           wx.setStorageSync('token', data.token);
           app.refapi()
-          this.getUserInfo(user)
+          this.setUserInfo(user)
         }).catch((err)=>{
           app.hideLoading()
           app.show('登陆失败')
