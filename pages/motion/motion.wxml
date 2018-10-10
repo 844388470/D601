@@ -12,7 +12,7 @@
 <view class="content">
   <view class='content_top'>
     <view class="content_top_selectTime" bindtap='setTime'>
-      {{time}}
+      {{time}} >>
     </view>
     <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name">
       <view class='content_top_selectEqu'>
