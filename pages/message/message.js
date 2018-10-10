@@ -4,7 +4,8 @@ Page({
   data: {
     array: [],
     indexs: '',
-    list:[],
+    list: [],
+    resList:[],
     indexs: '',
     userId: '',
     setTime:null,
@@ -35,9 +36,10 @@ Page({
 
   goMap(e){
     if (e.target.dataset.type && e.target.dataset.type==1){
-      // wx.navigateTo({
-      //   url: '../map/mapAround/mapAround?did=' + e.target.dataset.did
-      // })
+      const content = this.data.resList.filter(res => res.id === e.target.dataset.id)[0]
+      wx.navigateTo({
+        url: '../map/mapAround/mapAround?content=' + content.message
+      })
     }
     // wx.navigateTo({
     //   url: '../map/mapAround/mapAround?type=1&&n=' + e.target.dataset.type
@@ -51,7 +53,7 @@ Page({
     // this.getIndex()
     this.data.setTimeoat = setInterval(() => {
       this.isDeltel()
-    }, 30000)
+    }, 60000)
   },
 
   deleteTimeout() {                                             //停止自动刷新位置
@@ -170,55 +172,94 @@ Page({
         const dstate = app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'id', 'admin_id') == app.globalData.userInfo.id
         const ustate = res[i].user_id == app.globalData.userInfo.id
         if (filterL.length){
-          if (res[i].type == 51  || res[i].type == 52 || res[i].type == 53){
-            if (dstate){
-              filterL[0].list.push({
-                ...res[i],
-                create_date: res[i].create_date.substr(11)
-              })
-            } else if (ustate && (res[i].type == 51 || res[i].type == 52)){
-              filterL[0].list.push({
-                ...res[i],
-                create_date: res[i].create_date.substr(11)
-              })
-            }
-          }else{
+          if (res[i].type>49){
             filterL[0].list.push({
               ...res[i],
+              messages: res[i].message,
+              create_date: res[i].create_date.substr(11)
+            })
+          }else{
+            const data = JSON.parse(res[i].message)
+            filterL[0].list.push({
+              ...res[i],
+              messages: data.content,
               create_date: res[i].create_date.substr(11)
             })
           }
         }else{
-          if (res[i].type == 51 || res[i].type == 52 || res[i].type == 53) {
-            if (dstate) {
-              list.push({
-                time: res[i].create_date.substr(0, 10) + ' ' + app.util.timeWeek(res[i].create_date),
-                list: [{
-                  ...res[i],
-                  create_date: res[i].create_date.substr(11)
-                }]
-              })
-            } else if (ustate && (res[i].type == 51 || res[i].type == 52)) {
-              list.push({
-                time: res[i].create_date.substr(0, 10) + ' ' + app.util.timeWeek(res[i].create_date),
-                list: [{
-                  ...res[i],
-                  create_date: res[i].create_date.substr(11)
-                }]
-              })
-            }
-          } else {
+          if (res[i].type > 49) {
             list.push({
               time: res[i].create_date.substr(0, 10) + ' ' + app.util.timeWeek(res[i].create_date),
               list: [{
                 ...res[i],
+                messages: res[i].message,
+                create_date: res[i].create_date.substr(11)
+              }]
+            })
+          } else {
+            const data = JSON.parse(res[i].message)
+            list.push({
+              time: res[i].create_date.substr(0, 10) + ' ' + app.util.timeWeek(res[i].create_date),
+              list: [{
+                ...res[i],
+                messages: data.content,
                 create_date: res[i].create_date.substr(11)
               }]
             })
           }
+          
         }
+        // if (filterL.length){
+        //   if (res[i].type == 51  || res[i].type == 52 || res[i].type == 53){
+        //     if (dstate){
+        //       filterL[0].list.push({
+        //         ...res[i],
+        //         create_date: res[i].create_date.substr(11)
+        //       })
+        //     } else if (ustate && (res[i].type == 51 || res[i].type == 52)){
+        //       filterL[0].list.push({
+        //         ...res[i],
+        //         create_date: res[i].create_date.substr(11)
+        //       })
+        //     }
+        //   }else{
+        //     filterL[0].list.push({
+        //       ...res[i],
+        //       create_date: res[i].create_date.substr(11)
+        //     })
+        //   }
+        // }else{
+        //   if (res[i].type == 51 || res[i].type == 52 || res[i].type == 53) {
+        //     if (dstate) {
+        //       list.push({
+        //         time: res[i].create_date.substr(0, 10) + ' ' + app.util.timeWeek(res[i].create_date),
+        //         list: [{
+        //           ...res[i],
+        //           create_date: res[i].create_date.substr(11)
+        //         }]
+        //       })
+        //     } else if (ustate && (res[i].type == 51 || res[i].type == 52)) {
+        //       list.push({
+        //         time: res[i].create_date.substr(0, 10) + ' ' + app.util.timeWeek(res[i].create_date),
+        //         list: [{
+        //           ...res[i],
+        //           create_date: res[i].create_date.substr(11)
+        //         }]
+        //       })
+        //     }
+        //   } else {
+        //     list.push({
+        //       time: res[i].create_date.substr(0, 10) + ' ' + app.util.timeWeek(res[i].create_date),
+        //       list: [{
+        //         ...res[i],
+        //         create_date: res[i].create_date.substr(11)
+        //       }]
+        //     })
+        //   }
+        // }
       }
       this.setData({
+        resList:res,
         list: list,
       })
     }).catch(err => {

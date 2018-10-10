@@ -24,8 +24,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-        
-        this.getList(options.did)
+    let obj = JSON.parse(options.content)
+    this.setMap([{
+      longitude: obj.data.fence.lng,
+      latitude: obj.data.fence.lat,
+      radius: Number(obj.data.fence.radius),
+      fillColor: '#ff000077'
+    }],{
+        longitude: obj.data.location.lng,
+        latitude: obj.data.location.lat,
+    })
   },
 
   getList(id){
@@ -59,10 +67,10 @@ Page({
       optionType: 1,
       time: '2018-06-04 16:55',
       timeFn: app.util.timeFn('2018-06-24 16:55', new Date),
-      longitude: '121.363156',
-      latitude: '31.124131',
+      longitude: dian.longitude,
+      latitude: dian.latitude,
       circles: list,
-      markerDatas: [{ longitude: '121.4106', latitude: '31.190658', iconPath: '../../../image/message_index.png', width: 22, height: 32, anchor: { x: 0.5, y: 1 } }],
+      markerDatas: [{ longitude: dian.longitude, latitude: dian.latitude, iconPath: '../../../image/message_index.png', width: 22, height: 32, anchor: { x: 0.5, y: 1 } }],
     })
   },
 
