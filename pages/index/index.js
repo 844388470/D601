@@ -20,7 +20,8 @@ Page({
       date:'',
       address:'',
       timeFn:'',
-      isWifi:''
+      isWifi:'',
+      batteryVol:'',
     },
     timeSelect:[
       { time: '持续15min', second: '15' },
@@ -69,7 +70,8 @@ Page({
               date: list.eventTime,
               address: list.latitude == '0' && list.longitude=='0'?'无法解析地址' : res[0],
               timeFn: app.util.timeFn(list.eventTime, new Date()),
-              isWifi: list.wifiGpsFlag == 1 ? 'GPS' : list.wifiGpsFlag == 2 ? 'WIFI' : list.wifiGpsFlag === 0 ? '基站':''
+              isWifi: list.wifiGpsFlag == 1 ? 'GPS' : list.wifiGpsFlag == 2 ? 'WIFI' : list.wifiGpsFlag === 0 ? '基站':'',
+              batteryVol: `剩余电量:${list.batteryVol || 0}%`
             }
           })
           this.addTimeoutFn()
@@ -86,7 +88,8 @@ Page({
           date: '',
           address: '',
           timeFn: '',
-          isWifi:''
+          isWifi:'',
+          batteryVol:''
         }
       })
     })

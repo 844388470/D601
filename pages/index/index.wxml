@@ -6,8 +6,14 @@
           <cover-image class="" src='../../image/index-title.png'></cover-image>
         </cover-view>
         <cover-view class="title_time">
-          <cover-view class="title">{{text.message}}</cover-view>
-          <cover-view class="time bottom"><cover-view style="width:400rpx">{{text.date}}</cover-view><cover-view style="width:120rpx;text-align:right">{{text.isWifi}}</cover-view></cover-view>
+          <cover-view class="time bottom">
+            <cover-view class="title" style="width:300rpx">{{text.message}}</cover-view>
+            <cover-view style="width:220rpx;text-align:right">{{text.batteryVol}}</cover-view>
+          </cover-view>
+          <cover-view class="time bottom">
+            <cover-view style="width:400rpx">{{text.date}}</cover-view>
+            <cover-view style="width:120rpx;text-align:right">{{text.isWifi}}</cover-view>
+          </cover-view>
         </cover-view>
       </cover-view>
       <cover-view class="bottom">
