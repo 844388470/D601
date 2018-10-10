@@ -367,14 +367,14 @@ Page({
 
     socket.on('messages', (data) => {
       const  n  = data
-      if (JSON.stringify(data) == "{}"){
-        
-      }else{
+      if (JSON.stringify(data) !== "{}"){
         if (app.nowCodeList.filter(obj => obj.id == data.did).length){
-          if (data.type == 2 || data.type == 3 || data.type == 4 || data.type == 5 ) {
-            app.show(data.message)
-          }else{
-            // app.show(data.message)
+          if ([0,1,2,3,4,5,6,7,8,9,10].indexOf(data.type)!==-1) {
+            wx.showToast({
+              title: JSON.parse(data.message).content,
+              icon: 'none',
+              duration: 3000
+            })
           }
         }
       }
