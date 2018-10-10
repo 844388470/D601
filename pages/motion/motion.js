@@ -6,7 +6,7 @@ const app = getApp();
 
 Page({
   data: {
-    array: [{ id: 1, name: '设备一' }, { id: 2, name: '设备二' }, { id: 3, name: '设备三' }],
+    array: [],
     equName: '',
     equIndex: '',
     ec: {
@@ -33,8 +33,8 @@ Page({
       caleState: false,
       time: `${day.year}-${day.month > 9 ? day.month : '0' + day.month}-${day.day > 9 ? day.day : '0' + day.day}`
     })
-    // this.dispose()
-    this.init(111)
+    this.dispose()
+    // this.init(111)
   },
 
   getData(){
@@ -43,12 +43,12 @@ Page({
       url: `${app.api.getSteps}${this.data.equIndex}/steps`,
       method: 'get',
       data: {
-        
+        start: app.util.formatTimes(new Date(this.data.time).getTime() - 6 * 86400000).substr(0, 8),
+        end: app.util.formatTimes(new Date(this.data.time).getTime()).substr(0, 8)
       }
     }).then(res => {
-      console.log(res)
       wx.hideLoading()
-      this.init()
+      this.init(res)
     }).catch(err => {
       wx.hideLoading()
       app.show('获取失败')
@@ -93,11 +93,19 @@ Page({
   init(data) {
     this.selectComponent('#mychart-dom-bar').init((canvas, width, height) => {
       let resName = [], resData = [], total=0
-      for (let i = 0; i < 7;i++){
-        resName.push(app.util.formatTime(new Date(this.data.time).getTime() - (6 - i) * 86400000).substr(0,10))
-        let num = data ? 0 : Math.ceil(Math.random() * 20000)
-        resData.push(num)
-        total = total + num
+      for (let i = 0; i < 7; i++){
+        let timeA = app.util.formatTimes(new Date(this.data.time).getTime() - (6-i) * 86400000).substr(0, 8)
+        let timeB = app.util.formatTime(new Date(this.data.time).getTime() - (6-i) * 86400000).substr(0, 10)
+        if (data.filter(res => res.day == timeA).length){
+          let steps = data.filter(res => res.day == timeA)[0].steps
+          resName.push(timeB)
+          resData.push(steps)
+          total = total + steps
+        }else{
+          resName.push(timeB)
+          resData.push(0)
+          total = total + 0
+        }
       }
       this.setData({
         average: Math.round(total/7)

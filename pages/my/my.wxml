@@ -16,7 +16,7 @@
       <open-data type="userNickName" class="head_name"></open-data>   
     </view>
   </view>
-  <!-- <view class="count"  bindtap='goMotion'>
+  <view class="count"  bindtap='goMotion'>
     <view class="count_left">
       <image class="count_left_iamge" src='../../image/motion.png'></image>
       <text class="count_left_text">运动统计</text>
@@ -24,7 +24,7 @@
     <view class="count_right">
       <image class="count_right_image" src='../../image/right.png'></image>
     </view>
-  </view>  -->
+  </view>  
 
   <view class="count equcount">
     <view class='equ'>
