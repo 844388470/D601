@@ -12,7 +12,8 @@ Page({
     indexs: '',
     setTime: null,
     setTimeFn:null,
-    setTimeTrack:null,
+    setTimeTrack: null,
+    setTimeList:null,
     setInterTime:20000,
     text:{
       message:'未定位,请选择设备',
@@ -39,12 +40,16 @@ Page({
   },
   onLoad(){
     this.startSocket()
-    this.getListTime()
+    
   },
-  getListTime(){
-    setInterval(() => {
+  startListTime() {                                           //开启定时获取列表
+    this.data.setTimeList = setInterval(() => {
       this.getList()
     }, 60000)
+  },
+  endListTime(){                                              //关闭定时获取列表
+    clearInterval(this.data.setTimeList)
+    this.data.setTimeList = null
   },
   getIndex(){                                                   //获取位置
     this.deleteTimeoutFn()
@@ -318,7 +323,7 @@ Page({
 
     socket.on('connect', ()=> {
       console.log('已连接',new Date());
-      this.getList()
+      // this.getList()
     });
 
     socket.on('connecting', function () {
@@ -391,8 +396,9 @@ Page({
   },
   onShow() {
     this.isReturnIndex()
+    this.startListTime()
   },
   onHide(){
-    
+    this.endListTime()
   }
 })
