@@ -19,8 +19,7 @@
       </view>
     </view>
     <view class="list_right" data-index='{{index}}'>
-      <image src='../../../image/delete.png' class='list_right_delete' wx:if="{{edit}}" catchtap='deleteMode' data-index='{{index}}'></image>
-      <!-- <switch  wx:if="{{!edit}}" class="list_right_check"  checked ="{{item.status}}" catchchange="setEquChecked" data-index='{{index}}'/> -->
+      <image src='../../../image/delete.png' class='list_right_delete' catchtap='deleteMode' data-index='{{index}}'></image>
     </view>
   </view>
 </view>

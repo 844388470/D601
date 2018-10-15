@@ -4,24 +4,6 @@ qqmapsdk = new QQMapWX({
   key: '5RBBZ-ANHWW-APHRT-OUNY7-UDIZK-LBB7K'
 })
 
-// const filterCooName = (lng, lat) => {
-//   return new Promise((resolve,reject)=>{
-//     qqmapsdk.reverseGeocoder({
-//       location: {
-//         latitude: lat,
-//         longitude: lng
-//       },
-//       success: function (res) {
-//         resolve(res);
-//       },
-//       fail: function (res) {
-//         resolve(res);
-//       }
-//     })
-//   })
-// }
-
-
 const filterCooName = (arr) => {
   let list = []
   let nPro = Promise.resolve()

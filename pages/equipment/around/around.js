@@ -35,19 +35,6 @@ Page({
   },
 
   editAround(e){
-    // if (!this.data.edit){
-    //   return 
-    // }
-    // app.aroundList = this.data.list
-    // app.aroundAddObj = {
-    //   state: 'edit',
-    //   address: this.data.list[e.target.dataset.index].address,
-    //   name: this.data.list[e.target.dataset.index].name,
-    //   longitude: this.data.list[e.target.dataset.index].longitude,
-    //   latitude: this.data.list[e.target.dataset.index].latitude,
-    //   radius: this.data.list[e.target.dataset.index].radius,
-    //   index: e.target.dataset.index
-    // }
     const obj = this.data.list[e.target.dataset.index]
     wx.navigateTo({
       url: `../addAround/addAround?id=${obj.fenceId}&name=${obj.fenceName}&address=${obj.fenceRemark}&position=${obj.pointArrays}`
@@ -56,33 +43,42 @@ Page({
 
   deleteMode(e){
     const [...list] = JSON.parse(JSON.stringify(this.data.list))
-    // if (!this.data.isAdmin) {
-    //   app.show('无权限')
-    //   return
-    // }
     wx.showModal({
       title: '警告',
       content: '删除后无法恢复,确认删除吗？',
       success: (res)=>{
         if (res.confirm) {
-          list.splice(e.target.dataset.index, 1)
-          this.editList(list, this.data.list)
+          this.deleteAround(this.data.list[e.target.dataset.index].fenceId)
         }
       }
     })
   },
 
-  setEquChecked(e){
-    const [...list] = JSON.parse(JSON.stringify(this.data.list))
-    list[e.target.dataset.index].status = e.detail.value?1:0
-    // if(!this.data.isAdmin){
-    //   app.show('无权限')
-    //   this.setData({
-    //     list:this.data.list
-    //   })
-    //   return
-    // }
-    this.editList(list, this.data.list)
+  deleteAround(id){
+    const data = {
+      appid: app.appid,
+      dt: parseInt(new Date().getTime() / 1000),
+      secret: app.secret,
+      openid: wx.getStorageSync('openid'),
+      fenceId: id
+    }
+    app.showLoading('删除中')
+    app.request({
+      url: app.api.deleteFence,
+      method: 'post',
+      data: {
+        ...data,
+        sign: app.md5(app.util.getsign(data)).toUpperCase()
+      }
+    }).then(res => {
+      if(res.code===0){
+        this.getList()
+      }else{
+        return Promise.reject()
+      }
+    }).catch((err) => {
+      app.show('删除失败')
+    })
   },
 
   editList(resList,errList){
@@ -115,14 +111,6 @@ Page({
     })
   },
 
-  isChange(){
-    // if (app.aroundChange){
-    //   console.log('刷新列表')
-    //   this.getList()
-    //   app.aroundChange=false
-    // }
-  },
-
   getList(){
     const data = {
       appid: app.appid,
@@ -141,11 +129,9 @@ Page({
     }).then(res => {
       app.hideLoading()
       if (res.code === 0) {
-        if (res.fenceList.length) {
-          this.setData({
-            list: res.fenceList
-          })
-        }
+        this.setData({
+          list: res.fenceList
+        })
       } else {
         return Promise.reject()
       }

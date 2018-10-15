@@ -1,5 +1,5 @@
 <view class='content'>
-  <map id='myMap' longitude='{{longitude}}' latitude='{{latitude}}' markers='{{markerDatas}}' scale='18' ></map>
+  <map id='myMap' longitude='{{longitude}}' latitude='{{latitude}}' markers='{{markerDatas}}' scale='18'  show-location="{{false}}"></map>
   <cover-view class="tip">
       <cover-view class="top">
         <cover-view class="image_location">
