@@ -1,7 +1,7 @@
 <!--pages/equipment/addAround/addAround.wxml-->
 <view class="content">
   <view class='map' style="{{searchState?'bottom:420rpx':'bottom:340rpx'}}">
-    <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" markers="{{markers}}" circles="{{circles}}" bindregionchange="controltap"></map>
+    <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" markers="{{markers}}" circles="{{circles}}" bindregionchange="controltap" show-location="{{false}}"></map>
     <cover-image src='../../../image/message_index.png' class="index" wx:if="{{ding}}" style="{{'width:'+width+'px;height:'+height+'px;left:'+left+'rpx;top:'+top+'rpx'}}"></cover-image>
   </view>
   <view class="tip boxshadow">
