@@ -29,17 +29,17 @@
   </picker>
   <cover-view class="refresh" bindtap='getIndex'>
     <cover-image class="refresh_image" src='../../image/refresh.png'></cover-image>
-    <cover-view class="refresh_text">刷新位置</cover-view>
+    <cover-view class="refresh_text">刷新</cover-view>
   </cover-view>
   <picker mode="selector" bindchange="countdownSelect" range="{{timeSelect}}" range-key="time">
       <cover-view class="refresh trackMode" wx:if="{{mode=='d601'||mode=='D601'}}">
         <cover-image class="refresh_image" src='../../image/countdown.png'></cover-image>
-        <cover-view class="refresh_text">开启追踪</cover-view>
+        <cover-view class="refresh_text">追踪</cover-view>
       </cover-view>
   </picker>
   <cover-view class="refresh trackMode" wx:if="{{countdowns}}" bindtap='isEndTrackMode'>
       <cover-image class="refresh_image" src='../../image/tingzhi.png'></cover-image>
-      <cover-view class="refresh_text">停止追踪</cover-view>
+      <cover-view class="refresh_text">停止</cover-view>
   </cover-view>
   <cover-view class="refresh trackMode countdown" wx:if="{{countdowns}}">
     <cover-view class="trackMode_SOS">

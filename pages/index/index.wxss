@@ -105,14 +105,14 @@ map {
 }
 
 .refresh .refresh_image{
-  width: 45rpx;
-  height: 45rpx;
+  width: 55rpx;
+  height: 55rpx;
   margin-top: 8rpx;
   display: inline-block;
 }
 
 .refresh .refresh_text{
-  font-size: 18rpx;
+  font-size: 17rpx;
 }
 
 .trackMode{
