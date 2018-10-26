@@ -51,6 +51,7 @@ Page({
         })
         return
       }
+      list.sort((a, b) => new Date(a.eventTime).getTime() - new Date(b.eventTime).getTime())
       for (let i = 0; i < list.length; i++) {
         list[i] = {
           id: i, latitude: list[i].latitude, longitude: list[i].longitude, iconPath: '../../image/yuan.png', width: 12, height: 12, anchor: { x: 0.5, y: 0.5 }, eventTime: list[i].eventTime, wifiGpsFlag: list[i].wifiGpsFlag
