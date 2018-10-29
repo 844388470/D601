@@ -54,6 +54,7 @@ Page({
   },
   getIndex(){                                                   //获取位置
     this.deleteTimeoutFn()
+    app.showLoading('获取位置')
     app.request({
       url: `${app.api.getIndex}${app.nowCodeId}/latest`,
       method: 'GET'
@@ -75,12 +76,18 @@ Page({
             }
           })
           this.addTimeoutFn()
+          app.hideLoading()
         })
       }else{
-        app.show('获取失败')
+        app.show('经纬度为空，获取地址失败')
         return Promise.reject()
       }
     }).catch(err => {
+      if (err =='device is deleted from telecom'){
+        app.show('该设备已在电信上被移除')
+      } else if (err ='device not found or device_id is null'){
+        app.show('该设备未在电信上注册成功')
+      }
       this.setData({
         markerDatas:[],
         text: {
@@ -336,11 +343,7 @@ Page({
     socket.on('connected', function () {
       console.log('connected');
     });
-
-    socket.on('asd', function () {
-      console.log('asd');
-    });
-
+    
     socket.on('disconnect', function () {
       console.log("已断开", new Date());
     });
