@@ -90,6 +90,7 @@ Page({
     }).catch((err) => {
       app.hideLoading()
       app.show('获取失败')
+      this.setIsRetry()
     })
   },
 
@@ -159,6 +160,7 @@ Page({
     }).catch((err) => {
       app.hideLoading()
       app.show('获取失败')
+      this.setIsRetry()
     })
   },
 
@@ -191,6 +193,7 @@ Page({
     }).catch((err) => {
       app.hideLoading()
       app.show('修改失败')
+      this.setIsRetry()
     })
   },
 
@@ -220,6 +223,9 @@ Page({
           app.show('获取openid失败')
           this.setIsRetry()
         })
+      },
+      fail:err=>{
+        this.setIsRetry()
       }
     })
   },
