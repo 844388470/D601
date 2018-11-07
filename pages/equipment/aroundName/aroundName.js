@@ -11,7 +11,7 @@ Page({
   },
 
   addEqu(){
-    app.showLoading('修改中')
+    // app.showLoading('修改中')
     let [...list] = JSON.parse(JSON.stringify(app.aroundList))
     if (app.aroundAddObj.state=='add'){
       list.push({
@@ -26,30 +26,31 @@ Page({
         name:this.data.inputCode
       }
     }
-    list=list.map(res=>{
-      return {
-        name: res.name,
-        status: res.status,
-        address: res.address,
-        longitude: res.longitude,
-        latitude: res.latitude,
-        radius:res.radius,
-      }
-    })
-    app.request({
-      url: `${app.api.getIndex}${app.nowCodeList[app.equIndex].id}/fences`,
-      method: 'POST',
-      data: list
-    }).then(res => {
-      wx.hideLoading()
+    // list=list.map(res=>{
+    //   return {
+    //     name: res.name,
+    //     status: res.status,
+    //     address: res.address,
+    //     longitude: res.longitude,
+    //     latitude: res.latitude,
+    //     radius:res.radius,
+    //   }
+    // })
+    // app.request({
+    //   url: `${app.api.getIndex}${app.nowCodeList[app.equIndex].id}/fences`,
+    //   method: 'POST',
+    //   data: list
+    // }).then(res => {
+    //   wx.hideLoading()
+      app.aroundList=list
       app.aroundChange=true
       wx.navigateBack({
         delta: 2
       })
-    }).catch(res => {
-      wx.hideLoading()
-      app.show('修改失败')
-    })
+    // }).catch(res => {
+    //   wx.hideLoading()
+    //   app.show('修改失败')
+    // })
   },
 
   getInputCode(e){

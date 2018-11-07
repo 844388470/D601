@@ -22,4 +22,7 @@
       <switch  wx:if="{{!edit}}" class="list_right_check"  checked ="{{item.status}}" catchchange="setEquChecked" data-index='{{index}}'/>
     </view>
   </view>
+  <button class='btn' bindtap='confirmLower' disabled='{{lowerStatus}}'>
+    {{lowerStatus?'等待设备响应':'确认下发'}}
+  </button>
 </view>

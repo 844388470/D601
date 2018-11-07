@@ -100,3 +100,11 @@
   top: 30rpx;
   color: #02ad00;
 }
+
+.btn {
+  background-color:#02ad00;
+  color:#fff;
+  margin-left:27rpx;
+  width:696rpx;
+  margin-top:30rpx;
+}
