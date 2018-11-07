@@ -48,7 +48,7 @@ Page({
       }
     }).then(res => {
       let list = res.locationList || []
-      list = list.filter(ress => ress.longitude)
+      list = list.filter(ress => Number(ress.longitude))
       if (!list.length) {
         wx.hideLoading()
         wx.showToast({

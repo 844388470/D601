@@ -79,13 +79,19 @@ Page({
           this.addTimeout()
         })
       } else {
-        return Promise.reject()
+        return Promise.reject(666)
       }
     }).catch((err) => {
       app.hideLoading()
-      app.show('获取失败,请重试')
+      if(err==666){
+        app.show('GPS定位中...  请确保设备开机并放置在无遮挡区域')
+      }else{
+        app.show('获取失败,请重试')
+      }
       this.setData({
         markerDatas: [],
+        latitude: 39.939944,
+        longitude: 116.389321,
         text: {
           message: '获取失败',
           date: '',
