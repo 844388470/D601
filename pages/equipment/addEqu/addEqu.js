@@ -77,6 +77,7 @@ Page({
     let that=this
     wx.scanCode({
       success:function(res){
+        console.log(res.result)
         if (typeof res.result =='string'){
           try {
             const obj = res.result.split(',')
@@ -135,7 +136,7 @@ Page({
       }
     }).catch((err) => {
       app.hideLoading()
-      app.show('绑定失败')
+      app.show('绑定失败，请确认设备码或密钥是否正确。')
     })
   },
 
