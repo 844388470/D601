@@ -196,15 +196,20 @@ Page({
         ding:true
       })
       return
+    } else if (e.type == 'end'){
+      app.showLoading('获取地理位置中')
     }
     const that = this
     wx.createMapContext('map').getCenterLocation({
       success:(res)=>{
         app.mapApi([{ longitude: res.longitude, latitude: res.latitude}]).then((data)=>{
+          app.hideLoading()
           that.setData({
             coreLongitude: res.longitude,
             coreLatitude: res.latitude,
-            markers: [...that.data.polygonslist,{ longitude: res.longitude, latitude: res.latitude, iconPath: this.data.imgsrc, width: that.data.width, height: that.data.height }],
+            markers: [...that.data.polygonslist,
+            { longitude: res.longitude, latitude: res.latitude, iconPath: this.data.imgsrc, width: that.data.width, height: that.data.height }
+            ],
             ding: false,
             address: data[0]
           })
@@ -269,6 +274,9 @@ Page({
       })
     }else{
       this.setData({
+        longitude: app.aroundAddObj.longitude,
+        latitude: app.aroundAddObj.latitude,
+        ding:true,
         width: width,
         height: height,
         left: left,

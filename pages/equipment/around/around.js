@@ -20,17 +20,25 @@ Page({
 
   goAddAround(){
     app.aroundList = this.data.list
-    app.aroundAddObj = {
-      state: 'add',
-      address: '上海市闵行区秀波路',
-      name: '公司',
-      longitude: '121.363156',
-      latitude: '31.124131',
-      radius: '100',
-      index:'-1'
-    }
-    wx.navigateTo({
-      url: '../addAround/addAround'
+    wx.getLocation({
+      type: 'wgs84',
+      success(res) {
+        app.aroundAddObj = {
+          state: 'add',
+          address: '',
+          name: '',
+          longitude: res.longitude,
+          latitude: res.latitude,
+          radius: '100',
+          index:'-1'
+        }
+        wx.navigateTo({
+          url: '../addAround/addAround'
+        })
+      },
+      fail(err){
+        app.show('请删除小程序后重新授权')
+      }
     })
   },
 
