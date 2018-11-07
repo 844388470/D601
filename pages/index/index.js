@@ -80,7 +80,17 @@ Page({
         })
       }else{
         app.show('经纬度为空，获取地址失败')
-        return Promise.reject()
+        this.setData({
+          markerDatas: [],
+          text: {
+            message: '获取地址失败',
+            date: '',
+            address: '',
+            timeFn: '',
+            isWifi: '',
+            batteryVol: ''
+          }
+        })
       }
     }).catch(err => {
       if (err =='device is deleted from telecom'){
@@ -114,7 +124,7 @@ Page({
         app.nowCodeList = arr
         this.setArray()
         wx.reLaunch({
-          url: '../../equipment/addEqu/addEqu'
+          url: '../equipment/addEqu/addEqu'
         })
       }
     }).catch((err) => {
@@ -142,7 +152,7 @@ Page({
   addTimeout(){                                                 //启动自动刷新位置
     // this.getIndex()
     this.data.settime = setInterval(()=>{
-      this.getIndex()
+      this.getList()
     }, this.data.setInterTime)
   },
   deleteTimeout() {                                             //停止自动刷新位置
@@ -214,18 +224,21 @@ Page({
     // app.nowCodeList.filter(obj => obj.id == app.nowCodeId)[0].duration = this.data.timeSelect[e.detail.value].second
     app.showLoading('启动中')
     app.request({
-      url: `${app.api.setEqu}${app.nowCodeId}`,
-      method: 'put',
+      url: `${app.api.setEqu}${app.nowCodeId}/commands`,
+      method: 'post',
       data: {
-        track_mode: 1,
-        track_mode_duration: this.data.timeSelect[e.detail.value].second
+        f:'6',
+        d: `1,${this.data.timeSelect[e.detail.value].second}`
       }
     }).then(res => {
-      wx.hideLoading()
+      app.show('指令已下发,等待设备响应')
       this.getList()
     }).catch(err => {
-      wx.hideLoading()
-      app.show('启动失败')
+      if (err && (err == 'Can not send same command twice')) {
+        app.show('等待设备响应中')
+      } else {
+        app.show('启动失败')
+      }
     })
   },
   startTrackMode(){                 //开始追踪模式
@@ -244,18 +257,21 @@ Page({
         if (res.confirm) {
           app.showLoading('停止中')
           app.request({
-            url: `${app.api.setEqu}${app.nowCodeId}`,
-            method: 'put',
+            url: `${app.api.setEqu}${app.nowCodeId}/commands`,
+            method: 'POST',
             data: {
-              track_mode: 0,
-              track_mode_duration: 0
+              f:'6',
+              d:'0,0'
             }
           }).then(res => {
-            wx.hideLoading()
+            app.show('指令已下发,等待设备响应')
             this.getList()
           }).catch(err => {
-            wx.hideLoading()
-            app.show('停止失败')
+            if (err && (err == 'Can not send same command twice')) {
+              app.show('等待设备响应中')
+            } else {
+              app.show('停止失败')
+            }
           })
         }
       }
@@ -373,11 +389,20 @@ Page({
       if (JSON.stringify(data) !== "{}"){
         if (app.nowCodeList.filter(obj => obj.id == data.did).length){
           if ([0,1,2,3,4,5,6,7,8,9,10].indexOf(data.type)!==-1) {
-            wx.showToast({
-              title: JSON.parse(data.message).content,
-              icon: 'none',
-              duration: 3000
-            })
+            try{
+              wx.showToast({
+                title: JSON.parse(data.message).content,
+                icon: 'none',
+                duration: 3000
+              })
+            }catch(err){
+              wx.showToast({
+                title: data.message,
+                icon: 'none',
+                duration: 3000
+              })
+            }
+            
           }
         }
       }
@@ -386,12 +411,12 @@ Page({
       // this.getList()
     });
 
-    socket.on('D606-Warning', (data) => {
-      const n = JSON.parse(data)
-      console.log(data)
-      // console.log()
-      app.show(`设备${n.data.imei.substr(-4)}被打开了`)
-    });
+    // socket.on('D606-Warning', (data) => {
+    //   const n = JSON.parse(data)
+    //   console.log(data)
+    //   // console.log()
+    //   app.show(`设备${n.data.imei.substr(-4)}被打开了`)
+    // });
 
     // wx.connectSocket({
     //   url: `${app.api.api}`
