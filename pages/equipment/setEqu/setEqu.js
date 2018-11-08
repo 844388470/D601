@@ -16,7 +16,7 @@ Page({
     isAdmin:false,
     ismode:'',
     modeArray:[
-      { name: '标准模式', id: '0' }, { name: '性能模式', id: '1' }
+      { name: '标准模式', id: '0' }, { name: '性能模式', id: '1' }, { name: '自定义模式', id: '2' }
     ],
   },
 

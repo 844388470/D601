@@ -2,12 +2,20 @@
 <view class="content">
   <view class="positionMode" bindtap='setOneMode'>
     <view class="positionMode_title">标准模式</view>
-    <view class="positionMode_content">设备移动时,将以5min/次的频率获取定位</view>
+    <view class="positionMode_content">设备移动时,将以5分钟/次的频率获取定位</view>
     <image class="positionMode_image" src="../../../image/active.png" wx:if="{{active=='0'}}"></image>
   </view>
   <view class="positionMode" bindtap='setTwoMode'>
     <view class="positionMode_title">性能模式</view>
-    <view class="positionMode_content">设备移动时,将以2min/次的频率获取定位</view>
+    <view class="positionMode_content">设备移动时,将以2分钟/次的频率获取定位</view>
     <image class="positionMode_image" src="../../../image/active.png" wx:if="{{active=='1'}}"></image>
   </view>
+  <view class="positionMode" bindtap='setThreeMode'>
+    <view class="positionMode_title">自定义模式</view>
+    <view class="positionMode_content">自定义频率:{{time}}</view>
+    <image class="positionMode_image" src="../../../image/active.png" wx:if="{{active=='2'}}"></image>
+  </view>
+  <picker mode="multiSelector" bindchange="bindMultiPickerChange" value="{{listValue}}" range="{{list}}" range-key="name">
+    <view class="positionMode" style="font-size:26rpx;">点击设置自定义模式频率:{{timeValue}}</view>
+  </picker>
 </view>
