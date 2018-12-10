@@ -8,6 +8,7 @@ Page({
   data: {
     imei:'',
     setId:'',
+    screct:'',
     isSuccess:true,
     list: [
       { content: "", fieldName: "昵称" },
@@ -26,20 +27,24 @@ Page({
    */
   onLoad: function (options) {
     if(JSON.stringify(options)!=="{}"){
-      let imei = decodeURIComponent(options.q).split('?')[1].split('=')[1]
       this.setData({
-        imei: imei
+        imei: options.imei,
+        screct: options.screct
       })
-      this.getEquInfo(imei)
+      this.getEquInfo(options.imei)
     }else{
-      app.show('url有误')
+      app.show('设备码或者密钥有误')
     }
     
   },
 
   bindEqu(){
+    if(!this.data.setId){
+      app.show('设备码或者密钥有误，设备无效')
+      return
+    }
     wx.navigateTo({
-      url: `../../login/isLogin/isLogin?imei=${this.data.imei}&setId=${this.data.setId}`
+      url: `../isIdCard/isIdCard?imei=${this.data.imei}&setId=${this.data.setId}&screct=${this.data.screct}`
     })
   },
 
@@ -52,7 +57,7 @@ Page({
       appid: app.appid,
       dt: parseInt(new Date().getTime() / 1000),
       secret: app.secret,
-      deviceNo: id
+      deviceNo: id,
     }
     app.showLoading('获取宠物信息')
     app.request({
@@ -75,10 +80,10 @@ Page({
       }
     }).catch((err) => {
       app.hideLoading()
-      app.show('获取失败')
-      this.setData({
-        isSuccess: false
-      })
+      app.show('获取失败,设备码或者密钥有误')
+      // this.setData({
+      //   isSuccess: false
+      // })
     })
   },
 

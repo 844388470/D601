@@ -1,8 +1,5 @@
-import env from '../config.js'
-const config = {
-  zs:'https://api.cmpyun.com'
-};
-const api = config[env];
+
+const api = 'https://api.cmpyun.com';
 
 export default {
   // 获取坐标zszs
@@ -26,4 +23,6 @@ export default {
     addFence: `${api}/api/serviceAccept/saveWxFence`,       //新建围栏
     editFence: `${api}/api/serviceAccept/updateWxFence`,    //修改围栏
     deleteFence: `${api}/api/serviceAccept/deleteWxFence`,  //删除围栏
+    isRegister: `${api}/api/serviceAccept/queryIDcardIsRegister`,      //验证身份证
+    
 }

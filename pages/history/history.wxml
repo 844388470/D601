@@ -1,22 +1,22 @@
 <view class="content"  wx:if="{{true}}">
-    <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="deviceNickname">
+    <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="deviceNo">
       <view class="project flexc picker selector">
         <view class="fs28 pellipsis">{{indexs}}</view>
         <image class="iconfont" src='../../image/bottom.png'></image>
       </view>
     </picker>
-    <picker mode="date" bindchange="bindStartDate" class="width100">
+    <picker mode="multiSelector" value="{{dateTime}}" bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeList}}" bindcancel="cancelChangeDateTime">
       <view class="flexc">
-        <view class="selectTime">开始日期:</view>
+        <view class="selectTime">开始时间:</view>
         <view class="flex-flex selector tr flexr">
-            <view class="mr  tr width100 selectTime">{{startDate}}</view>
+            <view class="mr  tr width100 selectTime">{{dateTimeValue || '请点击选择时间'}}</view>
         </view>
         <view class=''>
           <view class='iconfont tako-icon-youjiantou-copy fs30 selectTime'></view>
         </view>
       </view>
     </picker>  
-    <picker mode="multiSelector" bindchange="bindStartTime" class="width100" range="{{lists}}" range-key="name" value="{{value1}}">
+    <!-- <picker mode="multiSelector" bindchange="bindStartTime" class="width100" range="{{lists}}" range-key="name" value="{{value1}}">
       <view class="flexc">
         <view class="selectTime">开始时间:</view>
         <view class="flex-flex selector tr flexr">
@@ -26,19 +26,19 @@
           <view class='iconfont tako-icon-youjiantou-copy fs30 selectTime'></view>
         </view>
       </view>
-    </picker>  
-    <picker mode="date" bindchange="bindEndDate" class="width100">
+    </picker>   -->
+    <picker mode="multiSelector" value="{{dateTime2}}" bindchange="changeDateTime2" bindcolumnchange="changeDateTimeColumn2" range="{{dateTimeList2}}" bindcancel="cancelChangeDateTime2">
       <view class="flexc">
-          <view class="selectTime flex-flex">结束日期:</view>
+          <view class="selectTime flex-flex">结束时间:</view>
           <view class="flex-flex selector tr flexr">
-              <view class="mr  tr width100 selectTime">{{endDate}}</view>
+              <view class="mr  tr width100 selectTime">{{dateTimeValue2 || '请点击选择时间'}}</view>
               <view class=''>
                 <view class='iconfont tako-icon-youjiantou-copy fs30 selectTime'></view>
               </view>
           </view>
       </view>
     </picker>  
-    <picker mode="multiSelector" bindchange="bindEndTime" class="width100" range="{{lists}}" range-key="name" value="{{value2}}">
+    <!-- <picker mode="multiSelector" bindchange="bindEndTime" class="width100" range="{{lists}}" range-key="name" value="{{value2}}">
       <view class="flexc">
         <view class="selectTime">结束时间:</view>
         <view class="flex-flex selector tr flexr">
@@ -48,6 +48,6 @@
           <view class='iconfont tako-icon-youjiantou-copy fs30 selectTime'></view>
         </view>
       </view>
-    </picker> 
+    </picker>  -->
     <view class="btn" bindtap='goChaXun'>查询</view>
 </view>

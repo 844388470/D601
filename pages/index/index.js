@@ -116,7 +116,7 @@ Page({
   },
   setSelectName(){                                              //设置当前设备的名称
     this.setData({
-      indexs: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'deviceNo', 'deviceNickname'),
+      indexs: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'deviceNo', 'deviceNo').substr(-4),
       array: app.nowCodeList
     })
   },

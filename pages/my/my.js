@@ -32,11 +32,15 @@ Page({
     })
   },
 
-  onShow(){
-    this.setData({
-      imgSrc: wx.getStorageSync('userInfo').imgAdress,
-      name: wx.getStorageSync('userInfo').nickName,
-      equArray: app.nowCodeList
+  onShow(){ 
+    this.setData({ 
+      imgSrc: wx.getStorageSync('userInfo').imgAdress, 
+      name: wx.getStorageSync('userInfo').nickName, 
+      equArray: app.nowCodeList.map(x => ({ 
+          ...x, 
+          nickName: '设备'+x.deviceNo.substr(-4), 
+          petName: x.customFieldList.filter(y => y.fieldId == 80)[0].content 
+      }))
     })
   }
 })

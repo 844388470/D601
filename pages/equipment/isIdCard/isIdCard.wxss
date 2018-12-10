@@ -1,0 +1,2 @@
+/* pages/equipment/isIdCard/isIdCard.wxss */
+@import '../addEqu/addEqu.wxss'

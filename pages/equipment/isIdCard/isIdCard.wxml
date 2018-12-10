@@ -1,0 +1,37 @@
+
+<view class="content">
+  <view class="register">
+    <view class="register_left">
+      <text class="register_left_text">设备码</text>
+    </view>
+    <view class="register_right">
+      <input class='register_right_title' type='text' placeholder='请扫描二维码' value='{{imei}}' cursor-spacing='110' bindinput='getInputCode'></input>
+      <image class='register_saoma' src="../../../image/saoma.png" bindtap='saoma'></image>
+    </view>
+  </view>
+  <view class="register">
+    <view class="register_left">
+      <text class="register_left_text">密钥</text>
+    </view>
+    <view class="register_right">
+      <input class='register_right_title' type='text' placeholder='请输入绑定密钥' value='{{screct}}' cursor-spacing='110' bindinput='getInputKey'></input>
+    </view>
+  </view>
+  <view class="register">
+    <view class="register_left">
+      <text class="register_left_text">身份证</text>
+    </view>
+    <view class="register_right">
+      <input class='register_right_title' type='text' placeholder='请输入身份证' value='{{idCard}}' cursor-spacing='110' bindinput='changeIdCard'></input>
+    </view>
+  </view>
+
+  <view class="btn" bindtap='judge'>验证</view>
+  <view class='record'>
+    <text class='record_title'>Tips:</text>
+    <text class='record_text'>
+    1、设备绑定密钥请查看设备说明书或向其他已绑定此设备的用户索取。</text>
+    <text class='record_text'>
+    2、购买设备时预留的身份证号码用于身份验证。</text>
+  </view>
+</view>

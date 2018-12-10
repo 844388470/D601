@@ -24,6 +24,16 @@ Page({
     }
   },
 
+  query(){
+    if (this.data.inputCode==''){
+      app.show('设备码不得为空')
+      return 
+    }
+    wx.navigateTo({
+      url: `../equInfo/equInfo?imei=${this.data.inputCode}&screct=${this.data.inputKey}`
+    })
+  },
+
   getEquSerect(imei,id){
     const data = {
       appid: app.appid,
@@ -110,7 +120,6 @@ Page({
       secret: app.secret,
       openid: wx.getStorageSync('openid'),
       deviceNo: this.data.inputCode,
-      // imei: this.data.inputCode,
       deviceSerect: this.data.inputKey,
     }
     app.showLoading('绑定中')

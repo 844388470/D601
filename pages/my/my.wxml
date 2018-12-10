@@ -35,7 +35,7 @@
       </view>
     </view>
     <view class='count_list' bindtap='goSetEqu'  wx:for="{{equArray}}" wx:key="id" data-index='{{index}}'>
-      <view class="count_list_left" data-index='{{index}}'>{{item.deviceNickname}}</view>
+      <view class="count_list_left" data-index='{{index}}'>{{item.nickName+'——'+item.petName}}</view>
       <view class="count_list_right" data-index='{{index}}'>
         <!-- <image class='count_list_right_electricMax' src='../../image/electricMax.png'></image>
         <text class='count_list_right_text'>100%</text>  -->

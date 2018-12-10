@@ -14,7 +14,8 @@
     "pages/motion/motion",
     "pages/history/history",
     "pages/map/map",
-    "pages/equipment/qrCode/qrCode"
+    "pages/equipment/qrCode/qrCode",
+    "pages/equipment/isIdCard/isIdCard"
   ],
   "window": {
     "backgroundTextStyle": "light",

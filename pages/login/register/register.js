@@ -145,13 +145,14 @@ Page({
     } else if (this.data.inputName == ''){
       app.show('请输入真实姓名')
       return
-    } else if (this.data.inputHeight == ''){
-      app.show('请输入身高')
-      return
-    } else if (this.data.inputWidth == ''){
-      app.show('请输入体重')
-      return
     }
+    //  else if (this.data.inputHeight == ''){
+    //   app.show('请输入身高')
+    //   return
+    // } else if (this.data.inputWidth == ''){
+    //   app.show('请输入体重')
+    //   return
+    // }
     const data = {
       appid: app.appid,
       dt: parseInt(new Date().getTime() / 1000),

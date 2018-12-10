@@ -62,9 +62,9 @@ const filterIdName = (arr, id, idname = 'id',name='name') => {
   return n.length !== 0 ? n[0][name]:''
 }
 
-const getsign = (obj) => {
+const getsign = (obj,isTwo) => {
   let arr=[]
-  let str=''
+  let str='',strs=''
   for(let i in obj){
     if(obj[i]){
       arr.push(i)
@@ -78,8 +78,14 @@ const getsign = (obj) => {
   })
   for(let i of arr){
     str += str ? `&${i}=${obj[i]}` : `${i}=${obj[i]}`
+    if (i =='random'){
+      strs = 'random' + obj[i] + strs
+    }else{
+      strs += `${i}${obj[i]}`
+    }
+    
   }
-  return str +'&appSecret=5Ktul9tEP2'
+  return isTwo ? (strs+'220feed5b40df54311c92a18bce97d7e'):(str +'&appSecret=5Ktul9tEP2')
 }
 
 module.exports = {

@@ -1,43 +1,43 @@
-
+var dateTimePicker = require('../../utils/timeUtil.js');
 const app = getApp();
-const hour = []
-const minute = []
-const second = []
-
-for (let i = 0; i <= 23; i++) {
-  hour.push({ value: i, name: (i > 9 ? i : '0' + i) })
-}
-
-for (let i = 0; i <= 59; i++) {
-  minute.push({ value: i, name: (i > 9 ? i : '0' + i) })
-}
-
-for (let i = 0; i <= 59; i++) {
-  second.push({ value: i, name: (i > 9 ? i : '0' + i) })
-}
 Page({
   data: {
     array: [],
     indexs: '',
     model: '',
-    startDate: app.util.formatTime(new Date()).substring(0, 10),
-    startTime: '00:00:00',
-    endDate: app.util.formatTime(new Date()).substring(0, 10),
-    endTime: '23:59:59',
+    dateTimeList: null,
+    dateTimeValue: null,
+    dateTime: null,
+    dateTimeZ: null,
+    dateTimeList2: null,
+    dateTimeValue2: null,
+    dateTime2: null,
+    dateTimeZ2: null,
     setTime: null,
     page: 1,
-    lists: [hour, minute, second],
-    value1: [0, 0, 0],
-    value2: [23, 59, 59]
   },
+
   onShow() {
     this.setSelectName()
   },
+
   onHide() {
     
   },
+
   onLoad() {
-    
+    var arr = dateTimePicker.dateTimePicker().dateTime, dateArr = dateTimePicker.dateTimePicker().dateTimeArray;
+    var arr1 = [arr[0], arr[1], arr[2], 0, 0, 0], arr2 = [arr[0], arr[1], arr[2], 23, 59, 59]
+    this.setData({
+      dateTime: arr1,
+      dateTimeZ: arr1,
+      dateTimeList: dateArr,
+      dateTimeValue: `${dateArr[0][arr1[0]]}-${dateArr[1][arr1[1]]}-${dateArr[2][arr1[2]]} 00:00:00`,
+      dateTime2: arr2,
+      dateTimeZ2: arr2,
+      dateTimeList2: dateArr,
+      dateTimeValue2: `${dateArr[0][arr2[0]]}-${dateArr[1][arr2[1]]}-${dateArr[2][arr2[2]]} 23:59:59`,
+    });
   },
 
   
@@ -50,37 +50,59 @@ Page({
     this.setSelectName()
   },
 
-  bindStartDate(e) {
+  changeDateTime(e) {
+    var arr = e.detail.value, dateArr = this.data.dateTimeList;
     this.setData({
-      startDate: app.util.formatTime(e.detail.value).substring(0, 10)
+      dateTime: e.detail.value,
+      dateTimeZ: e.detail.value,
+      dateTimeValue: `${dateArr[0][arr[0]]}-${dateArr[1][arr[1]]}-${dateArr[2][arr[2]]} ${dateArr[3][arr[3]]}:${dateArr[4][arr[4]]}:${dateArr[5][arr[5]]}`
+    });
+  },
+
+  cancelChangeDateTime() {
+    this.setData({
+      dateTime: this.data.dateTimeZ
     })
   },
 
-  bindStartTime(e) {
-    let [i, j, k] = [...e.detail.value]
+  changeDateTimeColumn(e) {
+    var arr = this.data.dateTime, dateArr = this.data.dateTimeList;
+
+    arr[e.detail.column] = e.detail.value;
+    dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
     this.setData({
-      startTime: `${i > 9 ? i : '0' + i}:${j > 9 ? j : '0' + j}:${k > 9 ? k : '0' + k}`,
-      value1: e.detail.value
+      dateTimeList: dateArr,
+    });
+  },
+
+  changeDateTime2(e) {
+    var arr = e.detail.value, dateArr = this.data.dateTimeList2;
+    this.setData({
+      dateTime2: e.detail.value,
+      dateTimeZ2: e.detail.value,
+      dateTimeValue2: `${dateArr[0][arr[0]]}-${dateArr[1][arr[1]]}-${dateArr[2][arr[2]]} ${dateArr[3][arr[3]]}:${dateArr[4][arr[4]]}:${dateArr[5][arr[5]]}`
+    });
+  },
+
+  cancelChangeDateTime2() {
+    this.setData({
+      dateTime2: this.data.dateTimeZ2
     })
   },
 
-  bindEndDate(e) {
-    this.setData({
-      endDate: app.util.formatTime(e.detail.value).substring(0, 10)
-    })
-  },
+  changeDateTimeColumn2(e) {
+    var arr = this.data.dateTime2, dateArr = this.data.dateTimeList2;
 
-  bindEndTime(e) {
-    let [i, j, k] = [...e.detail.value]
+    arr[e.detail.column] = e.detail.value;
+    dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
     this.setData({
-      endTime: `${i > 9 ? i : '0' + i}:${j > 9 ? j : '0' + j}:${k > 9 ? k : '0' + k}`,
-      value2: e.detail.value
-    })
+      dateTimeList2: dateArr,
+    });
   },
 
   setSelectName() {                                                  //设置当前设备的名称
     this.setData({
-      indexs: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'deviceNo', 'deviceNickname'),
+      indexs: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'deviceNo', 'deviceNo').substr(-4),
       array: app.nowCodeList
     })
   },
@@ -93,15 +115,15 @@ Page({
       })
       return
     }
-    if (new Date(`${this.data.startDate} ${this.data.startTime}`).getTime() > new Date(`${this.data.endDate} ${this.data.endTime}`).getTime()) {
+    if (new Date(`${this.data.dateTimeValue}`).getTime() > new Date(`${this.data.dateTimeValue2}`).getTime()) {
       wx.showToast({
         title: '开始时间不得大于结束时间',
         icon: 'none'
       })
       return
     }
-    const start = this.data.startDate.split('-').join('') + this.data.startTime.split(':').join('')
-    const end = this.data.endDate.split('-').join('') + this.data.endTime.split(':').join('')
+    const start = this.data.dateTimeValue.split('-').join('').split(':').join('').split(' ').join('')
+    const end = this.data.dateTimeValue2.split('-').join('').split(':').join('').split(' ').join('')
     wx.navigateTo({
       url: `../map/map?start=${start}&end=${end}`
     })
