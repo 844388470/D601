@@ -54,7 +54,7 @@ Page({
   },
   getIndex(){                                                   //获取位置
     this.deleteTimeoutFn()
-    app.showLoading('获取位置')
+    // app.showLoading('获取位置')
     app.request({
       url: `${app.api.getIndex}${app.nowCodeId}/latest`,
       method: 'GET'
@@ -76,7 +76,7 @@ Page({
             }
           })
           this.addTimeoutFn()
-          app.hideLoading()
+          // app.hideLoading()
         })
       }else{
         app.show('经纬度为空，获取地址失败')
@@ -385,6 +385,7 @@ Page({
     });
 
     socket.on('messages', (data) => {
+      console.log(data)
       const  n  = data
       if (JSON.stringify(data) !== "{}"){
         if (app.nowCodeList.filter(obj => obj.id == data.did).length){
@@ -393,13 +394,13 @@ Page({
               wx.showToast({
                 title: JSON.parse(data.message).content,
                 icon: 'none',
-                duration: 3000
+                duration: 10000
               })
             }catch(err){
               wx.showToast({
                 title: data.message,
                 icon: 'none',
-                duration: 3000
+                duration: 10000
               })
             }
             
