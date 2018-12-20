@@ -64,6 +64,8 @@ Page({
       }
       if (res.code === 0 && res.longitude && res.latitude) {
         app.mapApi([{ longitude: res.longitude, latitude: res.latitude }]).then(ress => {
+          this.deleteTimeoutFn()
+          this.deleteTimeout()
           this.setData({
             markerDatas: [{ latitude: res.latitude, longitude: res.longitude, iconPath: '../../image/map_index.png', width: 40, height: 50, anchor: { x: 0.5, y: 0.7 } }],
             latitude: res.latitude,
