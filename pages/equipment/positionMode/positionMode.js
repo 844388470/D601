@@ -1,5 +1,6 @@
 // pages/equipment/positionMode/positionMode.js
 const app=getApp();
+var timer=null;
 let list=[[],[],[],[]]
 for(let i=0;i<31;i++){
   list[0].push({
@@ -40,11 +41,20 @@ Page({
   },
 
   bindMultiPickerChange: function (e) {
+    var data = e.detail.value
     if (!this.data.isAdmin) {
       app.show('无修改权限')
       this.setData({
         listValue: this.data.listValue,
-        timeValue: this.filterTime(this.data.listValue, 'arrFilStr'),
+      //   timeValue: this.filterTime(this.data.listValue, 'arrFilStr'),
+      })
+      return
+    }
+    if (data[0] + data[1] + data[2] + data[3] == 0){
+      app.show('频率不得为0')
+      this.setData({
+        listValue: this.data.listValue,
+        // timeValue: this.filterTime(this.data.listValue, 'arrFilStr'),
       })
       return
     }
@@ -53,6 +63,7 @@ Page({
     }else{
       this.setData({
         listValue: e.detail.value,
+        time: this.filterTime(e.detail.value, 'arrFilStr'),
         timeValue: this.filterTime(e.detail.value,'arrFilStr'),
       })
     }
@@ -62,6 +73,7 @@ Page({
   onLoad: function (options) {
     this.setActive()
     this.isAdmin()
+    this.timer()
   },
 
   isAdmin() {
@@ -72,20 +84,27 @@ Page({
     }
   },
 
-  setActive(){
-    this.setData({
-      active: app.nowCodeList[app.equIndex].locate_mode,
-      time: this.filterTime(app.nowCodeList[app.equIndex].locate_time,'numFilStr'),
-      timeValue: this.filterTime(app.nowCodeList[app.equIndex].locate_time, 'numFilStr'),
-      listValue: this.filterTime(app.nowCodeList[app.equIndex].locate_time, 'numFilArr')
-    })
+  setActive(status){
+    if (status){
+      this.setData({
+        active: app.nowCodeList[app.equIndex].locate_mode,
+        time: this.filterTime(app.nowCodeList[app.equIndex].locate_time, 'numFilStr'),
+      })
+    }else{
+      this.setData({
+        active: app.nowCodeList[app.equIndex].locate_mode,
+        time: this.filterTime(app.nowCodeList[app.equIndex].locate_time, 'numFilStr'),
+        timeValue: this.filterTime(app.nowCodeList[app.equIndex].locate_time, 'numFilStr'),
+        listValue: this.filterTime(app.nowCodeList[app.equIndex].locate_time, 'numFilArr')
+      })
+    }
   },
 
   filterTime(data,types='str'){
     if(types=='arrFilStr'){
-      if (data[0] + data[1] + data[2] + data[3]==0){
-        return '不上传'
-      }
+      // if (data[0] + data[1] + data[2] + data[3]==0){
+      //   return '不上传'
+      // }
       return `${data[0]}天${data[1]}小时${data[2]}分钟${data[3]}秒/次`
     } else if (types == 'arrFilNum'){
       return data[0] * 86400 + data[1] *3600  + data[2] * 60 + data[3]
@@ -100,9 +119,9 @@ Page({
       s = data % 60
       return [Number(d), Number(h), Number(m), Number(s)]
     } else if (types == 'numFilStr') {
-      if (!data) {
-        return '不上传'
-      }
+      // if (!data) {
+      //   return '不上传'
+      // }
       let d, h, m, s
       d = Math.floor(data / 86400)
       h = Math.floor(data % 86400 / 3600)
@@ -113,8 +132,13 @@ Page({
   },
 
   setThreeMode(){
+    var data = this.data.listValue
     if (!this.data.isAdmin) {
       app.show('无权限')
+      return
+    }
+    if (data[0] + data[1] + data[2] + data[3] == 0) {
+      app.show('频率不得为0')
       return
     }
     if (app.nowCodeList[app.equIndex].locate_mode === 2) {
@@ -176,6 +200,35 @@ Page({
       return
     }
     this.editMode(1)
-  }
-  
+  },
+
+  timer(){
+    timer=setTimeout( ()=>{ 
+      app.request({
+        url: app.api.getEquList,
+        method: 'GET'
+      }).then((arr) => {
+        if (arr.length) {
+          app.nowCodeList = arr
+          this.setActive(true)
+          this.isAdmin()
+          this.timer()
+        } else {
+          app.nowCodeList = arr
+          wx.reLaunch({
+            url: '../addEqu/addEqu'
+          })
+        }
+      }).catch((err) => {
+
+      })
+    }, 20000);
+  },
+  onHide: function () {
+    
+  },
+  onUnload: function () {
+    clearTimeout(timer)
+    timer = null
+  },
 })

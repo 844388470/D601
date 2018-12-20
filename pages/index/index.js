@@ -385,7 +385,6 @@ Page({
     });
 
     socket.on('messages', (data) => {
-      console.log(data)
       const  n  = data
       if (JSON.stringify(data) !== "{}"){
         if (app.nowCodeList.filter(obj => obj.id == data.did).length){
