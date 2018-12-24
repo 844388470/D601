@@ -17,12 +17,12 @@ Page({
    */
   onShow() {
     this.isReturnIndex()
-    this.startTime()
-    this.addTimeout()
+    // this.startTime()
+    // this.addTimeout()
   },
   onHide(){
-    this.endTime()
-    this.deleteTimeout()
+    // this.endTime()
+    // this.deleteTimeout()
   },
   onLoad() {
     

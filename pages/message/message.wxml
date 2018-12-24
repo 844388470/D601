@@ -1,10 +1,15 @@
 <view class="content">
-  <picker mode="selector" bindchange="bindPickerChange" range="{{array}}" range-key="name">
-    <view class="project flexc picker selector">
-      <view class="fs28 pellipsis">{{indexs}}</view>
-      <image class="iconfont" src='../../image/bottom.png'></image>
+  <view class="head">
+    <picker mode="selector" class="picker" bindchange="bindPickerChange" range="{{array}}" range-key="name">
+      <view class="project flexc picker selector">
+        <view class="fs28 pellipsis">{{indexs}}</view>
+        <image class="iconfont" src='../../image/bottom.png'></image>
+      </view>
+    </picker>
+    <view class="refresh"  bindtap='getList'>
+      <image class="refresh_image" src='../../image/refresh.png'></image>
     </view>
-  </picker>
+  </view>
   <text wx:if="{{list.length===0}}" class="zero">无消息</text> 
   <view class="message" wx:for="{{list}}" wx:key="time" >
     <view class="message_time">{{item.time}}</view>

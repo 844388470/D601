@@ -123,7 +123,8 @@
   margin-bottom: 25rpx;
   position: relative;
   margin-left:230rpx;
-  margin-right: 230rpx;
+  /* margin-right: 230rpx; */
+  width:290rpx;
   height:60rpx;
   background-color:#02ad00;
   border-radius:30rpx;
@@ -145,4 +146,28 @@
   color: #a9a9a9;
   font-size: 22rpx;
   text-align: center;
+}
+
+.picker{
+  display: inline-block;
+}
+
+.refresh{
+  position: absolute;
+  width: 120rpx;
+  height: 71rpx;
+  /* background-color:#02ad00; */
+  border-radius:50%;
+  top: 23rpx;
+  right: 80rpx;
+  text-align: center;
+}
+
+.refresh image{
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.head{
+  position: relative;
 }
