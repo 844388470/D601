@@ -228,7 +228,8 @@ Page({
       method: 'post',
       data: {
         f:'6',
-        d: `1,${this.data.timeSelect[e.detail.value].second}`
+        d: `1,${this.data.timeSelect[e.detail.value].second}`,
+        expireTime:'86400'
       }
     }).then(res => {
       app.show('指令已下发,等待设备响应')
@@ -261,7 +262,8 @@ Page({
             method: 'POST',
             data: {
               f:'6',
-              d:'0,0'
+              d:'0,0',
+              expireTime: '86400'
             }
           }).then(res => {
             app.show('指令已下发,等待设备响应')

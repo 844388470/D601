@@ -165,7 +165,8 @@ Page({
       method: 'POST',
       data: {
         f:'5',
-        d: value == 2 ? `${value},${this.filterTime(listValue || this.data.listValue, 'arrFilNum')}`:`${value}`
+        d: value == 2 ? `${value},${this.filterTime(listValue || this.data.listValue, 'arrFilNum')}`:`${value}`,
+        expireTime: '86400'
       }
     }).then(res => {
       app.show('指令已下发,等待设备响应')
