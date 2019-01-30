@@ -4,50 +4,6 @@ import api from './config/api.js'
 import request from './utils/request.js'
 import { filterCooName, getAddressList, getDistance} from './utils/mapApi.js'
 App({
-  onLaunch: function (options) {
-    // wx.checkSession({
-    //   success: () => {
-    //     const openid = wx.getStorageSync('openid');
-    //     if (openid) {
-    //       wx.reLaunch({
-    //         url: `../../login/signIn/signIn`
-    //       })
-    //     } else {
-    //       this.getLoginCode();
-    //     }
-    //   },
-    //   fail: () => {
-    //     this.getLoginCode(); //重新登录
-    //   }
-    // })
-  },
-  getLoginCode: function () {
-    // wx.login({
-    //   success: res => {
-    //     request({ 
-    //       url: `${api.getLoginCode}`,
-    //       data: { code: res.code },
-    //       method:'post'  
-    //     }).then(data=>{
-    //       wx.setStorageSync('id', data.id);
-    //       wx.setStorageSync('openid', data.openid);
-    //       wx.setStorageSync('token', data.token);
-    //       wx.reLaunch({
-    //         url: `../../login/signIn/signIn`
-    //       })
-    //     })
-    //   }
-    // })
-  },
-
-
-  onShow: function (options) {
-    console.log('show')
-  },
-
-  onHide: function () {
-    console.log('hide')
-  },
 
   onError: function (msg) {
     console.log(msg)

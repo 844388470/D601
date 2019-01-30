@@ -13,9 +13,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.isLogin()
+  },
+
+  isLogin(){
     app.showLoading('验证中')
     wx.checkSession({
       success: () => {
+        wx.hideLoading()
         const openid = wx.getStorageSync('openid');
         if (openid) {
           this.setInitial()
@@ -26,6 +31,7 @@ Page({
         }
       },
       fail: () => {
+        wx.hideLoading()
         wx.reLaunch({
           url: `../signIn/signIn`
         })
@@ -49,7 +55,6 @@ Page({
         })
       }
     }).catch((err)=>{
-      wx.hideLoading()
       app.show('验证失败,请重试！')
       this.setData({
         isRetry:true
@@ -69,57 +74,6 @@ Page({
       url: app.api.getUserDetails,
       method: 'GET'
     })
-  },
-
-  retry(option){
-    
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
+
 })

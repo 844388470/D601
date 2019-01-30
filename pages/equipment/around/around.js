@@ -1,4 +1,5 @@
 // pages/equipment/around/around.js
+import { downTime } from '../../../config'
 const app=getApp()
 Page({
   /**
@@ -167,7 +168,7 @@ Page({
       data: {
         f:'4',
         d: JSON.stringify(resList),
-        expireTime: '86400'
+        expireTime: downTime
       }
     }).then(res => {
       app.show('指令已下发,等待设备响应')

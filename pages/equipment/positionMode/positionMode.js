@@ -1,4 +1,5 @@
 // pages/equipment/positionMode/positionMode.js
+import {downTime} from '../../../config'
 const app=getApp();
 var timer=null;
 let list=[[],[],[],[]]
@@ -166,7 +167,7 @@ Page({
       data: {
         f:'5',
         d: value == 2 ? `${value},${this.filterTime(listValue || this.data.listValue, 'arrFilNum')}`:`${value}`,
-        expireTime: '86400'
+        expireTime: downTime
       }
     }).then(res => {
       app.show('指令已下发,等待设备响应')

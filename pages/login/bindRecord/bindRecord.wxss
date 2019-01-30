@@ -6,6 +6,7 @@
   padding: 27rpx;
   font-size: 28rpx;
   color: #9397aa;
+  text-indent: 56rpx;
 }
 
 .main{

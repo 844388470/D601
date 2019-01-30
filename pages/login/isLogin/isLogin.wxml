@@ -1,2 +1,2 @@
 <!--pages/login/isLogin/isLogin.wxml-->
-<button class='btn shouquan' bindgetuserinfo='retry' open-type="getUserInfo" wx:if="{{isRetry}}">重试</button>
+<button class='btn shouquan' bindtap='isLogin' wx:if="{{isRetry}}">重试</button>

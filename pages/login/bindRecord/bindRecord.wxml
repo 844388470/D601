@@ -1,11 +1,10 @@
 <!--pages/login/bindRecord/bindRecord.wxml-->
 <view class='content'>
-  <view class='title'>请在1小时以内完成绑定，否则绑定请求将过期。需再次尝试提交绑定请求。部分设备会需要管理员确认通过才能被绑定。可以及时与设备管理员联系</view>
+  <view class='title'>绑定设备成功后，无法定位时请检查设备。若提示请在1小时以内完成绑定，否则绑定请求将过期。需再次尝试提交绑定请求。部分设备会需要管理员确认通过才能被绑定。可以及时与设备管理员联系</view>
   <view class='main'>
     <view class='main_list' wx:for="{{list}}" wx:key="id">
       <text class='main_list_left'>{{item.model}} {{item.name}}</text>
-      <text class='main_list_right'>{{item.status=='1'?'等待设备响应':(item.status=='2'?'绑定超时':(item.status=='3'?'等待管理员确认':(item.status=='5'?'管理员拒绝':(item.status=='9'?'绑定成功':'接口出现问题'))))}}</text>
-      <text wx:if="{{item.status=='3'}}" class="btn" bindtap='deleteBind' data-id='{{item.id}}'>取消</text>
+      <text class='main_list_right'>{{item.status=='1'?'等待设备响应':(item.status=='2'?'绑定超时':(item.status=='3'?'等待管理员确认':(item.status=='5'?'管理员拒绝':(item.status=='9'?'绑定成功':'异常'))))}}</text>
     </view>
   </view>
 </view>

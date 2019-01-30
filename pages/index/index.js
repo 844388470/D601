@@ -1,7 +1,7 @@
 // pages/find/find.js
 import io from '../../socketIo/socket.io-mp.js'
+import { downTime } from '../../config'
 const app = getApp();
-
 Page({
   data: {
     isFirst:true,
@@ -229,7 +229,7 @@ Page({
       data: {
         f:'6',
         d: `1,${this.data.timeSelect[e.detail.value].second}`,
-        expireTime:'86400'
+        expireTime: downTime
       }
     }).then(res => {
       app.show('指令已下发,等待设备响应')
@@ -263,7 +263,7 @@ Page({
             data: {
               f:'6',
               d:'0,0',
-              expireTime: '86400'
+              expireTime: downTime
             }
           }).then(res => {
             app.show('指令已下发,等待设备响应')
@@ -408,24 +408,7 @@ Page({
           }
         }
       }
-      // app.messageState=true
-      // console.log(n)
-      // this.getList()
     });
-
-    // socket.on('D606-Warning', (data) => {
-    //   const n = JSON.parse(data)
-    //   console.log(data)
-    //   // console.log()
-    //   app.show(`设备${n.data.imei.substr(-4)}被打开了`)
-    // });
-
-    // wx.connectSocket({
-    //   url: `${app.api.api}`
-    // })
-    // wx.onSocketMessage((res)=>{
-    //   console.log(res)
-    // })
   },
   onShow() {
     this.isReturnIndex()

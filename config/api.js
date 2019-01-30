@@ -1,9 +1,10 @@
-import env from '../config.js'
+import { server } from '../config.js'
 const config = {
-  dev: "https://tapi.rinlink.com",
-  zs:'https://api.rinlink.com'
+  dev: "https://tapi.rinlink.com",  //测试服域名
+  zs: 'https://api.rinlink.com'  //正式服域名
 };
-const api = config[env];
+
+const api = config[server];
 
 export default function(){
   // 获取坐标zszs

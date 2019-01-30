@@ -1,7 +1,8 @@
 import QQMapWX from './qqmap-wx-jssdk.min.js'
+import { mapKey } from '../config'
 var qqmapsdk;
 qqmapsdk = new QQMapWX({
-  key: '5RBBZ-ANHWW-APHRT-OUNY7-UDIZK-LBB7K'
+  key: mapKey
 })
 
 // const filterCooName = (lng, lat) => {
