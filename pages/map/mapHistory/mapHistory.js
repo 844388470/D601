@@ -72,15 +72,15 @@ Page({
         for(let i=0;i<list.length;i++){
           if(i==0){
             list[i]={
-             latitude: list[0].latitude, longitude: list[0].longitude, iconPath: '../../../image/map_index.png', width: 40, height: 50, anchor: { x: 0.5, y: 0.7 } 
+              latitude: list[0].latitude, longitude: list[0].longitude, iconPath: '../../../image/message_index.png', width: 22, height: 30, anchor: { x: 0.5, y: 1 } 
             }
           }else if(i==list.length-1){
             list[i]={
-              latitude: list[i].latitude, longitude: list[i].longitude, iconPath: '../../../image/map_index_h.png', width: 40, height: 50, anchor: { x: 0.5, y: 0.7 } 
+              latitude: list[i].latitude, longitude: list[i].longitude, iconPath: '../../../image/message_indexs.png', width: 22, height: 30, anchor: { x: 0.5, y: 1 } 
             }
           }else{
             list[i] = {
-              latitude: list[i].latitude, longitude: list[i].longitude, iconPath: '../../../image/yuan.png', width: 12, height: 12, anchor: { x: 0.5, y: 0.5}
+              latitude: list[i].latitude, longitude: list[i].longitude, iconPath: '../../../image/yuan.png', width: 10, height: 10, anchor: { x: 0.5, y: 0.5}
             }
           }
         }
@@ -91,19 +91,19 @@ Page({
             longitude: list[0].longitude,
             latitude: list[0].latitude,
             timeFnNumber: `${res[0].eventTime.substr(11, 8)}-${res[res.length-1].eventTime.substr(11, 8)}`,
-            polyline: [{
-              points: list,
-              color: '#02ad00',
-              arrowLine:true,
-              width: 3,
-            }],
+            // polyline: [{
+            //   points: list,
+            //   color: '#02ad00',
+            //   arrowLine:true,
+            //   width: 3,
+            // }],
             startName: ress[0],
             endName: ress[1],
             markerDatas: list,
           })
         })
         this.getdistance(list)
-        // this.getDistanceList(list)
+        this.getDistanceList(list)
         // this.distances(list[0],list[1])
         wx.hideLoading()
       // }).catch(err => {
@@ -118,7 +118,7 @@ Page({
 
   getdistance(list){
     const res = this.getDistanceList(list)
-    const bushu = res / (1.7 * 0.45)
+    const bushu = app.globalData.userInfo.height ? (res / (app.globalData.userInfo.height * 0.45)):0
     this.setData({
       distance: (res/1000).toFixed(2),
       kalu: (bushu * 0.5 / 1000).toFixed(2),

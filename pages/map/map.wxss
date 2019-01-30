@@ -1,2 +1,30 @@
 /* pages/map/map.wxss */
-@import "mapHistory/mapHistory.wxss";
+@import "../index/index.wxss";
+  .jilu{
+  padding: 15rpx 20rpx 20rpx;
+} 
+.jilu .flexspace{
+  border-bottom: 1rpx solid #9c9;
+  padding:10rpx;
+}
+.jilu .circle {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #CC9999;
+  margin-right:20rpx;
+}
+.jilu .green{
+  background-color: #99CC99;
+}
+.jilu .address{
+  padding:15rpx 0;
+}
+
+.jilu .address .flexl:first-child{
+  margin-bottom:15rpx;
+}
+.jilu .mt{
+  margin-top:0;
+} 

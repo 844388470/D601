@@ -34,7 +34,7 @@ Page({
     duration:'',                      //持续时长
     countdowns:'',                    //追踪模式倒计时显示
     sosState:false,
-    mode:'',
+    mode:true,
   },
   onLoad(){
     this.startSocket()
@@ -68,7 +68,7 @@ Page({
           this.addTimeoutFn()
         })
       }else{
-        app.show('获取失败')
+        app.show('电信返回为空')
         return Promise.reject()
       }
     }).catch(err => {
@@ -314,12 +314,12 @@ Page({
     let socket = io(`${app.api.api}`)
 
     socket.on('connect', ()=> {
-      console.log('已连接',new Date());
+      console.log('已连接');
       this.getList()
     });
 
     socket.on('connecting', function () {
-      console.log('连接中', new Date());
+      console.log('连接中');
     });
 
     socket.on('connected', function () {
@@ -331,27 +331,27 @@ Page({
     });
 
     socket.on('disconnect', function () {
-      console.log("已断开", new Date());
+      console.log("已断开");
     });
 
     socket.on('connect_failed', function () {
-      console.log('连接失败', new Date());
+      console.log('连接失败');
     });
 
     socket.on('error', function () {
-      console.log('发生错误', new Date());
+      console.log('发生错误');
     });
 
     socket.on('reconnecting', function () {
-      console.log('正在重连', new Date());
+      console.log('正在重连');
     });
 
     socket.on('reconnect', function () {
-      console.log('重连成功', new Date());
+      console.log('重连成功');
     });
 
     socket.on('reconnect_failed', function () {
-      console.log('重连失败', new Date());
+      console.log('重连失败');
     });
 
     socket.on('messages', (data) => {
@@ -359,7 +359,7 @@ Page({
       if (JSON.stringify(data) == "{}"){
         
       }else{
-        if (app.nowCodeList.filter(obj => obj.id == data.did).length){
+        if (app.nowCodeList.filter(obj => obj.id == data.did)){
           if (data.type == 2 || data.type == 3 || data.type == 4 || data.type == 5 ) {
             app.show(data.message)
           }else{

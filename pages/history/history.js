@@ -10,7 +10,7 @@ Page({
     endDate: app.util.formatTime(new Date()).substring(0, 10),
     endTime: '23:59',
     setTime:null,
-    page:1,
+    page:1
   },
   onShow() {
     this.isReturnIndex()
@@ -34,7 +34,7 @@ Page({
 
   bindStartDate(e){
     this.setData({
-      startDate: app.util.formatTime(e.detail.value).substring(0, 10)
+      startDate: e.detail.value
     })
   },
 
@@ -46,7 +46,7 @@ Page({
 
   bindEndDate(e) {
     this.setData({
-      endDate: app.util.formatTime(e.detail.value).substring(0, 10)
+      endDate: e.detail.value
     })
   },
 
@@ -65,9 +65,7 @@ Page({
   setSelectName() {                                                  //设置当前设备的名称
     this.setData({
       indexs: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'id', 'name'),
-      model: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'id', 'model').substr(0, 4),
-      list: [],
-      page: 1
+      model: app.util.filterIdName(app.nowCodeList, app.nowCodeId, 'id', 'model')
     })
   },
 
@@ -80,14 +78,18 @@ Page({
       }
       app.nowCodeId = app.nowCodeList[0].id
       this.setSelectName()
-      if (this.data.model !== 'd603' && this.data.model !== 'D603' && this.data.model !== 'd606' && this.data.model !== 'D606'){
-        this.getList()
-      }
+      this.setData({
+        list:[],
+        page:1
+      })
+      this.getList()
     } else {
       this.setSelectName()
-      if (this.data.model !== 'd603' && this.data.model !== 'D603' && this.data.model !== 'd606' && this.data.model !== 'D606') {
-        this.getList()
-      }
+      this.setData({
+        list: [],
+        page: 1
+      })
+      this.getList()
     }
   },
 
@@ -139,7 +141,7 @@ Page({
             endAddress:'',
             juli: (juli / 1000).toFixed(2),
             bushu:(juli / 0.75 / 1000).toFixed(2),
-            kalu: (juli / 0.75 / 1000 / 2 ).toFixed(2),
+            kalu: (juli*2 / 0.75 / 1000 ).toFixed(2),
             time: obj.start.eventTime.substr(11,8) + '-' + obj.end.eventTime.substr(11,8)
           })
           lalong.push({
@@ -209,15 +211,8 @@ Page({
       })
       return 
     }
-    if (new Date(this.data.startDate).getTime() > new Date(this.data.endDate).getTime()){
-      wx.showToast({
-        title: '开始时间不得大于结束时间',
-        icon: 'none'
-      })
-      return 
-    }
     wx.navigateTo({
-      url: `../map/map?start=${this.data.startDate}&end=${this.data.endDate}&id=${app.nowCodeId}`
+      url: `../map/mapHistory/mapHistory?type=3&start=${this.data.startTime}&end=${this.data.endTime}&id=${app.nowCodeId}&date=${this.data.startDate}`
     })
   },
 
