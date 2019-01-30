@@ -8,6 +8,7 @@ export default {
     getUserInfo: `${api}/api/serviceAccept/queryWxUserInfo`,       //获取用户详情
     setUserInfo: `${api}/api/serviceAccept/updateWxUser`,          //设置用户详情
     getPhoneCode: `${api}/api/business/sendVerificationCode`,      //获取手机验证码
+    wxUserBindPhone: `${api}/api/serviceAccept/wxUserBindPhone`,      //验证用户手机验证码
     getRegister: `${api}/api/serviceAccept/registerWxUser`,        //注册用户
     addEqu: `${api}/api/serviceAccept/bindWxDevice`,               //设备绑定用户
     deleteEqu: `${api}/api/serviceAccept/unBindDevice`,               //用户解除绑定

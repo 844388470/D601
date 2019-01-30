@@ -52,4 +52,5 @@
   </view>  -->
 
   <button class='btn' bindgetuserinfo='register' open-type="getUserInfo">注册</button>
+  <button class='btn' bindtap='getOpenId' wx-if="{{openIdStatus}}">获取openId</button>
 </view>

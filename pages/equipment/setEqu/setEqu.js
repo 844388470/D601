@@ -116,7 +116,7 @@ Page({
 
   setEquData(){
     this.setData({
-      equData: app.nowCodeList[app.equIndex].customFieldList,
+      equData: app.nowCodeList[app.equIndex].customFields,
       models: app.nowCodeList[app.equIndex].deviceType,
       sn: app.nowCodeList[app.equIndex].iccid,
       imei: app.nowCodeList[app.equIndex].deviceNo,

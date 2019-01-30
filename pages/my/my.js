@@ -39,7 +39,7 @@ Page({
       equArray: app.nowCodeList.map(x => ({ 
           ...x, 
           nickName: '设备'+x.deviceNo.substr(-4), 
-          petName: x.customFieldList.filter(y => y.fieldId == 80)[0].content 
+          petName: x.customFields.filter(y => y.fieldId == 80)[0].content 
       }))
     })
   }

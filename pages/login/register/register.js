@@ -16,6 +16,7 @@ Page({
     times: 0,
     tips: '获取验证码',
     isInput:true,
+    openIdStatus:false
   },
 
   /**
@@ -43,10 +44,12 @@ Page({
         }).then(data => {
           app.hideLoading()
           wx.setStorageSync('openid', data.openid);
+          this.setData({
+            openIdStatus: false
+          })
         }).catch((err) => {
           app.hideLoading()
           app.show('获取openid失败')
-          this.getOpenId()
         })
       }
     })
@@ -92,7 +95,6 @@ Page({
       dt: parseInt(new Date().getTime() / 1000),
       secret: app.secret,
       phone: this.data.inputPhone,
-      openid: wx.getStorageSync('openid'),
     }
     app.showLoading('获取验证码...')
     app.request({
@@ -145,6 +147,12 @@ Page({
     } else if (this.data.inputName == ''){
       app.show('请输入真实姓名')
       return
+    } else if (!wx.getStorageSync('openid')) {
+      app.show('openId未获取到，请点击重新获取')
+      this.setData({
+        openIdStatus: true
+      })
+      return
     }
     //  else if (this.data.inputHeight == ''){
     //   app.show('请输入身高')
@@ -158,7 +166,44 @@ Page({
       dt: parseInt(new Date().getTime() / 1000),
       secret: app.secret,
       phone: this.data.inputPhone,
-      openid: wx.getStorageSync('openid')
+      openid: wx.getStorageSync('openid'),
+      verification: this.data.inputVerCode
+    }
+    app.showLoading('验证中...')
+
+    app.request({
+      url: app.api.wxUserBindPhone,
+      method: 'post',
+      data: {
+        ...data,
+        sign: app.md5(app.util.getsign(data)).toUpperCase()
+      }
+    }).then(res => {
+      app.hideLoading()
+      if (res.code === 0) {
+        this.zhuche(JSON.parse(user.detail.rawData))
+      } else if (res.code === 2){
+        app.show('请先发送验证码或验证码已失效')
+      } else if (res.code === 3) {
+        app.show('验证码错误或验证码已失效')
+      } else if (res.code === 4) {
+        app.show('该手机号码已被绑定')
+      } else {
+        return Promise.reject()
+      }
+    }).catch((err) => {
+      app.hideLoading()
+      app.show('验证失败')
+    })
+
+  },
+
+  zhuche(obj){
+    const data = {
+      appid: app.appid,
+      dt: parseInt(new Date().getTime() / 1000),
+      secret: app.secret,
+      openid: wx.getStorageSync('openid'),
     }
     app.showLoading('注册中...')
     app.request({
@@ -166,9 +211,9 @@ Page({
       method: 'post',
       data: {
         ...data,
-        wxName: encodeURIComponent(encodeURIComponent(user.detail.userInfo.nickName)),
-        imgAdress: user.detail.userInfo.avatarUrl,
-        cityName: user.detail.userInfo.city,
+        wxName: encodeURIComponent(encodeURIComponent(obj.nickName)),
+        imgAdress: obj.avatarUrl,
+        cityName: obj.city,
         sign: app.md5(app.util.getsign(data)).toUpperCase()
       }
     }).then(res => {
