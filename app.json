@@ -28,6 +28,11 @@
     "pages/equipment/qrCode/qrCode",
     "pages/login/bindRecord/bindRecord"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取当前位置"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

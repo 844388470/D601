@@ -37,7 +37,7 @@ App({
   getDistance: getDistance,
   util:util,
   request: request,
-  nowCodeId:'',                   //选中设备id
+  nowCodeId: '',   //选中设备id  
   nowCodeList: [],                //设备列表
   equIndex: '',                   //进入设置设备的顺序号
   aroundChange:false,             //是否修改或者新增围栏

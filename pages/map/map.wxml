@@ -16,8 +16,8 @@
       </cover-view>
       <cover-view class="tip_address">
          <!-- <cover-view class="tip_address_line"></cover-view>  -->
-         <cover-view class="tip_address_top" wx:if="{{calorie||heartrate}}"><cover-view class="tip_address_text">{{calorie?'卡路里：'+calorie:''}}  {{heartrate?'心率：'+heartrate:''}}</cover-view></cover-view>
-         <cover-view class="tip_address_top"><cover-view class="tip_address_text">定位方式：{{isWifi===0?'基站':isWifi===1?'GPS':isWifi===2?'WIFI':''}}</cover-view></cover-view>
+         <!-- <cover-view class="tip_address_top" wx:if="{{calorie||heartrate}}"><cover-view class="tip_address_text">{{calorie?'卡路里：'+calorie:''}}  {{heartrate?'心率：'+heartrate:''}}</cover-view></cover-view> -->
+         <cover-view class="tip_address_top"><cover-view class="tip_address_text" wx:if="{{isWifi}}">定位方式：{{isWifi===0?'基站':isWifi===1?'GPS':isWifi===2?'WIFI':''}}</cover-view></cover-view>
         <cover-view class="tip_address_top"><cover-view class="tip_address_text">地址：{{startName}}</cover-view></cover-view>
         
         <cover-view class="tip_address_top"><cover-view class="tip_address_text">时间：{{time}}</cover-view></cover-view>

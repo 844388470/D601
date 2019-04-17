@@ -29,7 +29,7 @@
     </view>
     <view class="userInfo_right">
       <!-- <text class='userInfo_right_title'>{{xian.name}}</text> -->
-      <input value="{{xian.name}}" bindblur="blurNameChange" disabled='{{true}}'></input>
+      <input value="{{xian.name}}" bindblur="blurNameChange" disabled='{{show}}'></input>
       <image class='userInfo_right_direction' src="../../image/right.png"></image>
     </view>
   </view>

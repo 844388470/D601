@@ -71,7 +71,11 @@ const timeWeek = (time) => {
 
 const filterIdName = (arr, id, idname = 'id',name='name') => {
   let n = arr.filter(obj => obj[idname]==id)
-  return n.length !== 0 ? n[0][name]:''
+  return n.length !== 0 ? n[0][name] : ''
+}
+const filterIdImei = (arr, id, idname = 'id', imei = 'imei') => {
+  let n = arr.filter(obj => obj[idname] == id)
+  return  n.length !== 0 ? n[0][imei] : ''
 }
 
 
@@ -79,6 +83,7 @@ module.exports = {
   formatTime,
   formatTimes,
   filterIdName,
+  filterIdImei,
   timeWeek,
   timeFn: timeFn
 }

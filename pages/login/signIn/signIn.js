@@ -1,4 +1,4 @@
-
+import server from '../../../config.js';
 const app = getApp();
 Page({
 
@@ -36,7 +36,7 @@ Page({
       success: res => {
         app.request({ 
           url: app.api.getLoginCode,
-          data: { code: res.code },
+          data: { code: res.code, type: server.type },
           method:'post'  
         }).then(data=>{
           wx.setStorageSync('id', data.id);

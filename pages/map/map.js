@@ -34,6 +34,7 @@ Page({
     app.showLoading('获取轨迹')
     app.request({
       url: `${app.api.getHistory}${options.id}/positions`,
+      //url: `https://api.rinlink.com/yangma/liveData/` + app.inputValue + `?pageNo=0`,
       method: 'GET',
       data: {
         startTime: options.start,
@@ -56,7 +57,7 @@ Page({
       list.sort((a, b) => new Date(a.eventTime).getTime() - new Date(b.eventTime).getTime())
       for (let i = 0; i < list.length; i++) {
         list[i] = {
-          id: i, latitude: list[i].latitude, longitude: list[i].longitude, iconPath: '../../image/yuan.png', width: 12, height: 12, anchor: { x: 0.5, y: 0.5 }, eventTime: list[i].eventTime, wifiGpsFlag: list[i].wifiGpsFlag, calorie: list[i].calorie,heartrate: list[i].heartrate,
+          id: i, latitude: list[i].latitude, longitude: list[i].longitude, iconPath: '../../image/yuan.png', width: 12, height: 12, anchor: { x: 0.5, y: 0.5 }, eventTime: list[i].eventTime, wifiGpsFlag: list[i].wifiGpsFlag, calorie: list[i].calorie, heartrate: list[i].heartrate,
         }
       }
       this.setData({
@@ -105,15 +106,14 @@ Page({
       anchor: { x: 0.5, y: 1 }
     }
     app.mapApi([list[index]]).then(ress => {
-      app.hideLoading()
-      console.log(list[index].calorie)
+      
       this.setData({
         index,
         time: list[index].eventTime,
         longitude: list[index].longitude,
         latitude: list[index].latitude,
         isWifi: list[index].wifiGpsFlag,
-        calorie: list[index].calorie || '',
+        //calorie: list[index].calorie || '',
         heartrate: list[index].heartrate || '',
         polyline: [{
           points: list.slice(0, index + 1),
@@ -130,6 +130,7 @@ Page({
         startName: ress[0],
         markerDatas: list
       })
+      app.hideLoading()
     })
   },
 

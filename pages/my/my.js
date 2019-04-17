@@ -12,6 +12,7 @@ Page({
    */
   onLoad() {
     this.startArrayTime()
+    
   },
   goSetting(e) {
     wx.navigateTo({

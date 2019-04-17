@@ -130,7 +130,7 @@ Page({
     const timeOut = new Date(new Date().getTime() - (this.data.page*2-1) * 1000 * 60 * 60 * 24)
     const startTime = [timeOut.getFullYear(), timeOut.getMonth() + 1, timeOut.getDate()].map(_ => _.toString()[1] ? _.toString() : '0' + _.toString()).join('-')
     const endTime = [time.getFullYear(), time.getMonth() + 1, time.getDate()].map(_ => _.toString()[1] ? _.toString() : '0' + _.toString()).join('-')
-    app.showLoading('加载中')
+    app.showLoading('地图加载中')
     app.request({
       url: `${app.api.getHistory}${app.nowCodeId}/positions`,
       method: 'GET',
@@ -151,8 +151,10 @@ Page({
         })
       for(let i in res){
         // res[i].start.eventTime = res[i].end.eventTime='2018-08-31 13:15:15'
+        //console.log(list)
         const filterL = list.filter(obj => obj.time.substr(0, 10) == res[i].start.eventTime.substr(0, 10))
         const obj=res[i]
+        console.log(filterL)
         if (filterL.length){
           const juli = this.distances([{ latitude: obj.start.latitude, longitude: obj.start.longitude }, { latitude: obj.end.latitude, longitude: obj.end.longitude }])
           filterL[0].list.unshift({

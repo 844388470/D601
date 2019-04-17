@@ -24,13 +24,25 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 0,
+			"list": [
+				{
+					"id": 0,
+					"name": "D600",
+					"pathName": "pages/D600histor/history600",
+					"query": "",
+					"scene": null
+				}
+			]
 		}
 	}
 }
